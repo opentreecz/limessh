@@ -1,0 +1,175 @@
+# JuiceSSH 3.2.2: static artifact analysis and successor feasibility
+
+Investigation date: 2026-10-18. Scope: the two supplied root APKs and inherited `JuiceSSHOfflineProFix/` repository. **Recommendation: use these artifacts as interoperability evidence for an independently implemented, renamed client, not as a buildable application-source baseline.** The inherited source implements an Xposed module only. Substantial Java/resource decompilation succeeded; native libraries and one important database-import routine remain barriers to complete behavioral reconstruction.
+
+Evidence labels: **Observed** means present in local artifacts, source, or tool output; **inferred** means an interpretation of that evidence; **unverified** means not established by this static investigation. APK signature validity establishes integrity relative to the embedded signer, not independent publisher identity. No APK code was run; no backend was contacted or activated. Only public analysis-tool downloads and attempted Android documentation retrieval used the network.
+
+Local evidence links below resolve inside ignored `.artifact-analysis/`; regenerate with the commands below. They intentionally do not put decompiled proprietary source into research notes. `J` below abbreviates `.artifact-analysis/juicessh/jadx/sources/`, and `F` abbreviates `.artifact-analysis/fix/jadx/sources/`. Source line numbers refer to this JADX 1.5.3 run and may change with tool versions.
+
+## 1. What was supplied, and how reproducible is the investigation?
+
+### Takeaway
+
+Both APKs verify successfully using Google's Android APK signature verifier. JuiceSSH targets Android 10/API 29 and contains a large obfuscated application plus native dependencies; OfflineProFix is a small API-36-targeting legacy-Xposed module. The application is analyzable but is not recovered original source.
+
+### Cited findings: artifact identity
+
+| Property | JuiceSSH | OfflineProFix |
+|---|---|---|
+| Root artifact | `com.sonelli.juicessh_3.2.2-200_minAPI26(arm64-v8a,armeabi-v7a,x86,x86_64)(nodpi)_apkmirror.com.apk` | `JuiceSSHOfflineProFix-v1.0-xposed82-release.apk` |
+| Bytes | 24,805,394 | 15,200 |
+| SHA-256 | `167d3afb1c832698ca512d9bf418c341a6f6e441bc64f57aaa1b264d47a8d64b` | `5dea4033623bc6562fe388c4f47e9df6cd2643327138b0f10578ef6f171a267d` |
+| Package | `com.sonelli.juicessh` | `org.lyf.juicesshofflinepro` |
+| Version name / code | 3.2.2 / 200 | 1.0 / 1 |
+| Minimum / target / compile SDK | 26 / 29 / 29 | 26 / 36 / 36 |
+| DEX files | One | One |
+| DEX class definitions / method-ID entries | 7,839 / 55,362 | 10 / 110 |
+| Signature structures detected by Androguard | v1, v2, v3 | v2 |
+| apksig verification | verified; v2 and v3 used; no errors/warnings | verified; v2 used; no errors/warnings |
+
+Sources: [machine-readable inventory](../../.artifact-analysis/inventory.json), [DEX counts](../../.artifact-analysis/dex-summary.json), [JuiceSSH manifest](../../.artifact-analysis/juicessh/AndroidManifest.xml), [fix manifest](../../.artifact-analysis/fix/AndroidManifest.xml), [saved signature verification](../../.artifact-analysis/signature-verification.txt); reproduce signature results using [VerifyApks.java](VerifyApks.java). Method-ID counts include referenced methods, not just locally implemented methods. apksig's `v1=false` here means it did not verify using v1 in its default platform-range evaluation; it does not contradict detection of v1 metadata.
+
+- **Observed:** JuiceSSH certificate SHA-256 is `71a74e3a00e7d2cee1cb9f84fcf434d9a65821edf4a3686bfc8686aaeec92037`. Its self-reported subject names Paul Maddox / Sonelli Ltd / London / GB. OfflineProFix certificate SHA-256 is `24b8382c28d4622ebc1deda60f0576e0609a9100ee0f411f1ce16c9132b13dd0`, with self-reported subject Yifei Li / LYF / US. The latter matches the inherited signing README. No private signing keys were supplied in `release/`. [Inventory](../../.artifact-analysis/inventory.json), [signing README](../../JuiceSSHOfflineProFix/release/README.md).
+- **Observed:** inherited HEAD is `d4af690e27bbe94355f49cdc56b411b7c2f1ab8a` (`License project under AGPL-3.0`); working tree was clean. The fix APK's build metadata reports revision `48abf67de720450d9b2c21dd2ac2577bcdb9b5a2`, but its compiled manifest already includes `xposedscope`, which Git history adds in later commit `57554c2`. **Inference:** embedded revision metadata is not a complete source-to-binary provenance guarantee; a build from an uncommitted worktree could explain it. This does not establish tampering. [Embedded metadata](../../.artifact-analysis/fix/unpacked/META-INF/version-control-info.textproto), [compiled manifest](../../.artifact-analysis/fix/AndroidManifest.xml), command `git -C JuiceSSHOfflineProFix diff 48abf67de720450d9b2c21dd2ac2577bcdb9b5a2 HEAD -- app`.
+
+### Manifest, permissions and component surface
+
+- **Observed:** JuiceSSH has 29 activities, 17 services, 7 receivers and 2 providers. Its 13 requested permissions cover internet/network state, vibration, wake lock, boot reception, foreground services, read/write external storage, old launcher-shortcut installation, Play billing/install-referrer, and Google push plus its own C2D permission. Full names are retained in the inventory. `allowBackup=false`, `largeHeap=true`, `extractNativeLibs=true`, `usesCleartextTraffic=true`; `org.apache.http.legacy` is optional. Cleartext permission alone does not prove sensitive data is transmitted unencrypted. [Manifest](../../.artifact-analysis/juicessh/AndroidManifest.xml), lines 19–32, 56–58; [inventory](../../.artifact-analysis/inventory.json).
+- **Observed:** exported application surfaces include three plugin services, the plugin provider, SFTP control receiver, terminal deep-link activity, and several purchase/settings-related activities. Terminal schemes are `ssh`, `ssh-forward`, `telnet`, `local`, and `mosh`. The SFTP control receiver declares no component-level permission; exploitability was not tested. MainActivity and some receivers rely on legacy export defaults rather than explicit declarations. [Manifest](../../.artifact-analysis/juicessh/AndroidManifest.xml), lines 33–55, 65–84, 106–139, 170–180.
+- **Observed:** CloudSync and Ec2Link are non-exported job services requiring `BIND_JOB_SERVICE`; ConnectionManagerService is non-exported. Firebase/Google Analytics/Crashlytics/Google Sign-In components are packaged. Their presence does not prove current endpoint operation or telemetry behavior. [Manifest](../../.artifact-analysis/juicessh/AndroidManifest.xml), lines 88–105, 201–227.
+- **Observed:** OfflineProFix requests no permissions, declares one exported launcher settings activity, no services/providers/receivers, and `allowBackup=false`. Legacy Xposed metadata specifies API 82 and target scope `com.sonelli.juicessh`. Its `assets/xposed_init` names the module entry point. Lack of INTERNET permission in the module does not prevent hooked target-app code from networking under JuiceSSH's permissions. [Fix manifest](../../.artifact-analysis/fix/AndroidManifest.xml), [entry point](../../JuiceSSHOfflineProFix/app/src/main/assets/xposed_init).
+
+### Native inventory and decompilation results
+
+- **Observed:** there are ten `lib/<ABI>/` entries for each of arm64-v8a, armeabi-v7a, x86 and x86_64 (40 total): `libcom.sonelli.libssh.so`, `libcrypto.so`, `libssl.so`, `libjuicessh.so`, `libjnidispatch.so`, `libcom_google_ase_Exec.so`, `libcom_sonelli_bash.so`, `libcom_sonelli_bashrc.so`, `libcom_sonelli_telnet.so`, `libcom_sonelli_mosh-client.so`. `bashrc.so` is not ELF; 36 entries are ELF. OfflineProFix has no native library entries. [ZIP inventory](../../.artifact-analysis/inventory.json), [ELF inventory with per-file hashes, program headers and dynamic sections](../../.artifact-analysis/native-inventory.json).
+- **Observed:** printable binary identifiers across all four ABIs include `OpenSSL 1.1.1g  21 Apr 2020`, `SSH-2.0-libssh_0.9.3`, and `mosh 1.3.2`. These are embedded identifiers, not a complete SBOM or proof of patch status. arm64 libssh has SONAME `libssh.so`, requires `libcrypto.so`, `libm.so`, `libdl.so`, `libc.so`, and has two LOAD segments aligned to `0x1000` (4 KiB). [Native inventory](../../.artifact-analysis/native-inventory.json).
+- **Observed:** shell/Mosh/Telnet transport adapters resolve executable-looking `.so` files from `ApplicationInfo.nativeLibraryDir`; Bash also resolves the non-ELF bashrc there. This is an intentional packaged-executable pattern, not evidence of Java loading bashrc as a library. [ci0.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/ci0.java), lines 45–50; [di0.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/di0.java), line 284; [li0.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/li0.java), line 37.
+- **Observed:** JADX completed OfflineProFix without reported errors. JuiceSSH processing reached 4,005 work items and finished with **26 errors**, exit status 1, leaving extensive usable Java and decoded resources. Work items are not DEX class counts. One input error misclassifies bundled `com/sun/jna/darwin/libjnidispatch.jnilib` as Java class data. A consequential method, `DB.c(...)`, fails type inference and becomes a non-decompiled placeholder (1,532 instructions). Other warnings and unresolved methods require bytecode review before relying on their apparent Java behavior. [DB.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/db/DB.java), lines 91–104; outputs under [local JADX directory](../../.artifact-analysis/juicessh/jadx/).
+- **Observed:** names such as `oi0`/`pi0` are obfuscated, while many model/component names and some `compiled from` labels survive. No native decompiler was used; `readelf` does not recover C/C++ source. The DEX parser provides a second representation of targeted methods. [Targeted instructions](../../.artifact-analysis/juicessh/targeted-dex.txt), [fix instructions](../../.artifact-analysis/fix/targeted-dex.txt).
+
+### Reproduction and tool versions
+
+Instructions read before artifact work: supplied global OpenCode instructions, requested `deep-research/references/researcher.md`, root `README.md` (only a title), inherited README and license. `/AGENTS.md`, `/home/AGENTS.md`, `/home/lukas/AGENTS.md`, `/home/lukas/git/AGENTS.md` were absent; a workspace glob found no local `AGENTS.md`. Root `.gitignore` was absent and was created to ignore only `/.artifact-analysis/`. The nested repository was not changed.
+
+Versions actually used: Python 3.13.5; Androguard 4.1.4; JADX 1.5.3; Google apksig 8.13.0; OpenJDK 21.0.12.1 Debian build; GNU readelf/binutils 2.44. No system packages were installed. Portable tool hashes:
+
+- `jadx-1.5.3.zip`: `8280f3799c0273fe797a2bcd90258c943e451fd195f13d05400de5e6451d15ec`.
+- `apksig-8.13.0.jar`: `c070ed1394629d74641aa0906f60b2ffa1ee77e6366a1f93437f59717b1aeb89`.
+
+Commands, from `/home/lukas/git/juicessh` (download/unpack steps assume fresh tool paths; use the pinned version below rather than an unpinned latest release):
+
+```bash
+ls /tmp/opencode
+python3 -m venv /tmp/opencode/juicessh-tools
+/tmp/opencode/juicessh-tools/bin/pip install androguard==4.1.4
+/tmp/opencode/juicessh-tools/bin/python "research_notes/JuiceSSH revival feasibility/analyze_artifacts.py" --extract
+curl -fL https://github.com/skylot/jadx/releases/download/v1.5.3/jadx-1.5.3.zip -o /tmp/opencode/juicessh-jadx-1.5.3.zip
+unzip -q /tmp/opencode/juicessh-jadx-1.5.3.zip -d /tmp/opencode/juicessh-jadx-1.5.3
+bash /tmp/opencode/juicessh-jadx-1.5.3/bin/jadx --version
+bash /tmp/opencode/juicessh-jadx-1.5.3/bin/jadx -j 4 -d .artifact-analysis/fix/jadx JuiceSSHOfflineProFix-v1.0-xposed82-release.apk
+bash /tmp/opencode/juicessh-jadx-1.5.3/bin/jadx -j 4 -d .artifact-analysis/juicessh/jadx "com.sonelli.juicessh_3.2.2-200_minAPI26(arm64-v8a,armeabi-v7a,x86,x86_64)(nodpi)_apkmirror.com.apk"
+curl -fL https://dl.google.com/dl/android/maven2/com/android/tools/build/apksig/8.13.0/apksig-8.13.0.jar -o /tmp/opencode/juicessh-apksig-8.13.0.jar
+java -cp /tmp/opencode/juicessh-apksig-8.13.0.jar "research_notes/JuiceSSH revival feasibility/VerifyApks.java" ./*.apk
+python3 "research_notes/JuiceSSH revival feasibility/native_inventory.py"
+/tmp/opencode/juicessh-tools/bin/python "research_notes/JuiceSSH revival feasibility/dex_evidence.py"
+readelf -lW .artifact-analysis/juicessh/unpacked/lib/arm64-v8a/libcom.sonelli.libssh.so
+readelf -dW .artifact-analysis/juicessh/unpacked/lib/arm64-v8a/libcom.sonelli.libssh.so
+sha256sum /tmp/opencode/juicessh-jadx-1.5.3.zip /tmp/opencode/juicessh-apksig-8.13.0.jar
+git -C JuiceSSHOfflineProFix status --short
+git -C JuiceSSHOfflineProFix log --oneline -5
+git -C JuiceSSHOfflineProFix diff 48abf67de720450d9b2c21dd2ac2577bcdb9b5a2 HEAD -- app
+git check-ignore .artifact-analysis/inventory.json
+git diff --check
+```
+
+The actual initial pip command was unpinned `pip install androguard`, resolving to 4.1.4; the reproduction command pins that observed version. The complete resolved Python environment is saved in [python-requirements.txt](../../.artifact-analysis/python-requirements.txt) using `/tmp/opencode/juicessh-tools/bin/pip freeze > .artifact-analysis/python-requirements.txt`. Signature verification was repeated with stdout redirected to `.artifact-analysis/signature-verification.txt`. All three Python scripts passed `python3 -m py_compile`, with `PYTHONPYCACHEPREFIX=/tmp/opencode/juicessh-pycache` to keep bytecode outside the repository. The scripts use `apply_patch`-created original code, parse files only, and emit potentially proprietary evidence exclusively into the ignored directory. Extraction checks path containment. A failed exploratory hash command against `JuiceSSHOfflineProFix/release/*.apk` established no APK was present there; the supplied root APK was the analyzed copy. Native inventory records all ELF headers rather than extrapolating one architecture to the others.
+
+### Inferences and gaps
+
+- Signature verification supports stable artifact identification. It does not independently verify an APKMirror download history or authenticate certificate subject strings against an external publisher record.
+- There is enough surviving structure for architecture and migration research. A successful decompile is not evidence that JADX output can be rebuilt, licensed as a new app, or safely substituted for original source.
+- No Gradle build, APK execution, device/emulator installation, Xposed installation, backend activation, graph generation, or app scaffold was attempted. Original supplied APKs remain untracked as before; the new ignore rule protects extracted analysis, not the supplied originals.
+
+## 2. What does OfflineProFix really change, and what rights accompany it?
+
+### Takeaway
+
+The five documented hooks match methods in the supplied JuiceSSH 3.2.2 APK. They override local entitlement/authentication decisions and supply a cached or blank user; they neither implement the SSH client nor reconstruct the remote service. The README's legitimate-entitlement purpose is a usage statement: there is no ownership-verification check in the hook implementation.
+
+### Cited findings: hook contract checked against target code
+
+| Target | Original observed role | Observed replacement |
+|---|---|---|
+| `oi0.d(Object)` | Requires a User, validates its signature, filters product purchases, sorts by purchase time, accepts newest matching state 0 | Constant true |
+| `User.H()` | Verifies signature over session identifier, name, email, deduplicated purchase product/state information and disabled flag | Constant true |
+| `User.w()` | Returns `sessionExpires - currentUnixSeconds`, or 0 when unset | Constant remaining duration `years × 31,536,000` seconds |
+| `pi0.m(Context)` | Obtains user through callback/queue, then invokes `oi0.d` | Constant true |
+| `pi0.j(Context,p)` | User/cache acquisition, signature/disabled checks, expiry handling and optional background refresh | Invokes callback `b(User)` with `User.A(context)` or a newly constructed User |
+
+Sources: [original hook source](../../JuiceSSHOfflineProFix/app/src/main/java/org/lyf/juicesshofflinepro/JuiceSshOfflineProModule.java), lines 21–137; [decompiled fix](../../.artifact-analysis/fix/jadx/sources/org/lyf/juicesshofflinepro/JuiceSshOfflineProModule.java); [oi0.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/oi0.java), lines 38–63; [User.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/models/User.java), lines 124–136, 274–310; [pi0.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/pi0.java), lines 791–858.
+
+- **Observed:** defaults enable all four settings categories, with ten years and a clamp of 1–100. Configuration uses `XSharedPreferences`, calls `makeWorldReadable()` and `reload()`, and defaults on failure. SettingsActivity writes private SharedPreferences; actual cross-process preference readability depends on the Xposed implementation and was not tested. Targeting API 36 does not prove this mechanism works on Android 16. [Module source](../../JuiceSSHOfflineProFix/app/src/main/java/org/lyf/juicesshofflinepro/JuiceSshOfflineProModule.java), lines 149–178; [settings source](../../JuiceSSHOfflineProFix/app/src/main/java/org/lyf/juicesshofflinepro/SettingsActivity.java), lines 105–125.
+- **Observed:** the session hook is not a future timestamp and does not persist a new session expiry. Without the `pi0.j` replacement, the original method can still refresh after an hour or after loading a local user even when remaining lifetime is positive. Thus the README's short description of the time hook alone preventing refresh is incomplete. [User.w](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/models/User.java), lines 305–310; [pi0.j](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/pi0.java), lines 803–834.
+- **Observed:** the replacement invokes the success callback synchronously, and a constructed fallback User has no recovered server session, identity or purchases. **Inference:** callers may encounter null fields, different thread/timing assumptions, or server rejection. Hook setup catches failures independently, so partial hooking is possible. [Module source](../../JuiceSSHOfflineProFix/app/src/main/java/org/lyf/juicesshofflinepro/JuiceSshOfflineProModule.java), lines 81–136; [User fields](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/models/User.java), lines 38–72.
+- **Observed:** JADX's rendered anonymous callback omitted the source's empty catch around user lookup. DEX inspection found an exception region (`tries=1`) in `replaceHookedMethod`; therefore the Java rendering is not sufficient evidence of a source/APK mismatch. The supplied module's main hook names, constants, preferences, callback approach and settings agree at the inspected level. A reproducible byte-for-byte build was not established. [Fix DEX evidence](../../.artifact-analysis/fix/targeted-dex.txt), [source](../../JuiceSSHOfflineProFix/app/src/main/java/org/lyf/juicesshofflinepro/JuiceSshOfflineProModule.java), lines 110–119.
+- **Observed:** a local compile-only Xposed API stub is used; Java source/target 17, compile/target SDK 36, minimum SDK 26, no minification/resource shrinking in release. There is no standalone SSH implementation in the module source. [build.gradle](../../JuiceSSHOfflineProFix/app/build.gradle), [README](../../JuiceSSHOfflineProFix/README.md).
+
+### License boundaries
+
+- **Observed:** the inherited README explicitly states **AGPL-3.0-or-later**; LICENSE contains AGPL version 3. Its stated purpose is legitimate-purchase archival/interoperability/personal recovery, with no claimed affiliation to Sonelli. This applies to the supplied module project, not automatically to JuiceSSH. [README](../../JuiceSSHOfflineProFix/README.md), lines 3–13; [LICENSE](../../JuiceSSHOfflineProFix/LICENSE).
+- **Observed:** JuiceSSH includes component license metadata: libssh LGPL, emulatorview Apache 2.0, Mosh/Bash/telnet component GPLv3+, ORMLite ISC, Solarized BSD, fonts various, OpenSSL mixed. Resources also include JSch and BoringSSL license files, but their presence alone does not establish current runtime use. [licenses.json](../../.artifact-analysis/juicessh/unpacked/res/raw/licenses.json), [ZIP inventory](../../.artifact-analysis/inventory.json).
+- **Inference:** these dependency notices do not grant permission to redistribute a renamed proprietary JuiceSSH application or copy its whole UI/resources. A successor should obtain dependencies from their own upstream sources and audit their actual selected versions/licenses; reusing module code would require considering its AGPL obligations. No broad application-source license or permission from Sonelli was established in supplied material.
+
+### Gaps
+
+No runtime validation of Xposed API compatibility, settings visibility, callback behavior, entitlement ownership, or offline feature reliability. No patched APK or activation mechanism was produced. Source-to-binary provenance is qualified by the embedded revision discrepancy and lack of a rebuild. The module has no evidence of recreating Sonelli authentication, cloud synchronization, purchase records, or remote signatures.
+
+## 3. What architecture is recoverable, and what should a renamed successor plan for?
+
+### Takeaway
+
+The artifact exposes useful contracts for connections, local encrypted identities, a Binder/content-provider plugin API, and JSON cloud objects. A successor can independently implement a local-first client and an explicit importer, but package/signature boundaries, private storage, obsolete native builds and cloud dependencies make a simple rename/rebuild an unsuitable plan.
+
+### Cited findings: local models and data recovery
+
+- **Observed:** persistence is ORMLite over Android SQLite, schema version **55**, database filename derived from `User.t(context)` (stored account hash). Models cover connections, groups/membership, identities and connection-identity associations, host records, snippets, port forwards, configuration, counters, plugin logs, users/purchases, deletion markers, teams/shares/team encryption, and EC2 profiles/mappings/filters/connections. It is not shown to be a whole-database encrypted SQLite engine. [DB.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/db/DB.java), lines 43–80, 118–165; [User.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/models/User.java), lines 198–245.
+- **Observed:** base objects use UUID keys, modification timestamps, owner and last-updated-by links, an encrypted representation and encryption flag. JSON serialization reflects ORMLite field names and foreign UUIDs. Export can emit `id`, `modified`, `_encrypted` and ciphertext `data`, or structured fields. Identity passwords, private keys and private-key passwords are individually re-encrypted during passphrase changes. [BaseModel.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/db/BaseModel.java), lines 28–44, 69–86, 141–168; [DB export](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/db/DB.java), lines 50–80; [Identity.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/models/Identity.java), lines 45–65.
+- **Observed:** the helper used for these fields is AES-256-CBC with PKCS5Padding, PBKDF2-HMAC-SHA1 **1,000 iterations**, random **8-byte salt**, random block-size IV, and three Base64 fields separated by `#`. No MAC or authenticated-encryption tag appears in this helper. User password/PIN material is itself wrapped in SharedPreferences using account-derived strings. This documents a legacy compatibility format, not a recommended new security design or proof of a complete vulnerability chain. [qg0.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/qg0.java), lines 30–86; [User.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/models/User.java), lines 155–174, 217–255.
+- **Inference:** a migration requires both records and the appropriate account/passphrase context. A fresh package cannot ordinarily read another app's private database/preferences, and `allowBackup=false` further limits generic backup assumptions. The plugin provider intentionally excludes an identity endpoint, so a plugin-only export is not shown to recover SSH private keys. A user-authorized export/import design needs an actual sample export/database fixture before an importer can be specified reliably. [Manifest](../../.artifact-analysis/juicessh/AndroidManifest.xml), [provider](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/providers/PluginContentProvider.java), lines 43–82.
+
+### Cited findings: plugin API
+
+- **Observed:** provider authority is `com.sonelli.juicessh.api.v1`, with connection, EC2 connection, snippet, port-forward, group, group-membership and plugin-log URI matchers (collection and item forms). The provider default permission is signature-level `JUICESSH_ONLY`; explicit path read/write permissions expose selected paths using dangerous permissions. `ec2connections` has a matcher but no corresponding manifest path-permission override, so it must not be assumed to have the same external accessibility as connections. [Provider](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/providers/PluginContentProvider.java), lines 43–59; [manifest](../../.artifact-analysis/juicessh/AndroidManifest.xml), lines 7–18, 48–54.
+- **Observed:** connection/general plugin services require dangerous `OPEN_SESSIONS`; SFTP requires signature-level `OPEN_SFTP_SESSIONS`. Binder interface descriptors and parcel transaction order survive, including `com.sonelli.juicessh.pluginlibrary.IPluginService`, `IConnectionPluginService`, callback listeners, session IDs and string tokens. Connection service supports ping, reporting/open tracking, disconnect, and completion listeners; general service adds session I/O and command execution callbacks. [IPluginService.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/pluginlibrary/IPluginService.java), lines 15–85; [connection stub](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/uj0.java), lines 115–141; [PluginService.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/services/PluginService.java); [manifest](../../.artifact-analysis/juicessh/AndroidManifest.xml), lines 15–45.
+- **Observed:** provider operations also check application configuration/session conditions and optionally `pi0.m` (Pro), redirecting to purchase UI when required. Its SQL guard is substring-based and excludes identity/credential terms. This is an audit target, not an established SQL-injection finding. [Provider](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/providers/PluginContentProvider.java), lines 62–82, 166–208, 316–381.
+- **Inference:** a renamed app should define its own authority, permissions, Binder contracts and explicit plugin consent. Preserving legacy interface descriptors is only one part of interoperability; old clients may bind to the original package/service/action, while signature permissions and authority collisions prevent transparent coexistence. Do not promise old plugin compatibility from matching method names alone. An adapter/SDK migration is a separate design decision.
+
+### Cited findings: Pro, cloud and external services
+
+- **Observed:** Pro is not a separate supplied implementation package: `oi0.d` is a recurring in-app gate. Call sites gate port-forward menu entries, connection-group sharing, home-screen shortcuts (also subject to config flags), terminal behavior, identity UI, cloud sync and EC2 service behavior. This is a partial audited call-site map, not an exhaustive feature list. [AddressBookActivity.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/activities/AddressBookActivity.java), lines 63–76, 127–168, 181–205; [CloudSync.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/services/CloudSync.java), lines 175–186; [Ec2Link.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/services/Ec2Link.java), around line 190.
+- **Observed:** `pi0` contains HTTPS routes at `api.sonelli.com` for `/googleauth/…`, `/devices`, `/cloudsync`, `/bookclub`, `/plugins`, `/purchase`, `/logout`, and `/users/:…`. Requests use a session cookie in inspected authenticated paths. Purchase submission and Google Sign-In integration are distinct from local entitlement checks. No live requests to these endpoints were made; their present availability is unverified, notwithstanding the fix README's shutdown claims. [pi0.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/pi0.java), lines 232–241, 549, 656, 726, 756, 788, 861–942.
+- **Observed:** cloud sync checks entitlement, an enable flag and an encryption-test sentinel; serializes per-class arrays keyed by Java class names; includes config/deletion markers; optionally includes identities; encrypts connections/groups/hosts/snippets/EC2 settings/port forwards while some relationship/team metadata is sent without the per-record encrypted wrapper. Team-encrypted records have item/type/revision and separate team key handling. This is evidence of mixed metadata/ciphertext synchronization, not proof of a complete zero-knowledge protocol. [CloudSync.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/services/CloudSync.java), lines 175–239; [BaseModel.java](../../.artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/db/BaseModel.java), lines 108–138.
+- **Inference:** forcing a local callback cannot synthesize accepted server sessions, implement remote team membership, recover missing ciphertext or recreate plugin catalogs. The fix's callback may even allow a downstream cloud operation to proceed with stale/blank session data. Cloud replacement must be a separately designed, user-selected service rather than reuse of old Sonelli endpoints or credentials.
+
+### Modern Android risks and proposed planning sequence
+
+The following are **engineering inferences / verification tasks**, not device-test results or claims about current Play acceptance deadlines:
+
+1. **Native modernization is mandatory for a maintained successor.** Rebuild selected upstream dependencies with current NDK/toolchains; audit algorithms, host-key verification, JNA/JNI boundaries, subprocess lifecycle and licenses. The observed arm64 libssh 4 KiB LOAD alignment is a concrete 16 KiB-page compatibility concern. ZIP alignment changes alone do not rebuild ELF segments. Revisit packaging of executable files and non-ELF bashrc disguised as `.so`.
+2. **Retarget deliberately.** Audit explicit `android:exported`, notification runtime permission, PendingIntent mutability, background starts, foreground-service types/permissions and long-lived SSH-session lifecycle. The original target-29 service declarations lack modern service-type information; bumping SDK fields alone is insufficient. Also review scoped-storage/Storage Access Framework import/export and package visibility for plugin discovery.
+3. **Rebuild the trust boundary.** A renamed successor has a different package/signing key and private storage. Use original branding/assets and new application identifiers. Exported deep links, plugin Binder calls, provider projections and logging of remote commands deserve an explicit security model. Do not carry global cleartext permission forward without a feature-specific reason (Telnet is inherently cleartext).
+4. **Specify a local-first data model before cloud.** Preserve useful concepts (connections, identity references, groups, snippets, forwards, host trust) using original implementation. Use authenticated encryption and modern key management for new storage; isolate any legacy format reader as a compatibility component. Design optional import with user-owned fixtures and explicit credentials handling.
+5. **Plan in gated increments, not an APK rewrite:** independently document observable feature/API requirements → choose maintained SSH/terminal components and licenses → approve renamed local-first architecture → specify import compatibility from fixtures → design plugin SDK and optional sync. Only then implement, with separately approved device/runtime tests. This investigation does not choose a framework or create an app project.
+
+Primary Android references intended for verification: [16 KiB page-size guidance](https://developer.android.com/guide/practices/page-sizes), [Android 12 behavior changes](https://developer.android.com/about/versions/12/behavior-changes-12), [foreground-service types](https://developer.android.com/about/versions/14/changes/fgs-types-required). All three fetches failed with transport errors during this run, so current text/deadlines were **not** verified. Risk prioritization above rests on observed manifest/native facts plus general Android engineering constraints, not a successful contemporary policy-source review.
+
+### Remaining gaps / blockers
+
+- **Source recovery:** 26 JADX errors; database merge/import method especially incomplete. Targeted DEX and a later fallback decompiler/disassembler pass are appropriate before deriving import semantics. Native code was inventoried, not fully reversed. No vulnerability/CVE completeness claim.
+- **Migration:** no user database/export, passphrase fixture, plugin APK, server implementation or network trace supplied. No exact import round-trip or plugin compatibility guarantee can yet be made.
+- **Security:** credential format helper and provider checks were inspected, but SSH host-key verification, supported algorithms, all TLS clients, sensitive logging, SFTP receiver validation and complete team crypto were not audited end-to-end.
+- **Pro behavior:** inspected hooks and representative call sites support local-gating conclusions; all advertised paid features and runtime effects remain untested. Future implementation should derive an independently specified feature matrix rather than assume bypassed gates equal functional services.
+- **Provenance/licensing:** original signing identity was not externally authenticated; build metadata differs from inherited HEAD; original application reuse rights are not established; dependency license inventory is preliminary.
+- **Platform validation:** no runtime, battery/background, accessibility, IME, terminal rendering, modern ABI/page-size or install testing was allowed/performed. Android primary-document fetches failed. Those checks belong to a later approved phase.
+
+Checks completed: both APK signatures valid with no verifier warnings/errors; APK inventory/extraction, manifest decoding, DEX counts/targeted instructions and all-native ELF inventory succeeded; fix JADX succeeded and main JADX produced partial output with explicitly recorded errors; `.artifact-analysis/inventory.json` is ignored; nested Git working tree remained clean; root README was not edited; no commit was created.

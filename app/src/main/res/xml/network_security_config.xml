@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SSH uses its own transport security; cleartext HTTP is not needed.
+     This config blocks cleartext HTTP by default. -->
+<network-security-config>
+    <base-config cleartextTrafficPermitted="false" />
+</network-security-config>

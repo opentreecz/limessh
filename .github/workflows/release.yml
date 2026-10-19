@@ -1,0 +1,145 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'   # e.g. v0.1.0, v1.0.0-alpha1
+
+permissions:
+  contents: write   # needed to create GitHub releases
+
+env:
+  JAVA_VERSION: '17'
+  ANDROID_COMPILE_SDK: '35'
+  ANDROID_BUILD_TOOLS: '35.0.0'
+
+jobs:
+  release:
+    name: Build & Publish Release
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up JDK ${{ env.JAVA_VERSION }}
+        uses: actions/setup-java@v4
+        with:
+          java-version: ${{ env.JAVA_VERSION }}
+          distribution: temurin
+
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: gradle-${{ runner.os }}-${{ hashFiles('**/*.gradle.kts', 'gradle/wrapper/gradle-wrapper.properties') }}
+          restore-keys: gradle-${{ runner.os }}-
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Install required SDK components
+        run: |
+          sdkmanager --install \
+            "platforms;android-${{ env.ANDROID_COMPILE_SDK }}" \
+            "build-tools;${{ env.ANDROID_BUILD_TOOLS }}" \
+            "platform-tools" 2>&1 | tail -5
+          yes | sdkmanager --licenses > /dev/null 2>&1 || true
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
+
+      # ── Extract version from tag (strips leading "v") ──
+      - name: Extract version
+        id: version
+        run: |
+          TAG="${GITHUB_REF#refs/tags/}"
+          VERSION="${TAG#v}"
+          echo "tag=$TAG"         >> $GITHUB_OUTPUT
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+          echo "Building release: $TAG ($VERSION)"
+
+      # ── Always build the debug APK (no signing needed) ──
+      - name: Build debug APK
+        run: ./gradlew assembleDebug --no-daemon
+
+      # ── Build signed release if keystore secret is present ──
+      - name: Build signed release APK
+        if: ${{ env.KEYSTORE_BASE64 != '' }}
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+          KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+          KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+        run: |
+          echo "$KEYSTORE_BASE64" | base64 -d > /tmp/release.jks
+          ./gradlew assembleRelease \
+            -Pandroid.injected.signing.store.file=/tmp/release.jks \
+            -Pandroid.injected.signing.store.password="$KEYSTORE_PASSWORD" \
+            -Pandroid.injected.signing.key.alias="$KEY_ALIAS" \
+            -Pandroid.injected.signing.key.password="$KEY_PASSWORD" \
+            --no-daemon
+          rm -f /tmp/release.jks
+
+      # ── Build unsigned release if no keystore ──
+      - name: Build unsigned release APK
+        if: ${{ env.KEYSTORE_BASE64 == '' }}
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: ./gradlew assembleRelease --no-daemon
+
+      # ── Collect and rename APKs ──
+      - name: Collect APKs
+        id: apks
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+
+          DEBUG=$(find app/build/outputs/apk/debug -name '*.apk' | head -1)
+          cp "$DEBUG" "LimeSSH-${VERSION}-debug.apk"
+          echo "debug_apk=LimeSSH-${VERSION}-debug.apk" >> $GITHUB_OUTPUT
+
+          RELEASE=$(find app/build/outputs/apk/release -name '*.apk' 2>/dev/null | head -1)
+          if [ -n "$RELEASE" ]; then
+            cp "$RELEASE" "LimeSSH-${VERSION}-release.apk"
+            echo "release_apk=LimeSSH-${VERSION}-release.apk" >> $GITHUB_OUTPUT
+          fi
+
+      # ── Determine if this is a pre-release ──
+      - name: Detect pre-release
+        id: prerelease
+        run: |
+          VERSION="${{ steps.version.outputs.version }}"
+          if echo "$VERSION" | grep -qE '(alpha|beta|rc|dev|pre)'; then
+            echo "is_prerelease=true" >> $GITHUB_OUTPUT
+          else
+            echo "is_prerelease=false" >> $GITHUB_OUTPUT
+          fi
+
+      # ── Create GitHub Release ──
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "LimeSSH ${{ steps.version.outputs.tag }}"
+          prerelease: ${{ steps.prerelease.outputs.is_prerelease }}
+          generate_release_notes: true
+          body: |
+            ## LimeSSH ${{ steps.version.outputs.tag }}
+
+            ### Install on Android
+            1. Download **LimeSSH-${{ steps.version.outputs.version }}-debug.apk** below
+            2. On your Android device: **Settings → Apps → Install unknown apps** → allow your browser or file manager
+            3. Open the downloaded APK and tap **Install**
+
+            > **Debug build** — includes debug symbols, larger file size.
+            > Minimum Android version: **8.0 (API 26)**
+
+            ### Tip: install via ADB
+            ```bash
+            adb install LimeSSH-${{ steps.version.outputs.version }}-debug.apk
+            ```
+          files: |
+            LimeSSH-*.apk
+          fail_on_unmatched_files: false

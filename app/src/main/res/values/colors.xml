@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Adaptive icon background: dark green matching the lime skin -->
+    <color name="ic_launcher_background">#228B22</color>
+
+    <!-- LimeSSH brand colors for XML usage -->
+    <color name="lime_green">#32CD32</color>
+    <color name="lime_green_dark">#228B22</color>
+    <color name="lime_core">#7CFC00</color>
+    <color name="lime_terminal">#00FF41</color>
+    <color name="lime_dark_bg">#0A1A0A</color>
+</resources>

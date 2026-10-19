@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- LimeSSH Logo: A lime fruit (cross-section) with green skin and green core
+     with a terminal cursor element. Retro-styled. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Outer lime skin circle - dark green -->
+    <path
+        android:fillColor="#228B22"
+        android:pathData="M54,54m-48,0a48,48 0,1 1,96 0a48,48 0,1 1,-96 0" />
+
+    <!-- Inner lime flesh circle - bright lime green -->
+    <path
+        android:fillColor="#32CD32"
+        android:pathData="M54,54m-40,0a40,40 0,1 1,80 0a40,40 0,1 1,-80 0" />
+
+    <!-- Lime segment lines radiating from center - lighter green -->
+    <!-- Segment 1: vertical -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M54,14 L54,94" />
+    <!-- Segment 2: horizontal -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M14,54 L94,54" />
+    <!-- Segment 3: diagonal -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M25.7,25.7 L82.3,82.3" />
+    <!-- Segment 4: diagonal -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M82.3,25.7 L25.7,82.3" />
+    <!-- Segment 5 -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M19.4,39.2 L88.6,68.8" />
+    <!-- Segment 6 -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M39.2,19.4 L68.8,88.6" />
+    <!-- Segment 7 -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M88.6,39.2 L19.4,68.8" />
+    <!-- Segment 8 -->
+    <path
+        android:strokeColor="#7CFC00"
+        android:strokeWidth="1.5"
+        android:pathData="M68.8,19.4 L39.2,88.6" />
+
+    <!-- Center core - bright lime core -->
+    <path
+        android:fillColor="#7CFC00"
+        android:pathData="M54,54m-8,0a8,8 0,1 1,16 0a8,8 0,1 1,-16 0" />
+
+    <!-- Inner core highlight -->
+    <path
+        android:fillColor="#90EE90"
+        android:pathData="M54,54m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" />
+
+    <!-- Terminal prompt overlay: "> _" in retro phosphor green -->
+    <path
+        android:fillColor="#00FF41"
+        android:pathData="M36,48 L44,54 L36,60 L38,62 L48,54 L38,46 Z" />
+    <!-- Underscore cursor -->
+    <path
+        android:fillColor="#00FF41"
+        android:pathData="M52,59 L68,59 L68,62 L52,62 Z" />
+
+    <!-- Subtle outer glow ring for retro effect -->
+    <path
+        android:strokeColor="#00FF41"
+        android:strokeWidth="0.8"
+        android:fillColor="#00000000"
+        android:pathData="M54,54m-46,0a46,46 0,1 1,92 0a46,46 0,1 1,-92 0" />
+</vector>

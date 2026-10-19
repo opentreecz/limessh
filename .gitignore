@@ -1,0 +1,31 @@
+# ──────────────────────────────────────────────
+# LimeSSH — .gitignore
+# ──────────────────────────────────────────────
+
+# Local proprietary artifact analysis — never commit extracted APK contents
+/.artifact-analysis/
+
+# Android / Gradle build outputs
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+.DS_Store
+
+# OS
+Thumbs.db
+*.swp
+*~
+
+# Signing keystores — never commit
+*.jks
+*.keystore
+
+# Research APKs — large binaries, stored separately (git-lfs or releases)
+# Keep them locally for reverse-engineering work but don't push to repo
+*.apk
+
+# Exception: keep the nested OfflineProFix source (it's a git submodule/folder)
+# JuiceSSHOfflineProFix/ is tracked as source, not a binary
