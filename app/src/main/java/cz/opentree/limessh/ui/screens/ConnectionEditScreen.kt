@@ -15,25 +15,33 @@ import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import cz.opentree.limessh.domain.model.*
 import java.util.UUID
+import androidx.compose.foundation.horizontalScroll
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ConnectionEditScreen(
     connection: Connection? = null,
+    prefillAddress: String = "",
+    prefillPort: Int? = null,
+    prefillUser: String? = null,
     identities: List<Identity> = emptyList(),
     groups: List<ConnectionGroup> = emptyList(),
-    onSave: (Connection, String?) -> Unit,
+    /** All SSH connections available as jump-host candidates (excludes itself). */
+    sshConnections: List<Connection> = emptyList(),
+    onSave: (Connection, String, String?) -> Unit,
     onDelete: ((Connection) -> Unit)? = null,
     onBack: () -> Unit,
+    onEditIdentity: ((String) -> Unit)? = null,
 ) {
-    var address by remember { mutableStateOf(connection?.address ?: "") }
-    var port by remember { mutableStateOf(connection?.port?.toString() ?: "22") }
+    var address by remember { mutableStateOf(connection?.address ?: prefillAddress) }
+    var port by remember { mutableStateOf(connection?.port?.toString() ?: prefillPort?.toString() ?: "22") }
     var nickname by remember { mutableStateOf(connection?.nickname ?: "") }
-    var username by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf(prefillUser ?: "") }
     var password by remember { mutableStateOf("") }
     var selectedType by remember { mutableStateOf(connection?.type ?: ConnectionType.SSH) }
     var selectedIdentityId by remember { mutableStateOf(connection?.identityId) }
     var selectedGroupId by remember { mutableStateOf(connection?.groupId) }
+    var selectedJumpHostId by remember { mutableStateOf(connection?.jumpHostId) }
 
     val isEdit = connection != null
     val title = if (isEdit) "Edit Connection" else "New Connection"
@@ -95,7 +103,7 @@ fun ConnectionEditScreen(
             // Connection type selector
             Text("Type", style = MaterialTheme.typography.labelLarge)
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                ConnectionType.entries.forEach { type ->
+                listOf(ConnectionType.SSH).forEach { type ->
                     FilterChip(
                         selected = selectedType == type,
                         onClick = { selectedType = type },
@@ -107,11 +115,11 @@ fun ConnectionEditScreen(
             // Identity selector
             if (identities.isNotEmpty()) {
                 Text("Identity", style = MaterialTheme.typography.labelLarge)
-                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(Modifier.horizontalScroll(rememberScrollState()), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     FilterChip(
                         selected = selectedIdentityId == null,
                         onClick = { selectedIdentityId = null },
-                        label = { Text("None") },
+                        label = { Text("New password identity") },
                     )
                     identities.forEach { identity ->
                         FilterChip(
@@ -120,6 +128,13 @@ fun ConnectionEditScreen(
                             label = { Text(identity.nickname.ifBlank { identity.username }) },
                         )
                     }
+                }
+            }
+            identities.firstOrNull { it.id == selectedIdentityId }?.let { identity ->
+                Text("SSH username: ${identity.username}")
+                Text("Authentication: ${identity.authMethod.name.lowercase().replace('_', ' ')}")
+                if (onEditIdentity != null) TextButton(onClick = { onEditIdentity(identity.id.toString()) }) {
+                    Text("Edit this identity's login credentials")
                 }
             }
 
@@ -163,6 +178,27 @@ fun ConnectionEditScreen(
 
             Spacer(Modifier.height(16.dp))
 
+            // Jump host selector (ProxyJump / connect-via) — SSH type only
+            if (selectedType == ConnectionType.SSH && sshConnections.isNotEmpty()) {
+                Text("Jump host (ProxyJump)", style = MaterialTheme.typography.labelLarge)
+                Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    FilterChip(
+                        selected = selectedJumpHostId == null,
+                        onClick = { selectedJumpHostId = null },
+                        label = { Text("Direct") },
+                    )
+                    sshConnections.filter { it.id != connection?.id }.forEach { jump ->
+                        FilterChip(
+                            selected = selectedJumpHostId == jump.id,
+                            onClick = { selectedJumpHostId = jump.id },
+                            label = { Text(jump.nickname.ifBlank { jump.address }) },
+                        )
+                    }
+                }
+            }
+
+            Spacer(Modifier.height(4.dp))
+
             Button(
                 onClick = {
                     val conn = Connection(
@@ -174,11 +210,13 @@ fun ConnectionEditScreen(
                         type = selectedType,
                         identityId = selectedIdentityId,
                         groupId = selectedGroupId,
+                        jumpHostId = selectedJumpHostId,
                     )
-                    onSave(conn, password.takeIf { it.isNotBlank() })
+                    onSave(conn, username, password.takeIf { it.isNotBlank() })
                 },
                 modifier = Modifier.fillMaxWidth(),
-                enabled = address.isNotBlank(),
+                enabled = address.isNotBlank() && port.toIntOrNull() in 1..65535 &&
+                    (selectedIdentityId != null || username.isNotBlank()),
             ) {
                 Text(if (isEdit) "Save" else "Create")
             }

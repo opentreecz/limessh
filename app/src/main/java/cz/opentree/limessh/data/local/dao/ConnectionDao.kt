@@ -26,6 +26,9 @@ interface ConnectionDao {
 
     @Delete
     suspend fun delete(connection: ConnectionEntity)
+
+    @Query("UPDATE connections SET groupId = NULL WHERE groupId = :groupId")
+    suspend fun clearGroup(groupId: String)
 }
 
 @Dao

@@ -8,52 +8,47 @@ import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import java.io.InputStream
 import java.util.UUID
-import javax.crypto.Cipher
-import javax.crypto.SecretKeyFactory
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.PBEKeySpec
-import javax.crypto.spec.SecretKeySpec
+import androidx.room.withTransaction
+import kotlinx.coroutines.CancellationException
 
 /**
- * Imports data from JuiceSSH backup/export files.
- *
- * Handles the legacy JuiceSSH format:
- * - ORMLite/SQLite schema version 55
- * - AES-256-CBC encrypted fields with PBKDF2-HMAC-SHA1 (1000 iterations)
- * - Format: base64(salt)#base64(iv)#base64(ciphertext)
- *
- * Also supports gojuice/pyjuice JSON export format.
- *
- * WARNING: The legacy encryption scheme is weak by modern standards.
- * Imported data is re-encrypted using LimeSSH's modern crypto.
+ * Imports explicitly supplied JSON connection metadata with UUID identifiers.
+ * Encrypted backup envelopes, SQLite databases and credential recovery are not
+ * implemented by this metadata importer.
  */
-class JuiceSshImporter(
+class LimesshMetadataImporter(
     private val context: Context,
     private val db: AppDatabase,
 ) {
-    companion object {
-        private const val LEGACY_KDF_ITERATIONS = 1000
-        private const val LEGACY_KEY_LENGTH = 256
-        private const val LEGACY_SALT_LENGTH = 8
-    }
-
     /**
-     * Import from a JuiceSSH JSON export (gojuice format).
+     * Import connection metadata from the supported JSON sections.
      */
     suspend fun importFromJson(
         input: InputStream,
         passphrase: String? = null,
     ): MigrationReport = withContext(Dispatchers.IO) {
         try {
-            val content = input.bufferedReader().readText()
+            require(passphrase == null) { "Encrypted legacy imports are not supported" }
+            val bytes = java.io.ByteArrayOutputStream()
+            val buffer = ByteArray(8192)
+            while (true) {
+                val count = input.read(buffer)
+                if (count < 0) break
+                require(bytes.size() + count <= 8 * 1024 * 1024) { "JSON export exceeds 8 MiB" }
+                bytes.write(buffer, 0, count)
+            }
+            val content = bytes.toString("UTF-8")
             val json = JSONObject(content)
-            processJuiceSshJson(json, passphrase)
+            require(listOf("connections", "identities", "groups", "connectionGroups", "snippets", "portForwards").any { json.has(it) }) { "No supported metadata sections found" }
+            db.withTransaction { processMetadataJson(json, passphrase) }
+        } catch (e: CancellationException) {
+            throw e
         } catch (e: Exception) {
             MigrationReport(success = false, error = "Failed to parse: ${e.message}")
         }
     }
 
-    private suspend fun processJuiceSshJson(
+    private suspend fun processMetadataJson(
         json: JSONObject,
         passphrase: String?,
     ): MigrationReport {
@@ -68,13 +63,16 @@ class JuiceSshImporter(
                 try {
                     val obj = arr.getJSONObject(i)
                     val entity = ConnectionEntity(
-                        id = obj.optString("id", UUID.randomUUID().toString()),
+                        id = idOf(obj),
                         name = obj.optString("nickname", obj.optString("address", "")),
                         address = obj.optString("address", ""),
                         port = obj.optInt("port", 22),
                         nickname = obj.optString("nickname", ""),
                         type = obj.optInt("type", 0),
+                        identityId = reference(obj, "identityId"),
+                        groupId = reference(obj, "groupId"),
                     )
+                    require(entity.address.isNotBlank() && entity.port in 1..65535 && entity.type == 0) { "Only valid SSH connections can be imported" }
                     db.connectionDao().upsert(entity)
                     connections++
                 } catch (e: Exception) {
@@ -91,7 +89,7 @@ class JuiceSshImporter(
                 try {
                     val obj = arr.getJSONObject(i)
                     val entity = IdentityEntity(
-                        id = obj.optString("id", UUID.randomUUID().toString()),
+                        id = idOf(obj),
                         nickname = obj.optString("nickname", ""),
                         username = obj.optString("username", ""),
                         authMethod = obj.optInt("authMethod", 0),
@@ -99,19 +97,7 @@ class JuiceSshImporter(
                     db.identityDao().upsert(entity)
                     identities++
 
-                    // Attempt to decrypt private key if present and passphrase provided
-                    if (passphrase != null && obj.has("privateKey")) {
-                        val encrypted = obj.getString("privateKey")
-                        try {
-                            val decrypted = decryptLegacyField(encrypted, passphrase)
-                            if (decrypted != null) {
-                                // Store using LimeSSH's modern crypto
-                                warnings.add("Identity '${entity.nickname}': key imported, re-encrypted with modern crypto")
-                            }
-                        } catch (_: Exception) {
-                            warnings.add("Identity '${entity.nickname}': could not decrypt private key")
-                        }
-                    }
+                    warnings.add("Identity '${entity.nickname}': metadata only; passwords/private keys were not imported")
                 } catch (e: Exception) {
                     skipped++
                     warnings.add("Identity $i: ${e.message}")
@@ -127,7 +113,7 @@ class JuiceSshImporter(
                 try {
                     val obj = arr.getJSONObject(i)
                     db.groupDao().upsert(ConnectionGroupEntity(
-                        id = obj.optString("id", UUID.randomUUID().toString()),
+                        id = idOf(obj),
                         name = obj.optString("name", ""),
                     ))
                     groups++
@@ -142,7 +128,7 @@ class JuiceSshImporter(
                 try {
                     val obj = arr.getJSONObject(i)
                     db.snippetDao().upsert(SnippetEntity(
-                        id = obj.optString("id", UUID.randomUUID().toString()),
+                        id = idOf(obj),
                         name = obj.optString("name", ""),
                         content = obj.optString("content", ""),
                     ))
@@ -158,10 +144,10 @@ class JuiceSshImporter(
                 try {
                     val obj = arr.getJSONObject(i)
                     db.portForwardDao().upsert(PortForwardEntity(
-                        id = obj.optString("id", UUID.randomUUID().toString()),
+                        id = idOf(obj),
                         name = obj.optString("name", ""),
                         mode = obj.optInt("mode", 0),
-                        connectionId = obj.optString("connectionId", null),
+                        connectionId = reference(obj, "connectionId"),
                         host = obj.optString("host", "localhost"),
                         localPort = obj.optInt("localPort", 0),
                         remotePort = obj.optInt("remotePort", 0),
@@ -179,29 +165,10 @@ class JuiceSshImporter(
         )
     }
 
-    /**
-     * Decrypt a legacy JuiceSSH encrypted field.
-     * Format: base64(salt)#base64(iv)#base64(ciphertext)
-     * Scheme: AES-256-CBC, PBKDF2-HMAC-SHA1, 1000 iterations
-     */
-    private fun decryptLegacyField(encrypted: String, passphrase: String): String? {
-        val parts = encrypted.split("#")
-        if (parts.size != 3) return null
+    private fun idOf(json: JSONObject): String = UUID.fromString(json.optString("id", UUID.randomUUID().toString())).toString()
 
-        val salt = android.util.Base64.decode(parts[0], android.util.Base64.DEFAULT)
-        val iv = android.util.Base64.decode(parts[1], android.util.Base64.DEFAULT)
-        val ciphertext = android.util.Base64.decode(parts[2], android.util.Base64.DEFAULT)
-
-        val spec = PBEKeySpec(passphrase.toCharArray(), salt, LEGACY_KDF_ITERATIONS, LEGACY_KEY_LENGTH)
-        val factory = SecretKeyFactory.getInstance("PBKDF2WithHmacSHA1")
-        val keyBytes = factory.generateSecret(spec).encoded
-        val key = SecretKeySpec(keyBytes, "AES")
-
-        val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
-        cipher.init(Cipher.DECRYPT_MODE, key, IvParameterSpec(iv))
-        val decrypted = cipher.doFinal(ciphertext)
-        return String(decrypted, Charsets.UTF_8)
-    }
+    private fun reference(json: JSONObject, key: String): String? =
+        if (!json.has(key) || json.isNull(key)) null else UUID.fromString(json.getString(key)).toString()
 }
 
 data class MigrationReport(

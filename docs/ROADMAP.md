@@ -1,6 +1,10 @@
 # Successor roadmap — approval required
 
-Status: **research workspace prepared, application implementation not approved or started** (2026-10-18). No successor Android app/build or runtime tests exist. Stages below are proposals; completion of documentation does not satisfy later implementation criteria.
+**Historical planning baseline (2026-10-18).** The user subsequently requested
+implementation under the limessh project name. Application work is underway;
+see [current implementation status](IMPLEMENTATION_STATUS.md). Stages and
+approval statements below retain the original research proposal and do not
+describe current build/implementation status.
 
 ## Decisions before application implementation
 

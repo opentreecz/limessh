@@ -1,0 +1,30 @@
+{
+  "artifact_sha256": "5dea4033623bc6562fe388c4f47e9df6cd2643327138b0f10578ef6f171a267d",
+  "date": "2026-10-21",
+  "capture_command": ".artifact-analysis/parity-env/bin/python research_notes/juicessh-parity/capture_r001.py",
+  "parser_version": "androguard 4.1.4",
+  "static_only": true,
+  "file_sha256": {
+    ".artifact-analysis/fix/AndroidManifest.xml": "3456893b946debc5d59ab039c65bd2c19d3259c78a68db983044ec34c2a8d1ca",
+    ".artifact-analysis/fix/jadx/resources/res/values-zh/strings.xml": "16c17e79092961f96f92bfe24c8bf37eff8cefd2aa5ffb56a5128d905151db6c",
+    ".artifact-analysis/fix/jadx/resources/res/values/arrays.xml": "b0f9c9759849ab42eae843eda30a9ed44ef4603bd3911bd270dc9167423098b7",
+    ".artifact-analysis/fix/jadx/resources/res/values/public.xml": "326960a647c51f77c43280cd1385743220ee3f24a09fc0a516a981e8d60daef2",
+    ".artifact-analysis/fix/jadx/resources/res/values/strings.xml": "820c6e8766e30a9f0ebe4627b2cc0ac6dcc6b4a82b32793792e43ca75abc1c97",
+    ".artifact-analysis/fix/jadx/resources/res/values/styles.xml": "b5748b2bb40d343f52e1c6514cb9b58c5de670a7b5a02289373eaf50fb3323a3",
+    ".artifact-analysis/fix/jadx/sources/org/lyf/juicesshofflinepro/JuiceSshOfflineProModule.java": "712b0db511afb024a2221e6151d53274af2719dd675f093c2090f2d202400df6",
+    ".artifact-analysis/fix/jadx/sources/org/lyf/juicesshofflinepro/R.java": "c5d4144f2b9f4088f89e55ff11a2f4d28b3a4b537cccdfc124a2fda81b537098",
+    ".artifact-analysis/fix/jadx/sources/org/lyf/juicesshofflinepro/SettingsActivity.java": "87d9a6c7c0f747040ed684cc24ed9661b1a4a804b3c902f1aca2cbdd3d464bf5",
+    ".artifact-analysis/fix/unpacked/META-INF/com/android/build/gradle/app-metadata.properties": "7dcf130d4874270e450dec50649304c0f56f8c866e2bd002530aa66413d88c2d",
+    ".artifact-analysis/fix/unpacked/META-INF/version-control-info.textproto": "a4b33f581ddc4c059634931393d050be39bb70cc2ae0cdc9755cde8971b207be",
+    ".artifact-analysis/fix/unpacked/assets/xposed_init": "a4f43a15c95c129bf4e4a06f524491f3c8794650fe7c41a1964259fa18fefb7e",
+    ".artifact-analysis/juicessh/jadx/sources/com/sonelli/juicessh/models/User.java": "601f391478d4665b774db6a17ea143c4cbab00c936b85ab504e641503729736e",
+    ".artifact-analysis/juicessh/jadx/sources/com/sonelli/oi0.java": "9eb8e4bded8417a19deb2d6f63bf30010b4c66c540b59657933dd01dea1715f4",
+    ".artifact-analysis/juicessh/jadx/sources/com/sonelli/pi0.java": "ed592fc790ddd804d6a3acbb8202d298691fae43e00a3cc31c9a7aebdb8e9a56",
+    ".artifact-analysis/parity/r001/methods.json": "ab5e56401d78fc0e0b1541983f0ad7ca922bd0520193f62bdcc5f43b7cc56c7d",
+    "JuiceSSHOfflineProFix/app/build.gradle": "9a46fb78de4c9558fac168a5bb5ada2eeb8ce2a1e1e14792d9ea939cf3c27ff1",
+    "JuiceSSHOfflineProFix/app/src/main/AndroidManifest.xml": "e198e483a1d0657c37f307c196d4eac696a994ed9808710afc3197e7a447dd8c",
+    "JuiceSSHOfflineProFix/app/src/main/java/org/lyf/juicesshofflinepro/JuiceSshOfflineProModule.java": "af91ce5c034fd526eab63d5002118eaaecbc7ad3e27994b2c6fa2c5c7d2905ae",
+    "JuiceSSHOfflineProFix/app/src/main/java/org/lyf/juicesshofflinepro/SettingsActivity.java": "bd70809b5822e1f5576e07856dee237ffbe4ea617b6ce7d4a86e29eff52b17eb",
+    "research_notes/juicessh-parity/capture_r001.py": "302acfc957bdaddba22b9c78179d7e028eed4f8a29112ef77e7a5a288b7aecea"
+  }
+}

@@ -4,8 +4,8 @@ import java.util.UUID
 
 /**
  * Domain model for an SSH connection target.
- * Mirrors the data contract from the original JuiceSSH plugin SDK
- * (connections, groups, port forwards, snippets) but as independent Kotlin types.
+ * Independent Kotlin types for connections, identities, groups, port forwards,
+ * snippets, and known hosts.
  */
 data class Connection(
     val id: UUID = UUID.randomUUID(),
@@ -16,6 +16,8 @@ data class Connection(
     val type: ConnectionType = ConnectionType.SSH,
     val identityId: UUID? = null,
     val groupId: UUID? = null,
+    /** Optional jump-host (ProxyJump) connection ID. SSH-type only. */
+    val jumpHostId: UUID? = null,
 )
 
 enum class ConnectionType(val value: Int) {
@@ -73,6 +75,7 @@ data class Snippet(
     val name: String = "",
     val content: String = "",
     val runOnConnect: Boolean = false,
+    val connectionId: UUID? = null,
 )
 
 data class KnownHost(

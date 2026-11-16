@@ -17,6 +17,9 @@ import androidx.compose.ui.unit.dp
 import cz.opentree.limessh.domain.model.ForwardMode
 import cz.opentree.limessh.domain.model.PortForward
 import java.util.UUID
+import cz.opentree.limessh.domain.model.Connection
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.rememberScrollState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -25,6 +28,7 @@ fun PortForwardScreen(
     onSave: (PortForward) -> Unit,
     onDelete: (PortForward) -> Unit,
     onBack: () -> Unit,
+    connections: List<Connection> = emptyList(),
 ) {
     var showDialog by remember { mutableStateOf(false) }
     var editing by remember { mutableStateOf<PortForward?>(null) }
@@ -88,6 +92,7 @@ fun PortForwardScreen(
                 onSave = { onSave(it); showDialog = false },
                 onDelete = editing?.let { pf -> { onDelete(pf); showDialog = false } },
                 onDismiss = { showDialog = false },
+                connections = connections,
             )
         }
     }
@@ -99,6 +104,7 @@ fun PortForwardDialog(
     onSave: (PortForward) -> Unit,
     onDelete: (() -> Unit)?,
     onDismiss: () -> Unit,
+    connections: List<Connection> = emptyList(),
 ) {
     var name by remember { mutableStateOf(forward?.name ?: "") }
     var mode by remember { mutableStateOf(forward?.mode ?: ForwardMode.LOCAL) }
@@ -106,12 +112,18 @@ fun PortForwardDialog(
     var localPort by remember { mutableStateOf(forward?.localPort?.toString() ?: "") }
     var remotePort by remember { mutableStateOf(forward?.remotePort?.toString() ?: "") }
     var openInBrowser by remember { mutableStateOf(forward?.openInBrowser ?: false) }
+    var connectionId by remember { mutableStateOf(forward?.connectionId) }
 
     AlertDialog(
         onDismissRequest = onDismiss,
         title = { Text(if (forward != null) "Edit Forward" else "New Forward") },
         text = {
             Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                Text("Connection (forward starts on the next login)")
+                Row(Modifier.horizontalScroll(rememberScrollState())) {
+                    connections.forEach { connection -> FilterChip(selected = connectionId == connection.id,
+                        onClick = { connectionId = connection.id }, label = { Text(connection.nickname.ifBlank { connection.address }) }) }
+                }
                 OutlinedTextField(value = name, onValueChange = { name = it }, label = { Text("Name") }, singleLine = true)
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     ForwardMode.entries.forEach { m ->
@@ -125,17 +137,14 @@ fun PortForwardDialog(
                 }
                 OutlinedTextField(value = localPort, onValueChange = { localPort = it.filter { c -> c.isDigit() } },
                     label = { Text("Local Port") }, singleLine = true, keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Checkbox(checked = openInBrowser, onCheckedChange = { openInBrowser = it })
-                    Text("Open in browser after setup")
-                }
             }
         },
         confirmButton = {
-            TextButton(onClick = {
+            TextButton(enabled = connectionId != null && localPort.toIntOrNull() in 1..65535 &&
+                (mode == ForwardMode.SOCKS || (remotePort.toIntOrNull() in 1..65535 && host.isNotBlank())), onClick = {
                 onSave(PortForward(
                     id = forward?.id ?: UUID.randomUUID(), name = name, mode = mode,
-                    connectionId = forward?.connectionId, host = host,
+                    connectionId = connectionId, host = host,
                     localPort = localPort.toIntOrNull() ?: 0,
                     remotePort = remotePort.toIntOrNull() ?: 0,
                     openInBrowser = openInBrowser,

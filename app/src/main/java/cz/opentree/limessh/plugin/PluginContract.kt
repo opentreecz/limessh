@@ -5,12 +5,11 @@ import android.net.Uri
 /**
  * LimeSSH Plugin SDK v2 Contract.
  *
- * Replaces the original JuiceSSH `com.sonelli.juicessh.api.v1` with a new
- * namespace. Provides content provider URIs for connections, snippets,
+ * Uses a LimeSSH-specific namespace. Provides content provider URIs for connections, snippets,
  * port forwards, groups, group memberships, and plugin audit logs.
  *
- * Ported from the Apache-2.0 licensed JuiceSSH plugin library, adapted to
- * the LimeSSH namespace and extended with additional capabilities.
+ * Independently expressed contract informed by public plugin SDK research.
+ * URI similarity does not imply compatibility with third-party plugin binaries.
  */
 object PluginContract {
 
@@ -18,6 +17,7 @@ object PluginContract {
 
     // Permissions declared in AndroidManifest.xml
     const val PERMISSION_OPEN_SESSIONS = "cz.opentree.limessh.permission.OPEN_SESSIONS"
+    const val PERMISSION_EXECUTE_COMMANDS = "cz.opentree.limessh.permission.EXECUTE_COMMANDS"
     const val PERMISSION_READ_CONNECTIONS = "cz.opentree.limessh.permission.READ_CONNECTIONS"
     const val PERMISSION_WRITE_CONNECTIONS = "cz.opentree.limessh.permission.WRITE_CONNECTIONS"
     const val PERMISSION_READ_SNIPPETS = "cz.opentree.limessh.permission.READ_SNIPPETS"
@@ -27,6 +27,14 @@ object PluginContract {
     const val PERMISSION_READ_GROUPS = "cz.opentree.limessh.permission.READ_GROUPS"
     const val PERMISSION_WRITE_GROUPS = "cz.opentree.limessh.permission.WRITE_GROUPS"
     const val PERMISSION_READ_PLUGIN_LOG = "cz.opentree.limessh.permission.READ_PLUGIN_LOG"
+
+    object SessionApi {
+        const val SERVICE_CLASS = "cz.opentree.limessh.plugin.PluginSessionService"
+        const val ATTACH = 1
+        const val EXECUTE = 2
+        const val WRITE = 3
+        const val RELEASE = 4
+    }
 
     object Connections {
         val CONTENT_URI: Uri = Uri.parse("content://$AUTHORITY/connections")

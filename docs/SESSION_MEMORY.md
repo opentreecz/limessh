@@ -1,8 +1,215 @@
 # Session memory — LimeSSH (formerly JuiceSSH revival feasibility)
 
-Last updated: 2026-10-18 (branding and implementation session).
+Last updated: 2026-10-19 (password/private-key authentication fixes and loopback SSH tests).
 
-## Current result
+## R-001 module audit completed — 2026-10-21
+
+[Reviewed R-001](../research_notes/juicessh-parity/tasks/R-001.md) accounts for all
+61 fix-module records (10 classes, 31 methods, 13 resources, activity and archive
+entries). Hook/settings/error behavior and provenance are recorded; no module code
+is selected for porting. Underlying gate call-site research stays with W-23. DEX
+confirmed the lookup-only catch region missing from JADX. R-010 is ready next.
+No app changes or runtime tests. Obsidian findings/session handoff saved.
+
+## R-000 inventory completed — 2026-10-20
+
+The [reviewed baseline](../research_notes/juicessh-parity/coverage/BASELINE.md)
+records 61,540 indexed items, 48,083 main-app defined methods, 31 fix-module
+methods, 43 native files and 95 current source/build records. Exact APK/cache,
+smali signature and resource-ID checks passed; repeat generation was stable.
+3,432 main classes have unknown ownership; behavioral parity remains pending.
+DB.c fallback output exists but semantics are unresolved. No app changes or fresh
+app test run. R-001 and R-010 are ready with exact entry points; start with
+[the compact index](../research_notes/juicessh-parity/INDEX.md). Actual billed
+token usage is unknown. Full generated indexes remain ignored locally.
+
+## Research planning update — 2026-10-20
+
+The resumable APK research programme is prepared in [RESEARCH_PLAN.md](RESEARCH_PLAN.md).
+New agents start with [the compact index](../research_notes/juicessh-parity/INDEX.md),
+then one queue row and task card. The default is one bounded research worker with
+an estimated 8k–12k total-token target and durable checkpoints. Existing APK/JADX
+evidence is reused. R-000 creates the complete coverage inventory; R-001 audits the
+small Xposed module; R-010 pilots a terminal behavior specification. The other
+workstreams must be split before dispatch. This update prepares the work and does
+not claim deep-research completion, implementation changes or fresh app test results.
+Obsidian entry point: `projects/juicessh/Research/Research programme.md`.
+
+## Latest update — gap research, branding and user-reported defects
+
+Tasks from the user: remove legacy product naming from the code, deep-map the legacy
+app and fix APK, memorize all missing areas, and fix three reported defects.
+
+- **Agents:** six research/audit sub-agents were launched; all failed with "usage limit
+  reached". The branding worker had partly applied its edits first (importer already
+  renamed). All research below was done directly by the coordinator.
+- **Branding:** `app/src` has zero JuiceSSH references (case-insensitive). Importer is
+  `LimesshMetadataImporter`; dead legacy decryption constants removed. Research notes,
+  supplied APK names and the nested original fix module intentionally keep their names
+  as provenance. No git rebase was performed (no target branch was given).
+- **Research:** `research_notes/Limessh feature gap investigation/legacy-apk-map.md`
+  (feature areas mapped to manifest components, packages, settings and resources;
+  both APK hashes re-verified). Key fact: the original had **no** biometric or
+  device-credential unlock (PIN lock only), 9 terminal themes, and filesystem key import.
+- **Backlog:** `docs/MISSING_FEATURES.md` holds stable IDs, evidence, priorities and
+  milestones M-A..M-F. Not built: graphify structural call graph (agent failed).
+- **Fixes:** L-01 unlock (BiometricPrompt, planner, 3 policies, Lock now), T-01 eight
+  terminal themes with **Retro green kept as default** (user request), K-01 key import
+  (file/paste, format and encryption detection, validation, fingerprint, public key),
+  plus identity deletion now removes stored credentials.
+- **Verification:** `build.sh --ci --no-daemon --max-workers 2` passes: **53 JVM tests**
+  (was 32), lint, instrumentation compile, debug APK, v2 signature verified. **No device
+  was available, so unlock/theme/key-import behavior is untested on Android.**
+
+## Latest authentication update — password and private key
+
+After the crypto fix the user reported `Exhausted available authentication
+methods`, and confirmed using both password and private-key login. That generic
+message alone does not establish whether their credentials, selected identity,
+server policy or client handling caused the rejection.
+
+- Removed silent `root`/empty-password fallback. A valid, explicitly selected
+  identity and nonblank username are now required; usernames are trimmed.
+- Password login prompts when a stored password is absent and supports actual
+  keyboard-interactive prompts. Only one recognizable password prompt may be
+  auto-filled; OTPs, echo-enabled prompts and second factors are not auto-filled.
+- Private-key parsing requests a missing passphrase, validates the key before
+  authentication and reports key-format/passphrase errors without exposing key
+  text or library exception contents. A server-accepted key may continue with a
+  required account password/interactive factor. A rejected key does not silently
+  fall back to password authentication.
+- Authentication errors now include the username, selected method and remaining
+  methods reported by the server, with partial-success guidance. Passwords,
+  passphrases, private keys and raw library errors are not included in UI errors.
+- Connection editing shows the selected username/method and links to identity
+  editing. Failed connections show login metadata, Edit login and Retry controls;
+  cancelling a challenge produces a retryable error.
+- Added five policy/diagnostic unit tests and eleven real SSH authentication
+  tests using an isolated loopback Apache MINA server. Tests cover password,
+  prompted password, RSA PKCS#8, encrypted PEM/passphrase, OpenSSH Ed25519,
+  keyboard-interactive password+OTP, required key+password, rejected credentials,
+  and preserving accepted-key diagnostics after a failed second factor.
+  MINA and its optional EdDSA provider are test-only dependencies, not app runtime
+  dependencies. No external host or real user credentials are used by these tests.
+- `JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64 bash build.sh --ci --no-daemon --max-workers 2`
+  passes: **32 JVM tests**, Android lint, instrumentation compilation and debug
+  APK assembly. Actual Android/target-server login still requires user retest.
+  The release APK was not rebuilt in this authentication fix pass.
+
+## Latest connection fix — Android X25519 / BC
+
+The user reported `Connection failed: no such algorithm: X25519 for provider BC`
+on an Android connection attempt. Android's reduced built-in provider uses the
+same `BC` name as the bundled full BouncyCastle library. SSHJ 0.40.0 can probe a
+new provider instance but select the existing reduced provider by name.
+
+Added `ssh/SshCrypto.kt` and invoke it before constructing each `SSHClient`.
+It replaces a non-bundled `BC` registration with the full bundled provider and
+explicitly configures SSHJ to use it. Other platform providers retain their
+relative ordering; AndroidKeyStore is not replaced. Initialization is synchronized
+and reuses an already-installed bundled provider. Curve25519 and host-key
+verification remain enabled.
+
+Added three JVM regression tests: reproduce the same-name provider collision,
+perform matching bidirectional X25519 agreements, and verify repeat initialization
+does not replace/reorder providers. Added an Android instrumentation test for
+X25519 plus AndroidKeyStore preservation.
+
+Executed `JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64 bash build.sh --ci --no-daemon --max-workers 2`:
+**16 JVM tests passed**, lint passed with existing warnings, Android test code
+compiled, and the corrected debug APK was rebuilt and its v2 signature verified.
+No device was connected to ADB, so the actual Android/server connection still
+needs the user's retest after installing the new debug APK. The release variant
+was not rebuilt in this fix pass.
+
+## Current implementation result — 2026-10-19
+
+The user confirmed the new project name is **limessh** and requested app code
+and the researched plugin/extension workflows. See
+[IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for current behavior,
+plugin protocols and explicitly outstanding work.
+
+Implemented/repaired the existing Kotlin/Compose app: connection/editor routes,
+session reuse/list/disconnect, real SSHJ API calls, keyboard-interactive prompts,
+SHA-256 host fingerprints, terminal UTF-8/alternate-buffer handling, local/remote/
+SOCKS5 forwarding, SFTP document transfers, RSA identity generation, saved commands
+and group execution, connection-scoped autostart snippets, inactivity lock,
+font/scrollback preferences and pinned connection shortcuts. Room schema v2 adds
+snippet connection associations with a 1→2 migration and generated schema export.
+
+The Extensions screen exposes monitor/knock/audit/diagnostic/NVIDIA/ZFS/Openpyn
+adapters. Added a new permission-checked v2 data provider and UID-bound Messenger
+session API, a scoped/revocable Tasker/Locale action, and OpenSSH metadata export.
+These are independent workflow implementations, not verified ports of original
+plugin APKs. Original signing/package restrictions still apply.
+
+Replaced empty backup arrays and count-only restore with real encrypted,
+transactional configuration backup/restore. Credentials and automation grants
+are excluded. JSON migration is explicitly metadata-only; removed the false
+claim that decrypted private keys had been stored. Fixed identity save navigation
+to wait for the operation to complete.
+
+### Executed validation
+
+- `:app:testDebugUnitTest`: **13 tests passed**, covering terminal stream behavior,
+  strict knock parsing, VPN argument validation and OpenSSH export.
+- `:app:compileDebugAndroidTestKotlin`: passed. Backup round-trip, wrong-passphrase
+  and tamper test source compiles; **not executed on Android**.
+- `:app:assembleDebug`: passed, APK at
+  `app/build/outputs/apk/debug/app-debug.apk`, package `cz.opentree.limessh`,
+  version `0.1.0-dev`, min SDK 26.
+- `:app:lintDebug`: passed with warnings. Fixed the API-35-only `removeFirst`
+  call that would otherwise break older devices. Dependency/version/resource
+  and exported-component warnings remain; permission/token enforcement is in
+  code and still needs runtime isolation tests.
+- `build-local.py --test`: passed with the actual SDK/JDK and existing build
+  outputs. The script also rejects a JRE without a JDK compiler.
+- `apksigner verify --verbose`: APK verifies using v2 signing (debug certificate).
+- `git diff --check`: passed.
+- `adb devices`: no devices/emulators connected. No SSH login, Android UI, Tasker,
+  forwarding, SFTP or Android backup runtime test was performed.
+
+Initial verification used a downloaded JDK and Android SDK under `/tmp/opencode`.
+The subsequent local setup uses the installed Temurin JDK at
+`/usr/lib/jvm/temurin-21-jdk-amd64` and a persistent Android SDK at
+`/home/lukas/Android/Sdk`. The checkout's ignored `local.properties` selects that
+SDK. No shell startup files were changed. Rebuild using `build.sh` with an
+exported `JAVA_HOME`; see [BUILDING.md](BUILDING.md).
+BouncyCastle's duplicate OSGi metadata required a packaging exclusion;
+LICENSE/NOTICE resources are merged instead of discarded.
+
+Existing uncommitted app/UI work was incorporated and preserved. The two original
+APKs and nested OfflineProFix repository were not modified. No commit, signing-key
+publication or release was performed. Cloud sync/teams/EC2, native transport
+extensions and original binary plugin compatibility remain outstanding.
+
+### Build scripts, CI and knowledge-base update — 2026-10-19
+
+- Extended `build-local.py`/`build.sh` with `--ci`, `--lint`, `--release`,
+  `--no-daemon`, `--max-workers`, version overrides and SDK package listing.
+  Gradle accepts `limessh.versionName`/`limessh.versionCode` overrides.
+- Added eight standard-library Python regression tests in `tests/`.
+- Added a shared GitHub setup action using Temurin 21, Python 3.12 and the helper's
+  SDK package list (Platform 35 / Build Tools 34.0.0).
+- Reworked build/release workflows so tests and lint block publication, artifact
+  paths are explicit, reports upload on failure, and tag versions reach the APK.
+  Optional publisher signing uses scoped secrets, temporary-key cleanup and
+  verified, accurately named signed/unsigned assets plus SHA-256 checksums.
+- The first R8 release build exposed optional desktop GSS/JAAS references and
+  compile-time Error Prone annotations. Added narrow documented `dontwarn`
+  rules in `app/proguard-rules.pro`; no blanket missing-class suppression.
+- Executed successfully with the persistent toolchain:
+  `JAVA_HOME=/usr/lib/jvm/temurin-21-jdk-amd64 bash build.sh --ci --release --no-daemon --max-workers 2`.
+  Debug APK and **minified unsigned release APK** now build. Existing 13 JVM
+  tests and lint pass; Android instrumentation compiles but is not executed.
+- Eight Python tests, ShellCheck, actionlint and `git diff --check` passed;
+  debug APK signature verification passed. No GitHub-hosted run or publisher
+  signing was executed, and no commit/push/tag/release was created.
+- See `docs/BUILDING.md` for local setup, troubleshooting and CI/release recipes.
+  The opentree vault project note and Build and CI note are maintained under
+  `projects/juicessh/`, preserving the existing research-project location.
+
+## Earlier foundation result — 2026-10-18
 
 **LimeSSH app foundation created with full branding.** Kotlin/Compose project at `cz.opentree.limessh` with SSHJ 0.40.0, Room database, domain models, SSH engine adapter, foreground service, navigation, retro green theme, lime logo, and placeholder terminal screen. Remote configured at `git@github.com:opentreecz/limessh.git`. Requires Android SDK to build and has not been runtime-tested.
 

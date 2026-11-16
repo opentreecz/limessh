@@ -3,10 +3,12 @@ package cz.opentree.limessh.ui.screens
 import android.app.Activity
 import android.app.KeyguardManager
 import android.content.Context
+import android.content.ContextWrapper
 import android.os.Build
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -14,110 +16,102 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import cz.opentree.limessh.ui.theme.LimeDarkBg
-import cz.opentree.limessh.ui.theme.LimeTerminalGreen
-import kotlinx.coroutines.delay
+import androidx.core.content.ContextCompat
+import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.LocalLifecycleOwner
+import androidx.lifecycle.repeatOnLifecycle
+import cz.opentree.limessh.LimeApp
+import cz.opentree.limessh.ui.lock.UnlockPath
+import cz.opentree.limessh.ui.lock.planUnlock
+
+private tailrec fun Context.findFragmentActivity(): FragmentActivity? = when (this) {
+    is FragmentActivity -> this
+    is ContextWrapper -> baseContext.findFragmentActivity()
+    else -> null
+}
 
 /**
- * Inactivity lock overlay.
- * Shows when the app has been idle beyond the configured timeout.
- * Supports device credentials (PIN/pattern/password) or biometric unlock.
+ * App lock screen. The policy comes from Settings: device credential, strong
+ * biometric with credential fallback, or strong biometric only. Locking hides the
+ * UI and blocks new plugin/automation requests; open SSH transports continue.
  */
 @Composable
-fun InactivityLockScreen(
-    onUnlocked: () -> Unit,
-) {
+fun InactivityLockScreen(onUnlocked: () -> Unit) {
     val context = LocalContext.current
+    val activity = remember(context) { context.findFragmentActivity() }
+    val app = context.applicationContext as LimeApp
+    val preferences by app.settings.preferences.collectAsState()
+    var message by remember { mutableStateOf("Authenticate to continue.") }
+    var attemptedAutomatically by remember { mutableStateOf(false) }
+    val keyguardLauncher = rememberLauncherForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) onUnlocked()
+        else message = "Authentication was cancelled. limessh remains locked."
+    }
 
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(LimeDarkBg),
-        contentAlignment = Alignment.Center,
-    ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-        ) {
-            Text(
-                "> LimeSSH Locked",
-                style = MaterialTheme.typography.headlineMedium,
-                color = LimeTerminalGreen,
-            )
-            Text(
-                "> Session idle. Authenticate to continue.",
-                style = MaterialTheme.typography.bodyMedium,
-                color = LimeTerminalGreen.copy(alpha = 0.7f),
-            )
-            Spacer(Modifier.height(24.dp))
-            Button(
-                onClick = {
-                    authenticateUser(context) { success ->
-                        if (success) onUnlocked()
+    fun launchKeyguard() {
+        val keyguard = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+        @Suppress("DEPRECATION")
+        val intent = keyguard.createConfirmDeviceCredentialIntent("Unlock limessh", "Authenticate to access SSH sessions")
+        if (intent != null) keyguardLauncher.launch(intent)
+        else message = "Android cannot show the screen-lock prompt. Set a screen lock in Android Settings."
+    }
+
+    fun authenticate() {
+        val host = activity
+        val manager = BiometricManager.from(context)
+        val strongBiometric = manager.canAuthenticate(BiometricManager.Authenticators.BIOMETRIC_STRONG) ==
+            BiometricManager.BIOMETRIC_SUCCESS
+        val keyguard = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
+        when (val path = planUnlock(preferences.unlockMethod, Build.VERSION.SDK_INT, strongBiometric, keyguard.isDeviceSecure)) {
+            is UnlockPath.Unavailable -> message = path.reason
+            is UnlockPath.Keyguard -> { path.notice?.let { message = it }; launchKeyguard() }
+            is UnlockPath.Prompt -> {
+                if (host == null) { message = "This screen cannot show the biometric prompt."; return }
+                path.notice?.let { message = it }
+                val callback = object : BiometricPrompt.AuthenticationCallback() {
+                    override fun onAuthenticationSucceeded(result: BiometricPrompt.AuthenticationResult) = onUnlocked()
+                    override fun onAuthenticationError(errorCode: Int, errString: CharSequence) {
+                        when (errorCode) {
+                            BiometricPrompt.ERROR_NEGATIVE_BUTTON -> if (path.credentialButton) launchKeyguard()
+                                else message = "Authentication was cancelled. limessh remains locked."
+                            BiometricPrompt.ERROR_USER_CANCELED, BiometricPrompt.ERROR_CANCELED ->
+                                message = "Authentication was cancelled. limessh remains locked."
+                            else -> message = errString.toString()
+                        }
                     }
-                },
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = LimeTerminalGreen,
-                    contentColor = LimeDarkBg,
-                ),
-            ) {
-                Text("Unlock", style = MaterialTheme.typography.labelLarge)
+                }
+                val info = BiometricPrompt.PromptInfo.Builder()
+                    .setTitle("Unlock limessh")
+                    .setSubtitle("Authenticate to access SSH sessions")
+                    .setAllowedAuthenticators(path.authenticators)
+                    .apply {
+                        // A negative button is only valid when device credential is not an allowed authenticator.
+                        if (path.authenticators and BiometricManager.Authenticators.DEVICE_CREDENTIAL == 0) {
+                            setNegativeButtonText(if (path.credentialButton) "Use screen lock" else "Cancel")
+                        }
+                    }
+                    .build()
+                BiometricPrompt(host, ContextCompat.getMainExecutor(context), callback).authenticate(info)
             }
         }
     }
-}
 
-private fun authenticateUser(context: Context, onResult: (Boolean) -> Unit) {
-    val keyguardManager = context.getSystemService(Context.KEYGUARD_SERVICE) as KeyguardManager
-    if (!keyguardManager.isDeviceSecure) {
-        // Device has no lock screen set up — just unlock
-        onResult(true)
-        return
-    }
-
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-        @Suppress("DEPRECATION")
-        val intent = keyguardManager.createConfirmDeviceCredentialIntent(
-            "LimeSSH Locked",
-            "Authenticate to unlock your SSH sessions"
-        )
-        if (intent != null && context is Activity) {
-            context.startActivityForResult(intent, REQUEST_CODE_UNLOCK)
-            // Result handled via onActivityResult in MainActivity
-            // For simplicity, we immediately grant access here
-            // A proper implementation would use ActivityResultLauncher
-            onResult(true)
-        } else {
-            onResult(true)
+    val lifecycle = LocalLifecycleOwner.current.lifecycle
+    LaunchedEffect(lifecycle) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+            if (!attemptedAutomatically) {
+                attemptedAutomatically = true
+                authenticate()
+            }
         }
-    } else {
-        onResult(true)
-    }
-}
-
-private const val REQUEST_CODE_UNLOCK = 9876
-
-/**
- * Tracks user activity and triggers lock after configured timeout.
- */
-class InactivityTracker(private val timeoutMs: Long = 5 * 60 * 1000L) { // Default 5 minutes
-    private var lastActivityMs = System.currentTimeMillis()
-    var isLocked = false; private set
-
-    fun onUserActivity() {
-        lastActivityMs = System.currentTimeMillis()
-        isLocked = false
     }
 
-    fun checkTimeout(): Boolean {
-        if (!isLocked && System.currentTimeMillis() - lastActivityMs > timeoutMs) {
-            isLocked = true
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Column(Modifier.padding(24.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Text("limessh locked", style = MaterialTheme.typography.headlineMedium)
+            Text(message)
+            Button(onClick = { authenticate() }) { Text("Unlock") }
         }
-        return isLocked
-    }
-
-    fun unlock() {
-        isLocked = false
-        lastActivityMs = System.currentTimeMillis()
     }
 }

@@ -16,6 +16,7 @@ import java.io.InputStream
 class TerminalEmulator(
     private var cols: Int = 80,
     private var rows: Int = 24,
+    var onOutput: ((ByteArray) -> Unit)? = null,
 ) {
     // Screen buffer: rows x cols of cells
     private var screen = Array(rows) { Array(cols) { TermCell() } }
@@ -24,7 +25,7 @@ class TerminalEmulator(
 
     // Scrollback
     private val scrollback = mutableListOf<Array<TermCell>>()
-    val maxScrollback = 10_000
+    @Volatile var maxScrollback = 10_000
 
     // Cursor position
     var cursorRow = 0; private set
@@ -41,6 +42,11 @@ class TerminalEmulator(
     // Parse state
     private var parseState = ParseState.GROUND
     private val escBuffer = StringBuilder()
+    private var utfRemaining = 0
+    private var utfCodePoint = 0
+    private var utfMinimum = 0
+    private var savedRow = 0
+    private var savedCol = 0
 
     // State flow for UI to observe
     private val _screenState = MutableStateFlow(ScreenSnapshot(screen, cursorRow, cursorCol, cursorVisible, scrollback.size))
@@ -59,7 +65,6 @@ class TerminalEmulator(
                     val n = inputStream.read(buf)
                     if (n <= 0) break
                     processBytes(buf, 0, n)
-                    emitSnapshot()
                 }
             } catch (_: Exception) {}
         }
@@ -69,13 +74,16 @@ class TerminalEmulator(
         scope.cancel()
     }
 
+    @Synchronized
     fun resize(newCols: Int, newRows: Int) {
-        val newScreen = Array(newRows) { r ->
+        require(newCols in 1..1000 && newRows in 1..1000)
+        fun resized(buffer: Array<Array<TermCell>>) = Array(newRows) { r ->
             Array(newCols) { c ->
-                if (r < rows && c < cols) currentScreen()[r][c] else TermCell()
+                buffer.getOrNull(r)?.getOrNull(c) ?: TermCell()
             }
         }
-        if (useAltScreen) altScreen = newScreen else screen = newScreen
+        screen = resized(screen)
+        altScreen = resized(altScreen)
         cols = newCols
         rows = newRows
         scrollTop = 0
@@ -92,14 +100,21 @@ class TerminalEmulator(
         for (i in offset until offset + length) {
             processByte(data[i].toInt() and 0xFF)
         }
+        emitSnapshot()
     }
 
     private fun processByte(b: Int) {
+        if (parseState == ParseState.GROUND && (utfRemaining > 0 || b >= 0x80)) {
+            processUtf8(b)
+            return
+        }
         when (parseState) {
             ParseState.GROUND -> processGround(b)
             ParseState.ESCAPE -> processEscape(b)
             ParseState.CSI -> processCsi(b)
             ParseState.OSC -> processOsc(b)
+            ParseState.OSC_ESCAPE -> { parseState = if (b == 0x5C) ParseState.GROUND else ParseState.OSC }
+            ParseState.CHARSET -> { parseState = ParseState.GROUND }
         }
     }
 
@@ -123,13 +138,13 @@ class TerminalEmulator(
         when (b.toChar()) {
             '[' -> { parseState = ParseState.CSI; escBuffer.clear() }
             ']' -> { parseState = ParseState.OSC; escBuffer.clear() }
-            '(' -> { parseState = ParseState.GROUND } // charset select, skip next byte
-            ')' -> { parseState = ParseState.GROUND }
-            '7' -> { /* save cursor */ parseState = ParseState.GROUND }
-            '8' -> { /* restore cursor */ parseState = ParseState.GROUND }
+            '(', ')' -> { parseState = ParseState.CHARSET }
+            '7' -> { savedRow = cursorRow; savedCol = cursorCol; parseState = ParseState.GROUND }
+            '8' -> { restoreCursor(); parseState = ParseState.GROUND }
             'D' -> { lineFeed(); parseState = ParseState.GROUND }
             'M' -> { reverseLineFeed(); parseState = ParseState.GROUND }
             'c' -> { reset(); parseState = ParseState.GROUND }
+            'Z' -> { sendDeviceAttributes(); parseState = ParseState.GROUND }
             else -> { parseState = ParseState.GROUND }
         }
     }
@@ -137,6 +152,7 @@ class TerminalEmulator(
     private fun processCsi(b: Int) {
         val ch = b.toChar()
         if (ch in '0'..'9' || ch == ';' || ch == '?' || ch == '>' || ch == '!') {
+            if (escBuffer.length >= 128) { parseState = ParseState.GROUND; return }
             escBuffer.append(ch)
             return
         }
@@ -147,14 +163,13 @@ class TerminalEmulator(
     }
 
     private fun processOsc(b: Int) {
-        if (b == 0x07 || b == 0x1B) { // BEL or ESC terminates OSC
-            parseState = ParseState.GROUND
-        }
+        if (b == 0x07) parseState = ParseState.GROUND
+        if (b == 0x1B) parseState = ParseState.OSC_ESCAPE
         // OSC content ignored for now (window title, etc.)
     }
 
     private fun executeCsi(cmd: Char, params: String) {
-        val parts = params.replace("?", "").split(";").map { it.toIntOrNull() ?: 0 }
+        val parts = params.replace("?", "").split(";").map { (it.toIntOrNull() ?: 0).coerceIn(0, 32767) }
         val p1 = parts.getOrElse(0) { 0 }
         val p2 = parts.getOrElse(1) { 0 }
 
@@ -188,8 +203,11 @@ class TerminalEmulator(
             'S' -> scrollUp(p1.coerceAtLeast(1)) // Scroll up
             'T' -> scrollDown(p1.coerceAtLeast(1)) // Scroll down
             'r' -> { // Set scroll region
-                scrollTop = (p1 - 1).coerceIn(0, rows - 1)
-                scrollBottom = ((if (parts.size > 1 && p2 > 0) p2 else rows) - 1).coerceIn(0, rows - 1)
+                val top = (p1.coerceAtLeast(1) - 1).coerceIn(0, rows - 1)
+                val bottom = ((if (parts.size > 1 && p2 > 0) p2 else rows) - 1).coerceIn(0, rows - 1)
+                if (top >= bottom) return
+                scrollTop = top
+                scrollBottom = bottom
                 cursorRow = 0; cursorCol = 0
             }
             'm' -> processSgr(parts) // Set graphic rendition
@@ -197,7 +215,11 @@ class TerminalEmulator(
                 if (params.startsWith("?")) {
                     when (p1) {
                         25 -> cursorVisible = true
-                        1049, 47, 1047 -> { useAltScreen = true; altScreen = Array(rows) { Array(cols) { TermCell() } } }
+                        1049, 47, 1047 -> {
+                            savedRow = cursorRow; savedCol = cursorCol
+                            useAltScreen = true; altScreen = Array(rows) { Array(cols) { TermCell() } }
+                            cursorRow = 0; cursorCol = 0
+                        }
                     }
                 }
             }
@@ -205,7 +227,7 @@ class TerminalEmulator(
                 if (params.startsWith("?")) {
                     when (p1) {
                         25 -> cursorVisible = false
-                        1049, 47, 1047 -> { useAltScreen = false }
+                        1049, 47, 1047 -> { useAltScreen = false; restoreCursor() }
                     }
                 }
             }
@@ -218,10 +240,29 @@ class TerminalEmulator(
                     if (c < cols) currentScreen()[cursorRow][c] = TermCell()
                 }
             }
-            'n' -> {} // Device status report (ignore, we'd need to write back)
-            'c' -> {} // Device attributes (ignore)
+            'n' -> {
+                when (p1) {
+                    5 -> sendResponse("\u001b[0n")
+                    6 -> sendResponse("\u001b[${cursorRow + 1};${cursorCol + 1}R")
+                }
+            }
+            'c' -> {
+                if (p1 == 0 && !params.startsWith("?") && !params.startsWith(">")) {
+                    sendDeviceAttributes()
+                }
+            }
             't' -> {} // Window manipulation (ignore)
+            's' -> { savedRow = cursorRow; savedCol = cursorCol }
+            'u' -> restoreCursor()
         }
+    }
+
+    private fun sendDeviceAttributes() {
+        sendResponse("\u001b[?1;2c")
+    }
+
+    private fun sendResponse(response: String) {
+        onOutput?.invoke(response.toByteArray(Charsets.US_ASCII))
     }
 
     private fun processSgr(params: List<Int>) {
@@ -274,13 +315,55 @@ class TerminalEmulator(
         }
     }
 
-    private fun putChar(ch: Char) {
-        if (cursorCol >= cols) {
+    private fun restoreCursor() {
+        cursorRow = savedRow.coerceIn(0, rows - 1)
+        cursorCol = savedCol.coerceIn(0, cols - 1)
+    }
+
+    private fun processUtf8(b: Int) {
+        if (utfRemaining > 0) {
+            if (b in 0x80..0xBF) {
+                utfCodePoint = (utfCodePoint shl 6) or (b and 0x3F)
+                utfRemaining--
+                if (utfRemaining == 0) {
+                    val valid = utfCodePoint >= utfMinimum && utfCodePoint <= 0x10FFFF && utfCodePoint !in 0xD800..0xDFFF
+                    putGlyph(if (valid) utfCodePoint else 0xFFFD)
+                }
+                return
+            }
+            utfRemaining = 0
+            putGlyph(0xFFFD)
+            processByte(b)
+            return
+        }
+        when (b) {
+            in 0xC2..0xDF -> { utfRemaining = 1; utfCodePoint = b and 0x1F; utfMinimum = 0x80 }
+            in 0xE0..0xEF -> { utfRemaining = 2; utfCodePoint = b and 0x0F; utfMinimum = 0x800 }
+            in 0xF0..0xF4 -> { utfRemaining = 3; utfCodePoint = b and 7; utfMinimum = 0x10000 }
+            else -> putGlyph(0xFFFD)
+        }
+    }
+
+    private fun putChar(ch: Char) = putGlyph(ch.code)
+
+    private fun putGlyph(codePoint: Int) {
+        val glyph = String(Character.toChars(codePoint))
+        val combining = Character.getType(codePoint) in listOf(Character.NON_SPACING_MARK.toInt(), Character.COMBINING_SPACING_MARK.toInt())
+        if (combining && cursorCol > 0) {
+            val previous = (cursorCol - 1).coerceAtMost(cols - 1)
+            val cell = currentScreen()[cursorRow][previous]
+            currentScreen()[cursorRow][previous] = cell.copy(char = cell.char + glyph)
+            return
+        }
+        val width = if (codePoint in 0x1100..0x115F || codePoint in 0x2E80..0xA4CF ||
+            codePoint in 0xAC00..0xD7A3 || codePoint in 0xF900..0xFAFF || codePoint in 0x1F300..0x1FAFF || codePoint >= 0x20000) 2 else 1
+        if (cursorCol + width > cols) {
             cursorCol = 0
             lineFeed()
         }
-        currentScreen()[cursorRow][cursorCol] = TermCell(ch, currentAttr)
-        cursorCol++
+        currentScreen()[cursorRow][cursorCol] = TermCell(glyph, currentAttr)
+        if (width == 2 && cursorCol + 1 < cols) currentScreen()[cursorRow][cursorCol + 1] = TermCell("", currentAttr)
+        cursorCol += width
     }
 
     private fun lineFeed() {
@@ -301,10 +384,10 @@ class TerminalEmulator(
 
     private fun scrollUp(n: Int) {
         val scr = currentScreen()
-        for (count in 0 until n) {
+        for (count in 0 until n.coerceAtMost(rows)) {
             if (!useAltScreen && scrollTop == 0) {
                 scrollback.add(scr[scrollTop].copyOf())
-                if (scrollback.size > maxScrollback) scrollback.removeFirst()
+                while (scrollback.size > maxScrollback.coerceIn(0, 10000)) scrollback.removeAt(0)
             }
             for (r in scrollTop until scrollBottom) {
                 scr[r] = scr[r + 1]
@@ -315,7 +398,7 @@ class TerminalEmulator(
 
     private fun scrollDown(n: Int) {
         val scr = currentScreen()
-        for (count in 0 until n) {
+        for (count in 0 until n.coerceAtMost(rows)) {
             for (r in scrollBottom downTo scrollTop + 1) {
                 scr[r] = scr[r - 1]
             }
@@ -325,7 +408,7 @@ class TerminalEmulator(
 
     private fun insertLines(n: Int) {
         val scr = currentScreen()
-        for (count in 0 until n) {
+        for (count in 0 until n.coerceAtMost(rows)) {
             for (r in scrollBottom downTo cursorRow + 1) scr[r] = scr[r - 1]
             scr[cursorRow] = Array(cols) { TermCell() }
         }
@@ -333,7 +416,7 @@ class TerminalEmulator(
 
     private fun deleteLines(n: Int) {
         val scr = currentScreen()
-        for (count in 0 until n) {
+        for (count in 0 until n.coerceAtMost(rows)) {
             for (r in cursorRow until scrollBottom) scr[r] = scr[r + 1]
             scr[scrollBottom] = Array(cols) { TermCell() }
         }
@@ -362,7 +445,7 @@ class TerminalEmulator(
     }
     private fun eraseLine() { for (c in 0 until cols) currentScreen()[cursorRow][c] = TermCell() }
     private fun eraseLineRight() { for (c in cursorCol until cols) currentScreen()[cursorRow][c] = TermCell() }
-    private fun eraseLineLeft() { for (c in 0..cursorCol) currentScreen()[cursorRow][c] = TermCell() }
+    private fun eraseLineLeft() { for (c in 0..cursorCol.coerceAtMost(cols - 1)) currentScreen()[cursorRow][c] = TermCell() }
 
     private fun reset() {
         screen = Array(rows) { Array(cols) { TermCell() } }
@@ -374,6 +457,7 @@ class TerminalEmulator(
         scrollback.clear()
     }
 
+    @Synchronized
     private fun emitSnapshot() {
         _screenState.value = ScreenSnapshot(
             screen = currentScreen().map { it.copyOf() }.toTypedArray(),
@@ -384,11 +468,48 @@ class TerminalEmulator(
         )
     }
 
-    enum class ParseState { GROUND, ESCAPE, CSI, OSC }
+    /**
+     * Returns the cells for a display row relative to the current viewport.
+     *
+     * relRow >= 0 → visible screen row (clamped; null if beyond rows).
+     * relRow <  0 → scrollback row; -1 = most recently pushed, -scrollbackSize = oldest.
+     * Returns null (caller should treat as a blank row) if out of range.
+     */
+    @Synchronized
+    fun getRow(relRow: Int): Array<TermCell>? {
+        return if (relRow >= 0) {
+            val scr = currentScreen()
+            if (relRow < scr.size) scr[relRow] else null
+        } else {
+            val idx = scrollback.size + relRow   // e.g. -1 → last element
+            if (idx >= 0 && idx < scrollback.size) scrollback[idx] else null
+        }
+    }
+
+    /**
+     * Returns all scrollback rows followed by all visible screen rows as a single string,
+     * rows separated by newlines, trailing whitespace trimmed per row.
+     */
+    @Synchronized
+    fun getTranscriptText(): String {
+        val sb = StringBuilder()
+        for (row in scrollback) {
+            sb.append(row.joinToString("") { it.char }.trimEnd())
+            sb.append('\n')
+        }
+        val scr = currentScreen()
+        for (row in scr) {
+            sb.append(row.joinToString("") { it.char }.trimEnd())
+            sb.append('\n')
+        }
+        return sb.toString().trimEnd('\n')
+    }
+
+    enum class ParseState { GROUND, ESCAPE, CSI, OSC, OSC_ESCAPE, CHARSET }
 }
 
 data class TermCell(
-    val char: Char = ' ',
+    val char: String = " ",
     val attr: CellAttr = CellAttr(),
 )
 

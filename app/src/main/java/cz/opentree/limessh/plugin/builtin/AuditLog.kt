@@ -11,8 +11,7 @@ import java.util.UUID
 import java.util.concurrent.ConcurrentLinkedQueue
 
 /**
- * Built-in Audit Log — inspired by the Apache-2.0 licensed
- * JuiceSSH Audit Log plugin (github.com/Sonelli/juicessh-auditlog).
+ * Built-in limessh audit log.
  *
  * Records plugin and session activity events for security auditing.
  * Events are stored in-memory with optional persistence to the database.
@@ -27,6 +26,7 @@ class AuditLog {
 
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US)
 
+    @Synchronized
     fun log(
         source: String,
         action: AuditAction,
@@ -51,11 +51,13 @@ class AuditLog {
     fun getEntriesForConnection(connectionId: UUID): List<AuditEntry> =
         entries.filter { it.connectionId == connectionId }
 
+    @Synchronized
     fun clear() {
         entries.clear()
         _entriesFlow.value = emptyList()
     }
 
+    @Synchronized
     fun formatEntry(entry: AuditEntry): String {
         val time = dateFormat.format(Date(entry.timestamp))
         return "[$time] ${entry.source}: ${entry.action.label} ${entry.details}"
@@ -89,4 +91,5 @@ enum class AuditAction(val label: String) {
     IMPORT_COMPLETED("Import completed"),
     LOCK_ACTIVATED("Lock activated"),
     LOCK_RELEASED("Lock released"),
+    AUTOMATION_FAILED("Automation failed"),
 }

@@ -1,0 +1,23 @@
+name: Set up limessh build
+description: Install the shared Java, Python, Gradle and Android SDK prerequisites
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-java@v4
+      with:
+        distribution: temurin
+        java-version: '21'
+    - uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+    - uses: android-actions/setup-android@v3
+    - uses: gradle/actions/setup-gradle@v4
+      with:
+        cache-read-only: ${{ github.ref != 'refs/heads/main' }}
+    - name: Install SDK packages required by the build helper
+      shell: bash
+      run: |
+        packages=$(python3 build-local.py --print-sdk-packages)
+        mapfile -t required <<< "$packages"
+        sdkmanager --install "${required[@]}"
+        python3 build-local.py --check

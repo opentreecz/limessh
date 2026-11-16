@@ -1,6 +1,10 @@
 # Proposed independent Android successor architecture
 
-**Proposal only — no application scaffold, code, build or runtime validation.** The user must approve the [implementation plan](ROADMAP.md) before app work. Technical facts come from the [artifact analysis](../research_notes/JuiceSSH%20revival%20feasibility/artifact-analysis.md); historical requirements from the [feature matrix](FEATURE_MATRIX.md). Choices below are recommendations to evaluate, not recovered original source or settled dependencies.
+**Historical architecture proposal.** Application implementation has since
+progressed using Kotlin/Compose, SSHJ and Room; see [current status](IMPLEMENTATION_STATUS.md).
+Technical evidence below comes from the artifact analysis and feature matrix;
+the original proposal is retained for context and does not claim current
+runtime validation or recovered original source.
 
 ## Identity and UX
 

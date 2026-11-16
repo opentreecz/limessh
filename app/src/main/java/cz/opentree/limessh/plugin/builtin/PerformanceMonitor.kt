@@ -8,8 +8,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import java.util.regex.Pattern
 
 /**
- * Built-in Performance Monitor — ported from the Apache-2.0 licensed
- * JuiceSSH Performance Monitor plugin (github.com/Sonelli/juicessh-performancemonitor).
+ * Original built-in monitor implementing the researched performance workflows.
  *
  * Monitors: CPU usage, free RAM, load average, disk usage, network I/O, temperature.
  * Uses SSH exec channels to run standard Linux commands and parse output.
@@ -18,7 +17,8 @@ class PerformanceMonitor(
     private val engine: SshEngine,
     private val intervalMs: Long = 2000L,
 ) {
-    private val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private var scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+    private var running = false
 
     private val _cpuUsage = MutableStateFlow("--")
     val cpuUsage: StateFlow<String> = _cpuUsage.asStateFlow()
@@ -49,7 +49,13 @@ class PerformanceMonitor(
 
     private val cpuPattern = Pattern.compile("^cpu\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)\\s+(\\d+)")
 
+    @Synchronized
     fun start() {
+        if (running) return
+        require(intervalMs >= 1000)
+        running = true
+        scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+        prevIdle = -1; prevTotal = -1; prevRxBytes = -1; prevTxBytes = -1; prevNetTime = -1
         // CPU usage from /proc/stat
         scope.launch {
             while (isActive) {
@@ -127,7 +133,8 @@ class PerformanceMonitor(
         }
     }
 
-    fun stop() { scope.cancel() }
+    @Synchronized
+    fun stop() { running = false; scope.cancel() }
 
     private fun parseCpuStat(output: String) {
         for (line in output.lines()) {
@@ -144,14 +151,14 @@ class PerformanceMonitor(
                 val total = user + nice + sys + idle + iowait + irq + softirq + steal
 
                 if (prevIdle >= 0 && prevTotal >= 0) {
-                    val idleDelta = idle - prevIdle
+                    val idleDelta = idle + iowait - prevIdle
                     val totalDelta = total - prevTotal
                     if (totalDelta > 0) {
                         val free = ((idleDelta * 100.0) / totalDelta + 0.5).toInt()
-                        _cpuUsage.value = "${100 - free}%"
+                        _cpuUsage.value = "${(100 - free).coerceIn(0, 100)}%"
                     }
                 }
-                prevIdle = idle
+                prevIdle = idle + iowait
                 prevTotal = total
                 return
             }
@@ -186,12 +193,12 @@ class PerformanceMonitor(
                 }
             }
         }
-        val now = System.currentTimeMillis()
+        val now = System.nanoTime() / 1_000_000
         if (prevRxBytes >= 0 && prevNetTime > 0) {
             val dt = (now - prevNetTime) / 1000.0
             if (dt > 0) {
-                val rxRate = ((totalRx - prevRxBytes) / dt).toLong()
-                val txRate = ((totalTx - prevTxBytes) / dt).toLong()
+                val rxRate = ((totalRx - prevRxBytes).coerceAtLeast(0) / dt).toLong()
+                val txRate = ((totalTx - prevTxBytes).coerceAtLeast(0) / dt).toLong()
                 _networkUsage.value = "↓${formatBytes(rxRate)}/s ↑${formatBytes(txRate)}/s"
             }
         }

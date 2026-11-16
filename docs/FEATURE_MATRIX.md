@@ -1,6 +1,10 @@
 # Feature and plugin matrix
 
-**Status: requirements and evidence only; no successor feature is implemented or runtime-tested.** “Historical” means advertised in recovered material; “observed” means static evidence in the supplied artifact. Neither establishes present service operation.
+**Research requirements/evidence baseline.** Implementation has since progressed;
+see [current implementation status](IMPLEMENTATION_STATUS.md). The phase/status
+statements below preserve the original proposals. “Historical” means advertised
+in recovered material; “observed” means static artifact evidence. Neither
+establishes present service operation or runtime compatibility.
 
 Evidence keys: [S — official historical store text](https://github.com/Sonelli/juicessh-translations/blob/master/en_US/STORE-LISTING), [F — archived first-party features](https://web.archive.org/web/20240318221739id_/https://juicessh.com/partials/features), [A — artifact analysis](../research_notes/JuiceSSH%20revival%20feasibility/artifact-analysis.md), [H — historical/plugin research](../research_notes/JuiceSSH%20revival%20feasibility/history-and-plugins.md). Phase numbers refer to [ROADMAP.md](ROADMAP.md). Acceptance criteria are proposed successor behavior, not claims about the old app.
 

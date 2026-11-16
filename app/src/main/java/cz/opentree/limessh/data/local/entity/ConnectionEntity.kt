@@ -15,6 +15,7 @@ data class ConnectionEntity(
     val groupId: String? = null,
     val createdAt: Long = System.currentTimeMillis(),
     val modifiedAt: Long = System.currentTimeMillis(),
+    @androidx.room.ColumnInfo(defaultValue = "NULL") val jumpHostId: String? = null,
 )
 
 @Entity(tableName = "identities")
@@ -42,6 +43,7 @@ data class SnippetEntity(
     val content: String = "",
     val runOnConnect: Boolean = false,
     val modifiedAt: Long = System.currentTimeMillis(),
+    @androidx.room.ColumnInfo(defaultValue = "NULL") val connectionId: String? = null,
 )
 
 @Entity(tableName = "port_forwards")

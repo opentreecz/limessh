@@ -26,7 +26,7 @@ import cz.opentree.limessh.data.local.entity.SnippetEntity
         PortForwardEntity::class,
         KnownHostEntity::class,
     ],
-    version = 1,
+    version = 3,
     exportSchema = true,
 )
 abstract class AppDatabase : RoomDatabase() {
@@ -47,6 +47,17 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "limessh.db"
+                ).addMigrations(
+                    object : androidx.room.migration.Migration(1, 2) {
+                        override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                            db.execSQL("ALTER TABLE snippets ADD COLUMN connectionId TEXT DEFAULT NULL")
+                        }
+                    },
+                    object : androidx.room.migration.Migration(2, 3) {
+                        override fun migrate(db: androidx.sqlite.db.SupportSQLiteDatabase) {
+                            db.execSQL("ALTER TABLE connections ADD COLUMN jumpHostId TEXT DEFAULT NULL")
+                        }
+                    },
                 ).build().also { INSTANCE = it }
             }
         }

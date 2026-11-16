@@ -12,7 +12,7 @@ import cz.opentree.limessh.ui.MainActivity
  * Home screen widget for LimeSSH.
  * Shows recent connections and allows quick connect.
  *
- * Replaces JuiceSSH's Pro-only widget with a free, open-source version.
+ * Free, open-source connection widget.
  * Supports: connection list, quick-connect tap, port forward status.
  */
 class LimeWidget : AppWidgetProvider() {

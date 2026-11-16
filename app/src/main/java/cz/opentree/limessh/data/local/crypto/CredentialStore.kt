@@ -8,7 +8,7 @@ import androidx.security.crypto.MasterKeys
  * Stores sensitive credentials (passwords, private keys) using Android's
  * EncryptedSharedPreferences backed by the Android Keystore.
  *
- * This replaces the legacy JuiceSSH AES-256-CBC/PBKDF2 scheme with
+ * This replaces the legacy AES-256-CBC/PBKDF2 scheme with
  * platform-backed encryption. Credentials are device-bound and not
  * portable without explicit export.
  */
@@ -55,4 +55,16 @@ class CredentialStore(context: Context) {
 
     fun hasPassword(identityId: String): Boolean = prefs.contains("pwd_$identityId")
     fun hasPrivateKey(identityId: String): Boolean = prefs.contains("key_$identityId")
+
+    fun storeAutomationGrant(token: String, value: String) {
+        check(prefs.edit().putString("automation_$token", value).commit()) { "Cannot save automation grant" }
+    }
+
+    fun getAutomationGrant(token: String): String? = prefs.getString("automation_$token", null)
+
+    fun deleteAutomationGrants() {
+        val editor = prefs.edit()
+        prefs.all.keys.filter { it.startsWith("automation_") }.forEach { editor.remove(it) }
+        check(editor.commit()) { "Cannot revoke automation grants" }
+    }
 }

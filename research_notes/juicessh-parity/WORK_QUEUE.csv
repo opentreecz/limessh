@@ -1,0 +1,41 @@
+id,kind,title,gap_ids,depends_on,research_status,implementation_status,runtime_status,priority,token_target,card,owner
+R-000,leaf,Baseline and inventory,ALL,,reviewed,not_started,not_run,P0,12000,tasks/R-000.md,coordinator-r000
+R-001,leaf,Complete small fix-module audit,,R-000,reviewed,deferred,not_run,P1,8000,tasks/R-001.md,coordinator-r001
+R-010,leaf,Terminal device queries,TM-03,R-000,reviewed,implemented,not_run,P1,10000,tasks/R-010.md,coordinator-r010
+R-011,leaf,Scrollback viewer,TM-01,R-000;R-010,spec_ready,implemented,not_run,P1,8000,tasks/R-011.md,coordinator-2026-10-21
+R-012,leaf,Text selection copy paste transcript,TM-02,R-000;R-011,spec_ready,implemented,not_run,P1,10000,tasks/R-012.md,coordinator-2026-10-21
+R-013,leaf,Extra keys row expansion,TM-04,R-000,spec_ready,implemented,not_run,P1,6000,tasks/R-013.md,coordinator-2026-10-21
+R-014,leaf,Parser modes mouse bracketed-paste OSC DECSET,TM-07,R-000;R-010,planned,not_started,not_run,P2,10000,tasks/R-014.md,unassigned
+R-015,leaf,IME hardware keyboard accessibility,TM-08,R-000;R-013,planned,not_started,not_run,P2,8000,tasks/R-015.md,unassigned
+R-016,leaf,ssh:// and quick-connect URI handling,C-01,R-000,spec_ready,implemented,not_run,P1,5000,tasks/R-016.md,coordinator-2026-10-21
+R-017,leaf,Known-hosts management UI,S-01,R-000,spec_ready,implemented,not_run,P1,6000,tasks/R-017.md,coordinator-2026-10-21
+R-018,leaf,Auto-reconnect keepalive network change handling,C-04,R-000,spec_ready,implemented,not_run,P1,8000,tasks/R-018.md,coordinator-2026-10-21
+R-019,leaf,Jump host / ProxyJump connect-via,C-02,R-000;R-018,spec_ready,implemented,not_run,P1,8000,tasks/R-019.md,coordinator-2026-10-21
+R-020,leaf,Key export and generate Ed25519/ECDSA,K-03;K-05,R-000,spec_ready,implemented,not_run,P1,8000,tasks/R-020.md,coordinator-2026-10-21
+R-021,leaf,SFTP mkdir rename delete chmod recursive,SF-01,R-000,spec_ready,implemented,not_run,P1,10000,tasks/R-021.md,coordinator-2026-10-21
+W-01,workstream,Terminal UI input scrollback selection and transcripts,TM-01;TM-02;TM-04;TM-05;TM-08,R-000,split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-02,workstream,Terminal parser encoding modes resize and responses,TM-03;TM-07;Q-05,R-000,partial_split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-03,workstream,Terminal preferences themes fonts bell and TERM,T-01;TM-06;TM-09,R-000,needs_split,not_started,not_run,P2,,,unassigned
+W-04,workstream,Address book groups recents quick connect and URI parsing,C-01;C-09;C-10,R-000,partial_split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-05,workstream,SSH authentication jump hosts agent and algorithm configuration,C-02;C-03;C-05,R-000,partial_split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-06,workstream,Session lifetime reconnect keepalive foreground and network changes,C-04;Q-01,R-000,partial_split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-07,workstream,Identity import generation export passphrase and lifecycle,K-01;K-02;K-03;K-04;K-05;K-06;K-07;K-08,R-000,partial_split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-08,workstream,Host trust credential storage lock and backup policy,L-01;S-01;S-02;S-03;S-04;S-05;S-06,R-000,partial_split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-09,workstream,Forwarding SOCKS browser integration status and failures,F-01;F-02;F-03,R-000,needs_split,not_started,not_run,P1,,,unassigned
+W-10,workstream,SFTP service operations and current file browser,SF-01;P-03,R-000,partial_split,not_started,not_run,P1,,,coordinator-2026-10-21
+W-11,workstream,Snippets generators associations group execution and autostart,K-04,R-000,needs_split,not_started,not_run,P2,,,unassigned
+W-12,workstream,Data schema relationships serialization configuration and deletion,D-01;S-04,R-000,needs_split,not_started,not_run,P1,,,unassigned
+W-13,workstream,DB import failure backup restore scheduling and migration,D-01;D-02,R-000;W-12,needs_split,not_started,not_run,P2,,,unassigned
+W-14,workstream,Plugin provider services IPC permissions and SFTP receiver,P-01;P-03,R-000,needs_split,not_started,not_run,P1,,,unassigned
+W-15,workstream,Plugin ecosystem audit logs and Tasker workflows,P-02;P-04,R-000,needs_split,not_started,not_run,P2,,,unassigned
+W-16,workstream,Widgets shortcuts notification actions and Android entry points,W-01;W-02;Q-01,R-000,needs_split,not_started,not_run,P2,,,unassigned
+W-17,workstream,Mosh Java adapters native boundary and lifecycle,C-06,R-000,needs_split,not_started,not_run,P3,,,unassigned
+W-18,workstream,Telnet and local shell execution environment,C-07;C-08,R-000,needs_split,not_started,not_run,P3,,,unassigned
+W-19,workstream,Cloud sync account session and encryption client contracts,D-03,R-000,needs_split,not_started,not_run,P3,,,unassigned
+W-20,workstream,EC2 import configuration and client contracts,D-03,R-000,needs_split,not_started,not_run,P3,,,unassigned
+W-21,workstream,Teams sharing purchases catalog push and backend boundaries,D-03;P-02,R-000,needs_split,not_started,not_run,P3,,,unassigned
+W-22,workstream,Native families ABI differences bundled dependencies and licenses,C-03;C-06;C-07;C-08,R-000,needs_split,not_started,not_run,P2,,,unassigned
+W-23,workstream,Residual obfuscated classes decompiler failures and all gate call sites,ALL,R-000;R-001,needs_split,not_started,not_run,P2,,,unassigned
+W-24,workstream,Resource asset settings localization accessibility and manifest sweep,TM-08;Q-04,R-000,needs_split,not_started,not_run,P2,,,unassigned
+V-001,validation,Device baseline for existing unlock theme and key import,L-01;T-01;K-01;Q-01;Q-02;Q-06,R-000,needs_split,not_started,not_run,P0,,,unassigned
+V-002,validation,Cross-feature runtime scenarios and final coverage reconciliation,ALL,R-000,needs_split,not_started,not_run,P1,,,unassigned

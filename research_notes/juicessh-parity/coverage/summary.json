@@ -1,0 +1,79 @@
+{
+  "baseline_id": "523cf8aa35b143e97f969a66f5881b5c384abea532b86a543aa17cae00b24421",
+  "current_source_files": 95,
+  "inventory_rows": 61540,
+  "counts": {
+    "fix/archive": 6,
+    "fix/class": 10,
+    "fix/component": 1,
+    "fix/method": 31,
+    "fix/resource": 13,
+    "juicessh/archive": 1256,
+    "juicessh/class": 7839,
+    "juicessh/component": 55,
+    "juicessh/method": 48083,
+    "juicessh/native-file": 43,
+    "juicessh/resource": 4203
+  },
+  "class_ownership": {
+    "fix/application": 6,
+    "fix/generated": 4,
+    "juicessh/application": 394,
+    "juicessh/dependency": 3627,
+    "juicessh/generated": 386,
+    "juicessh/unknown": 3432
+  },
+  "class_workstreams": {
+    "fix/R-001": 10,
+    "juicessh/W-01": 50,
+    "juicessh/W-02": 47,
+    "juicessh/W-05": 16,
+    "juicessh/W-12": 46,
+    "juicessh/W-14": 38,
+    "juicessh/W-16": 3,
+    "juicessh/W-22": 3580,
+    "juicessh/W-23": 3673,
+    "juicessh/W-24": 386
+  },
+  "direct_invoke_sites": {
+    "fix": 207,
+    "juicessh": 171385
+  },
+  "decompiler_marker_lines": {
+    "juicessh": 1495
+  },
+  "limitations": [
+    "Class ownership/routing is a seed, not reviewed attribution.",
+    "Dynamic/native target arguments are unresolved; call index covers direct invoke opcodes only.",
+    "Resource IDs/configurations enumerate pinned parser output; decoded values are not behavior review.",
+    "Historical 26 JADX errors are not equivalent to current marker-line counts.",
+    "Fallback files have hashes but source-APK identity is not independently established."
+  ],
+  "output_sha256": {
+    "current-source-baseline.json": "c3022bf482818c86f5cc069677d8e4c23f38939b45ca7f868c6ca84ec188dbdd",
+    "decompiler-markers.jsonl": "6dcf2028343266929b275c4cb5d406c9dfdbfa56fb8fe638e50ae2472d7d5ca5",
+    "direct-invokes.jsonl": "4ea9faf0ef9bd1a539ddb43ab8f5bf77ad4aae49d925b60549ca2d324feb809c",
+    "dynamic-boundaries.jsonl": "5f2321b7cdda1bc1a47919905508b7a21d82242aa7b55103c70a4d822d01aa41",
+    "fix-jadx-files.json": "15b34ff1018f1965e9c4678b34a2ea2107960c240df9cca98de8c686310e7b2c",
+    "inventory.jsonl": "6f14f3e993d7031beea859875a85fb6c1f6610165ef802339f830c8f05bcf72b",
+    "juicessh-jadx-files.json": "36d5e26738fc1df28469351f5903e42b1b83d9bae7551e738302345bdb842d3e",
+    "provenance.json": "baf04cf211f783d557948320020563258c8e4f82c364324db97b32c7fd89fa6c"
+  },
+  "repository_head": "916d46e431164d4f014f3e14f7daa2e4a64e9800",
+  "status": "inventory_reviewed",
+  "date": "2026-10-20",
+  "validation": {
+    "inventory_rows": 61540,
+    "main_classes": 7839,
+    "main_methods": 48083,
+    "resource_ids": {
+      "fix": 13,
+      "juicessh": 4203
+    },
+    "orphan_parents": 0,
+    "current_source_files": 95,
+    "result": "passed",
+    "scope": "structural inventory; no bytecode semantic or runtime equivalence claim"
+  },
+  "repeat_run_output_hashes": "Identical across all hashed evidence outputs before documentation updates"
+}
