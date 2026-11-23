@@ -15,9 +15,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import androidx.fragment.app.Fragment;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.Book;
-import cz.opentree.juicessh.views.CardListItem;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.Book;
+import cz.opentree.limessh.views.CardListItem;
 import cz.opentree.pi0;
 import com.squareup.picasso.Picasso;
 import java.util.Collections;
@@ -185,7 +185,7 @@ public class bj0 extends Fragment implements CardListItem.OnClickListener {
         }
     }
 
-    @Override // cz.opentree.juicessh.views.CardListItem.OnClickListener
+    @Override // cz.opentree.limessh.views.CardListItem.OnClickListener
     /* renamed from: g */
     public void mo2526g(int i) {
     }

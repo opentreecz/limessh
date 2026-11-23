@@ -2,13 +2,13 @@ package cz.opentree;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.connections.transports.ConnectionProvider;
-import cz.opentree.juicessh.fragments.ManageIdentityFragment;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Identity;
-import cz.opentree.juicessh.models.User;
-import cz.opentree.juicessh.p002db.C1328DB;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.connections.transports.ConnectionProvider;
+import cz.opentree.limessh.fragments.ManageIdentityFragment;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Identity;
+import cz.opentree.limessh.models.User;
+import cz.opentree.limessh.p002db.C1328DB;
 import cz.opentree.util.IdentityPrompt;
 import cz.opentree.util.PasswordPrompt;
 import java.sql.SQLException;
@@ -113,7 +113,7 @@ public class ki0 {
                     this.f4568a = manageIdentityFragment;
                 }
 
-                @Override // cz.opentree.juicessh.fragments.ManageIdentityFragment.OnIdentityDialogCompleteListener
+                @Override // cz.opentree.limessh.fragments.ManageIdentityFragment.OnIdentityDialogCompleteListener
                 /* renamed from: a */
                 public void mo5288a(Identity identity) {
                     gj0.m4141b("SSHTransportAuthenticator", "Dismissing new identity dialog");
@@ -122,7 +122,7 @@ public class ki0 {
                     RunnableC1457b.this.f4566Q.m2518y(identity);
                 }
 
-                @Override // cz.opentree.juicessh.fragments.ManageIdentityFragment.OnIdentityDialogCompleteListener
+                @Override // cz.opentree.limessh.fragments.ManageIdentityFragment.OnIdentityDialogCompleteListener
                 public void onCancel() {
                     gj0.m4141b("SSHTransportAuthenticator", "Dismissing new identity dialog due user cancel request");
                     this.f4568a.dismiss();

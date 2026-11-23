@@ -8,8 +8,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.User;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.User;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -86,7 +86,7 @@ public class vh0<ITEM> extends BaseAdapter implements SpinnerAdapter {
         }
         Object obj = this.f7461P.size() > 0 ? this.f7461P.get(i) : this.f7461P.get(i - 1);
         textView.setText(obj.toString());
-        if (obj.getClass().getName().equals("cz.opentree.juicessh.models.User")) {
+        if (obj.getClass().getName().equals("cz.opentree.limessh.models.User")) {
             User user = (User) obj;
             imageView.setVisibility(0);
             if (user.picture != null) {

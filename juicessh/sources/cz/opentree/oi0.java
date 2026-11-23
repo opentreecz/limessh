@@ -1,7 +1,7 @@
 package cz.opentree;
 
-import cz.opentree.juicessh.models.Purchase;
-import cz.opentree.juicessh.models.User;
+import cz.opentree.limessh.models.Purchase;
+import cz.opentree.limessh.models.User;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;

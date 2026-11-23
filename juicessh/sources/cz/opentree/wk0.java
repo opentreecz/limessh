@@ -12,7 +12,7 @@ import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
 

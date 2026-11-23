@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import java.lang.Comparable;
 import java.util.ArrayList;
 import java.util.Collections;

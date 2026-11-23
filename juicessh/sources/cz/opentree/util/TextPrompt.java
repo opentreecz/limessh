@@ -10,7 +10,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import cz.opentree.gj0;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import cz.opentree.vk0;
 
 /* loaded from: classes.dex */

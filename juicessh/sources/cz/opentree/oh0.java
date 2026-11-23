@@ -13,10 +13,10 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.Team;
-import cz.opentree.juicessh.models.TeamMembership;
-import cz.opentree.juicessh.services.CloudSync;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.Team;
+import cz.opentree.limessh.models.TeamMembership;
+import cz.opentree.limessh.services.CloudSync;
 import com.squareup.picasso.Picasso;
 import java.util.Collections;
 import java.util.List;
@@ -55,7 +55,7 @@ public class oh0 extends BaseAdapter implements ListAdapter {
             public a() {
             }
 
-            @Override // cz.opentree.juicessh.services.CloudSync.AbstractC1376i
+            @Override // cz.opentree.limessh.services.CloudSync.AbstractC1376i
             /* renamed from: a */
             public void mo5314a() {
                 super.mo5314a();
@@ -90,7 +90,7 @@ public class oh0 extends BaseAdapter implements ListAdapter {
             public a() {
             }
 
-            @Override // cz.opentree.juicessh.services.CloudSync.AbstractC1376i
+            @Override // cz.opentree.limessh.services.CloudSync.AbstractC1376i
             /* renamed from: a */
             public void mo5314a() {
                 super.mo5314a();

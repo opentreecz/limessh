@@ -2,8 +2,8 @@ package cz.opentree;
 
 import android.content.Context;
 import android.util.LruCache;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.models.User;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.models.User;
 import cz.opentree.qg0;
 import java.util.Iterator;
 import org.json.JSONException;

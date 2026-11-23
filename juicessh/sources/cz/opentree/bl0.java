@@ -2,8 +2,8 @@ package cz.opentree;
 
 import android.content.Context;
 import android.content.Intent;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.connections.transports.TerminalSessionProvider;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.connections.transports.TerminalSessionProvider;
 
 /* compiled from: SessionTranscriptGenerator.java */
 /* loaded from: classes.dex */

@@ -11,11 +11,11 @@ import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.connections.ConnectionManager;
-import cz.opentree.juicessh.connections.transports.ConnectionProvider;
-import cz.opentree.juicessh.models.PortForward;
-import cz.opentree.juicessh.p002db.C1328DB;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.connections.ConnectionManager;
+import cz.opentree.limessh.connections.transports.ConnectionProvider;
+import cz.opentree.limessh.models.PortForward;
+import cz.opentree.limessh.p002db.C1328DB;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -109,7 +109,7 @@ public class sh0 extends BaseAdapter implements ListAdapter {
             this.f6452b = c1866f;
         }
 
-        @Override // cz.opentree.juicessh.connections.ConnectionManager.ChainQuery
+        @Override // cz.opentree.limessh.connections.ConnectionManager.ChainQuery
         /* renamed from: a */
         public void mo5353a(List<ai0> list) {
             if (list.isEmpty()) {
@@ -119,7 +119,7 @@ public class sh0 extends BaseAdapter implements ListAdapter {
             }
         }
 
-        @Override // cz.opentree.juicessh.connections.ConnectionManager.ChainQuery
+        @Override // cz.opentree.limessh.connections.ConnectionManager.ChainQuery
         /* renamed from: b */
         public ConnectionProvider mo5354b() {
             return this.f6451a;

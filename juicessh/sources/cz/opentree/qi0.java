@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.firebase.analytics.FirebaseAnalytics;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 
 /* compiled from: Analytics.java */
 /* loaded from: classes.dex */

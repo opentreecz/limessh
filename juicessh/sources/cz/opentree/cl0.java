@@ -7,7 +7,7 @@ import android.net.Uri;
 import android.util.Pair;
 import android.util.Patterns;
 import android.util.TypedValue;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import java.util.regex.Matcher;
 
 /* compiled from: URLScan.java */

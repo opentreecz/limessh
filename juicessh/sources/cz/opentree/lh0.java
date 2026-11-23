@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.views.TerminalAutoCompleteBox;
-import cz.opentree.juicessh.views.TerminalThemedButton;
-import cz.opentree.juicessh.views.TerminalThemedImageButton;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.views.TerminalAutoCompleteBox;
+import cz.opentree.limessh.views.TerminalThemedButton;
+import cz.opentree.limessh.views.TerminalThemedImageButton;
 import java.util.ArrayList;
 import java.util.Iterator;
 

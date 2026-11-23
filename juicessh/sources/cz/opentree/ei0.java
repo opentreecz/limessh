@@ -8,12 +8,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
 import com.google.ase.Exec;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.activities.TerminalEmulatorActivity;
-import cz.opentree.juicessh.connections.transports.TerminalSessionProvider;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.activities.TerminalEmulatorActivity;
+import cz.opentree.limessh.connections.transports.TerminalSessionProvider;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Snippet;
 import cz.opentree.kj0;
 import cz.opentree.mi0;
 import jackpal.androidterm.emulatorview.TermSession;
@@ -137,7 +137,7 @@ public abstract class ei0 extends mi0 implements TerminalSessionProvider {
         this.f2412i = new Thread(new RunnableC0936a(fragmentActivity, bi0Var, i2));
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: a */
     public void mo3503a(int i, int i2, int i3, int i4) {
         if (Arrays.asList(Integer.valueOf(i), Integer.valueOf(i2), Integer.valueOf(i3), Integer.valueOf(i4)).contains(0) || this.f2418o == null) {
@@ -146,7 +146,7 @@ public abstract class ei0 extends mi0 implements TerminalSessionProvider {
         Exec.setPtyWindowSize(this.f2418o, i3, i4, i, i2);
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: b */
     public void mo3504b() {
         if (mo3216o()) {
@@ -184,7 +184,7 @@ public abstract class ei0 extends mi0 implements TerminalSessionProvider {
         return Config.m5458d("terminal:type", this.f2407d);
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: g */
     public void mo3505g() {
         if (mo3216o()) {

@@ -16,7 +16,7 @@ import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import cz.opentree.gj0;
 import cz.opentree.jh0;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import cz.opentree.vk0;
 
 /* loaded from: classes.dex */

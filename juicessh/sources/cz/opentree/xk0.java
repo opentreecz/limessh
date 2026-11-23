@@ -2,9 +2,9 @@ package cz.opentree;
 
 import android.preference.Preference;
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.controllers.PinManager;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.views.dbpreferences.EncSwitchDBPreference;
+import cz.opentree.limessh.controllers.PinManager;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.views.dbpreferences.EncSwitchDBPreference;
 import cz.opentree.util.Session;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -30,12 +30,12 @@ public class xk0 implements Preference.OnPreferenceChangeListener {
             this.f7992a = preference;
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: a */
         public void mo5376a(PinManager.PinPromptDialog pinPromptDialog) {
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: d */
         public void mo5377d() {
             Session.m9046g().m9049h().m10501j(xk0.this.f7990a, true);
@@ -43,7 +43,7 @@ public class xk0 implements Preference.OnPreferenceChangeListener {
             xk0.this.f7991b.set(false);
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: e */
         public void mo5378e() {
             xk0.this.f7991b.set(false);

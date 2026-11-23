@@ -6,20 +6,20 @@ import com.amazonaws.services.ec2.AmazonEC2Client;
 import com.amazonaws.services.ec2.model.Instance;
 import com.amazonaws.services.ec2.model.Reservation;
 import com.amazonaws.services.ec2.model.Tag;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.ConnectionCounter;
-import cz.opentree.juicessh.models.ConnectionGroup;
-import cz.opentree.juicessh.models.ConnectionGroupMembership;
-import cz.opentree.juicessh.models.ConnectionIdentity;
-import cz.opentree.juicessh.models.Identity;
-import cz.opentree.juicessh.models.User;
-import cz.opentree.juicessh.models.ec2link.Ec2Connection;
-import cz.opentree.juicessh.models.ec2link.Ec2Filter;
-import cz.opentree.juicessh.models.ec2link.Ec2GroupMapping;
-import cz.opentree.juicessh.models.ec2link.Ec2Mapping;
-import cz.opentree.juicessh.models.ec2link.Ec2Profile;
-import cz.opentree.juicessh.p002db.C1328DB;
-import cz.opentree.juicessh.services.Ec2Link;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.ConnectionCounter;
+import cz.opentree.limessh.models.ConnectionGroup;
+import cz.opentree.limessh.models.ConnectionGroupMembership;
+import cz.opentree.limessh.models.ConnectionIdentity;
+import cz.opentree.limessh.models.Identity;
+import cz.opentree.limessh.models.User;
+import cz.opentree.limessh.models.ec2link.Ec2Connection;
+import cz.opentree.limessh.models.ec2link.Ec2Filter;
+import cz.opentree.limessh.models.ec2link.Ec2GroupMapping;
+import cz.opentree.limessh.models.ec2link.Ec2Mapping;
+import cz.opentree.limessh.models.ec2link.Ec2Profile;
+import cz.opentree.limessh.p002db.C1328DB;
+import cz.opentree.limessh.services.Ec2Link;
 import cz.opentree.qg0;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -59,13 +59,13 @@ public class si0 implements Runnable {
             this.f6469c = 0;
         }
 
-        @Override // cz.opentree.juicessh.services.Ec2Link.AbstractC1386j
+        @Override // cz.opentree.limessh.services.Ec2Link.AbstractC1386j
         /* renamed from: a */
         public void mo5637a() {
             si0.this.m8450a(this.f6469c);
         }
 
-        @Override // cz.opentree.juicessh.services.Ec2Link.AbstractC1386j
+        @Override // cz.opentree.limessh.services.Ec2Link.AbstractC1386j
         /* renamed from: b */
         public void mo5638b() {
             int i = this.f6469c + 1;
@@ -74,7 +74,7 @@ public class si0 implements Runnable {
             tj0.m8705c(si0Var.f6465P, si0Var.f6466Q.f3993id, i);
         }
 
-        @Override // cz.opentree.juicessh.services.Ec2Link.AbstractC1386j
+        @Override // cz.opentree.limessh.services.Ec2Link.AbstractC1386j
         /* renamed from: d */
         public void mo5640d(C1869b c1869b, Ec2Profile ec2Profile) {
             m5641e();
@@ -223,14 +223,14 @@ public class si0 implements Runnable {
         public boolean m8454c(com.amazonaws.services.ec2.model.Instance r8) {
             /*
                 r7 = this;
-                java.util.List<cz.opentree.juicessh.models.ec2link.Ec2Filter> r0 = r7.f6474Q
+                java.util.List<cz.opentree.limessh.models.ec2link.Ec2Filter> r0 = r7.f6474Q
                 java.util.Iterator r0 = r0.iterator()
             L6:
                 boolean r1 = r0.hasNext()
                 r2 = 1
                 if (r1 == 0) goto L89
                 java.lang.Object r1 = r0.next()
-                cz.opentree.juicessh.models.ec2link.Ec2Filter r1 = (cz.opentree.juicessh.models.ec2link.Ec2Filter) r1
+                cz.opentree.limessh.models.ec2link.Ec2Filter r1 = (cz.opentree.limessh.models.ec2link.Ec2Filter) r1
                 java.lang.String r3 = r1.key
                 java.lang.String r4 = "Instance Type"
                 boolean r3 = r3.equals(r4)

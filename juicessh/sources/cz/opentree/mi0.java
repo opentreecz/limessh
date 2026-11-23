@@ -1,8 +1,8 @@
 package cz.opentree;
 
 import androidx.core.app.NotificationCompat;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.Connection;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.Connection;
 import java.util.HashMap;
 
 /* compiled from: Transport.java */

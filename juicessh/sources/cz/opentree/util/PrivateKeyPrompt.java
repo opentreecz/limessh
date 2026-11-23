@@ -24,7 +24,7 @@ import androidx.fragment.app.Fragment;
 import cz.opentree.ek0;
 import cz.opentree.gj0;
 import cz.opentree.gk0;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import cz.opentree.ph0;
 import cz.opentree.qh0;
 import cz.opentree.ug0;

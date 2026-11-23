@@ -16,12 +16,12 @@ import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager.widget.PagerAdapter;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.activities.ManageConnectionActivity;
-import cz.opentree.juicessh.activities.ManageIdentityActivity;
-import cz.opentree.juicessh.activities.ManagePortForwardActivity;
-import cz.opentree.juicessh.activities.PurchaseActivity;
-import cz.opentree.juicessh.models.User;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.activities.ManageConnectionActivity;
+import cz.opentree.limessh.activities.ManageIdentityActivity;
+import cz.opentree.limessh.activities.ManagePortForwardActivity;
+import cz.opentree.limessh.activities.PurchaseActivity;
+import cz.opentree.limessh.models.User;
 import cz.opentree.pi0;
 import java.util.ArrayList;
 
@@ -162,11 +162,11 @@ public class eh0 extends PagerAdapter {
                 java.lang.Object r1 = r1.getValue()
                 java.util.List r1 = (java.util.List) r1
                 java.lang.Object r1 = r1.get(r4)
-                cz.opentree.juicessh.models.Connection r1 = (cz.opentree.juicessh.models.Connection) r1
+                cz.opentree.limessh.models.Connection r1 = (cz.opentree.limessh.models.Connection) r1
                 android.content.Intent r2 = new android.content.Intent
                 cz.opentree.eh0 r3 = cz.opentree.eh0.this
                 androidx.fragment.app.FragmentActivity r3 = cz.opentree.eh0.m3494c(r3)
-                java.lang.Class<cz.opentree.juicessh.activities.TerminalEmulatorActivity> r4 = cz.opentree.juicessh.activities.TerminalEmulatorActivity.class
+                java.lang.Class<cz.opentree.limessh.activities.TerminalEmulatorActivity> r4 = cz.opentree.limessh.activities.TerminalEmulatorActivity.class
                 r2.<init>(r3, r4)
                 r3 = 603979776(0x24000000, float:2.7755576E-17)
                 r2.setFlags(r3)

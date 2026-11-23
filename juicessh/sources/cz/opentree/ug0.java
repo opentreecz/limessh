@@ -1,7 +1,7 @@
 package cz.opentree;
 
 import android.app.Activity;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import cz.opentree.libssh.SshLibrary;
 import cz.opentree.libssh.adapter.SSHAuthenticator;
 import cz.opentree.util.PasswordPrompt;

@@ -13,8 +13,8 @@ block comment) for reference.
 | Xposed hook (runtime name) | Patched method (decompiled name) | New behaviour |
 |---|---|---|
 | `oi0.d(Object)` | `cz/opentree/oi0.java` → `m7047d(Object)` | always returns `true` |
-| `User.H()` | `cz/opentree/juicessh/models/User.java` → `m5531H()` | always returns `true` (signature valid) |
-| `User.w()` | `cz/opentree/juicessh/models/User.java` → `m5533w()` | returns `315360000L` (10-year session, never expires) |
+| `User.H()` | `cz/opentree/limessh/models/User.java` → `m5531H()` | always returns `true` (signature valid) |
+| `User.w()` | `cz/opentree/limessh/models/User.java` → `m5533w()` | returns `315360000L` (10-year session, never expires) |
 | `pi0.m(Context)` | `cz/opentree/pi0.java` → `m7334m(Context)` | always returns `true` (API user gate) |
 | `pi0.j(Context, pi0$p)` | `cz/opentree/pi0.java` → `m7331j(Context, AbstractC1720p)` | resolves the user locally via `User.m5518A(context)` (or `new User()`) and invokes the callback, with no network refresh |
 

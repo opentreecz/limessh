@@ -3,7 +3,7 @@ package cz.opentree;
 import android.os.Environment;
 import android.os.Handler;
 import android.util.SparseArray;
-import cz.opentree.juicessh.controllers.SftpControllerInterface;
+import cz.opentree.limessh.controllers.SftpControllerInterface;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -211,7 +211,7 @@ public class yi0 implements SftpControllerInterface {
         gj0.m4141b("SftpGetsController", "Created SftpGetsJob for\nDirectories: " + Arrays.toString(strArr) + "\nFiles: " + Arrays.toString(strArr2));
     }
 
-    @Override // cz.opentree.juicessh.controllers.SftpControllerInterface
+    @Override // cz.opentree.limessh.controllers.SftpControllerInterface
     /* renamed from: a */
     public String mo5379a() {
         int length = String.valueOf(this.f8237j).length();
@@ -247,7 +247,7 @@ public class yi0 implements SftpControllerInterface {
         return sb.toString();
     }
 
-    @Override // cz.opentree.juicessh.controllers.SftpControllerInterface
+    @Override // cz.opentree.limessh.controllers.SftpControllerInterface
     /* renamed from: b */
     public void mo5380b() {
         gj0.m4141b("SftpGetsController", "Start/Resuming sftp download job (" + this.f8231d + ")");
@@ -266,7 +266,7 @@ public class yi0 implements SftpControllerInterface {
         }
     }
 
-    @Override // cz.opentree.juicessh.controllers.SftpControllerInterface
+    @Override // cz.opentree.limessh.controllers.SftpControllerInterface
     public void cancel(boolean z) {
         gj0.m4141b("SftpGetsController", "Received sftp job (" + this.f8231d + ") cancel request");
         pause();
@@ -417,7 +417,7 @@ public class yi0 implements SftpControllerInterface {
         this.f8231d = i;
     }
 
-    @Override // cz.opentree.juicessh.controllers.SftpControllerInterface
+    @Override // cz.opentree.limessh.controllers.SftpControllerInterface
     public void pause() {
         gj0.m4141b("SftpGetsController", "Received sftp job (" + this.f8231d + ") pause request");
         this.f8245r.post(new RunnableC2351c());

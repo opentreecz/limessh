@@ -7,13 +7,13 @@ import android.os.Handler;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.activities.TerminalEmulatorActivity;
-import cz.opentree.juicessh.connections.transports.TerminalSessionProvider;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Identity;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.activities.TerminalEmulatorActivity;
+import cz.opentree.limessh.connections.transports.TerminalSessionProvider;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Identity;
+import cz.opentree.limessh.models.Snippet;
 import cz.opentree.mi0;
 import jackpal.androidterm.emulatorview.TermSession;
 import java.util.UUID;
@@ -87,7 +87,7 @@ public class ii0 extends ji0 implements TerminalSessionProvider {
         return this.f3327n;
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: a */
     public void mo3503a(int i, int i2, int i3, int i4) {
         mk0 mk0Var = this.f3326m;
@@ -100,24 +100,24 @@ public class ii0 extends ji0 implements TerminalSessionProvider {
         }
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: b */
     public void mo3504b() {
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: c */
     public String mo2813c() {
         return "SSH: " + this.f3567j.m5471w();
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: d */
     public String mo2814d() {
         return this.f3567j.address;
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: e */
     public TermSession mo3213e() {
         if (this.f3327n == null) {
@@ -126,13 +126,13 @@ public class ii0 extends ji0 implements TerminalSessionProvider {
         return this.f3327n;
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: f */
     public String mo3214f() {
         return Config.m5458d("terminal:type", this.f3325l);
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: g */
     public void mo3505g() {
     }

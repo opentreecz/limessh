@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import cz.opentree.gj0;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import cz.opentree.vk0;
 import java.util.regex.Pattern;
 

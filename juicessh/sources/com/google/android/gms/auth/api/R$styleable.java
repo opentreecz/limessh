@@ -1,6 +1,6 @@
 package com.google.android.gms.auth.api;
 
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 
 /* loaded from: classes.dex */
 public final class R$styleable {

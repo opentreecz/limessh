@@ -15,8 +15,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.controllers.PinManager;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.controllers.PinManager;
 import cz.opentree.vk0;
 import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
 
@@ -262,14 +262,14 @@ public class PasswordPrompt extends vk0 implements PinManager.PinPromptDialog {
         return null;
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     /* renamed from: b */
     public PinManager.PinPromptDialog mo2824b(FragmentActivity fragmentActivity) {
         show();
         return this;
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     /* renamed from: c */
     public void mo2825c(PinManager.PinPromptSimpleListener pinPromptSimpleListener) {
     }
@@ -282,19 +282,19 @@ public class PasswordPrompt extends vk0 implements PinManager.PinPromptDialog {
         return this.f7195Z;
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     /* renamed from: d */
     public void mo2826d(PinManager.PinPromptListener pinPromptListener) {
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     public void dismiss() {
         if (isShowing()) {
             m9017p().dismiss();
         }
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     public boolean isShowing() {
         return m9017p() != null && m9017p().isShowing();
     }

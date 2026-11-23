@@ -3,7 +3,7 @@ package cz.opentree;
 import android.content.Context;
 import android.os.Build;
 import android.util.Log;
-import cz.opentree.juicessh.models.User;
+import cz.opentree.limessh.models.User;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;

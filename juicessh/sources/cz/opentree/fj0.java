@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import androidx.fragment.app.Fragment;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 
 /* compiled from: SoftwareLicensesFragment.java */
 /* loaded from: classes.dex */

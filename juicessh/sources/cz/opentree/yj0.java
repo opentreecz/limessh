@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import java.util.ArrayList;
 import java.util.List;
 

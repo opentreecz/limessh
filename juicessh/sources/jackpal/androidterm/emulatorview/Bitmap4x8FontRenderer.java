@@ -9,7 +9,7 @@ import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import jackpal.androidterm.emulatorview.compat.AndroidCompat;
 
 /* loaded from: classes.dex */

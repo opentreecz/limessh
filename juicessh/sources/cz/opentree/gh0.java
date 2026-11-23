@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ListAdapter;
-import cz.opentree.juicessh.views.CardListItem;
+import cz.opentree.limessh.views.CardListItem;
 import java.util.ArrayList;
 import java.util.Iterator;
 

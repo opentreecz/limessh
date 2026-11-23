@@ -1,7 +1,7 @@
 package cz.opentree;
 
 import android.content.Context;
-import cz.opentree.juicessh.models.Config;
+import cz.opentree.limessh.models.Config;
 import java.util.Arrays;
 import java.util.List;
 

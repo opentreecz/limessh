@@ -14,21 +14,21 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.j256.ormlite.field.FieldType;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.activities.AuthenticationMigrationActivity;
-import cz.opentree.juicessh.activities.ChangelogActivity;
-import cz.opentree.juicessh.activities.MainActivity;
-import cz.opentree.juicessh.activities.ReauthenticateActivity;
-import cz.opentree.juicessh.controllers.ApplicationClass;
-import cz.opentree.juicessh.models.Book;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.models.DeletedItem;
-import cz.opentree.juicessh.models.Plugin;
-import cz.opentree.juicessh.models.Purchase;
-import cz.opentree.juicessh.models.User;
-import cz.opentree.juicessh.p002db.C1328DB;
-import cz.opentree.juicessh.p002db.DAO;
-import cz.opentree.juicessh.services.CloudSync;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.activities.AuthenticationMigrationActivity;
+import cz.opentree.limessh.activities.ChangelogActivity;
+import cz.opentree.limessh.activities.MainActivity;
+import cz.opentree.limessh.activities.ReauthenticateActivity;
+import cz.opentree.limessh.controllers.ApplicationClass;
+import cz.opentree.limessh.models.Book;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.models.DeletedItem;
+import cz.opentree.limessh.models.Plugin;
+import cz.opentree.limessh.models.Purchase;
+import cz.opentree.limessh.models.User;
+import cz.opentree.limessh.p002db.C1328DB;
+import cz.opentree.limessh.p002db.DAO;
+import cz.opentree.limessh.services.CloudSync;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -347,9 +347,9 @@ public class pi0 {
                 pi0.m7335n(this.f5690e);
             }
             if (this.f5688c) {
-                this.f5689d.sendBroadcast(new Intent("cz.opentree.juicessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 7));
+                this.f5689d.sendBroadcast(new Intent("cz.opentree.limessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 7));
             } else {
-                this.f5689d.sendBroadcast(new Intent("cz.opentree.juicessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 8));
+                this.f5689d.sendBroadcast(new Intent("cz.opentree.limessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 8));
             }
             AbstractC1718n abstractC1718n = this.f5693h;
             if (abstractC1718n != null) {
@@ -361,7 +361,7 @@ public class pi0 {
         /* renamed from: j */
         public void mo7343j(String str) {
             super.mo7343j(str);
-            Intent putExtra = new Intent("cz.opentree.juicessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 4);
+            Intent putExtra = new Intent("cz.opentree.limessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 4);
             this.f5689d.sendBroadcast(putExtra);
             C1328DB.m5404d(DeletedItem.class, this.f5690e).m5400t();
             try {
@@ -369,7 +369,7 @@ public class pi0 {
                 Config.m5462h("last:cloudsync", String.valueOf(System.currentTimeMillis() / 1000), this.f5690e);
                 gj0.m4141b("API", "Cloudsync completed successfully");
                 this.f5688c = true;
-                new Intent("cz.opentree.juicessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 7);
+                new Intent("cz.opentree.limessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 7);
                 this.f5689d.sendBroadcast(putExtra);
                 AbstractC1718n abstractC1718n = this.f5693h;
                 if (abstractC1718n != null) {
@@ -378,7 +378,7 @@ public class pi0 {
             } catch (CloudSync.C1375h unused) {
                 gj0.m4141b("API", "CloudSync cancelled");
                 this.f5688c = false;
-                new Intent("cz.opentree.juicessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 8);
+                new Intent("cz.opentree.limessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 8);
                 this.f5689d.sendBroadcast(putExtra);
                 AbstractC1718n abstractC1718n2 = this.f5693h;
                 if (abstractC1718n2 != null) {
@@ -864,7 +864,7 @@ public class pi0 {
     /* renamed from: f */
     public static void m7327f(Context context, User user, JSONObject jSONObject, CloudSync.AbstractC1376i abstractC1376i, AbstractC1718n abstractC1718n) {
         LocalBroadcastManager localBroadcastManager = LocalBroadcastManager.getInstance(context);
-        localBroadcastManager.sendBroadcast(new Intent("cz.opentree.juicessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 3));
+        localBroadcastManager.sendBroadcast(new Intent("cz.opentree.limessh.cloudsync.progress").putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 3));
         wg0 wg0Var = new wg0();
         wg0Var.m9518p(m7332k(context));
         wg0Var.m9505c("Cookie", "session=" + user.sessionIdentifier);

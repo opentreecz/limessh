@@ -1,9 +1,9 @@
 package cz.opentree;
 
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Snippet;
 import java.io.File;
 import java.util.UUID;
 
@@ -15,13 +15,13 @@ public class ci0 extends ei0 {
         m3510s();
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: c */
     public String mo2813c() {
         return this.f2407d.getString(R.string.local_terminal);
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: d */
     public String mo2814d() {
         return "localhost";

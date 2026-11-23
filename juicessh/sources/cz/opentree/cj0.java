@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.controllers.PinManager;
-import cz.opentree.juicessh.models.User;
-import cz.opentree.juicessh.views.FontAwesomeTextView;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.controllers.PinManager;
+import cz.opentree.limessh.models.User;
+import cz.opentree.limessh.views.FontAwesomeTextView;
 
 /* compiled from: NumericPinFragment.java */
 /* loaded from: classes.dex */
@@ -132,26 +132,26 @@ public class cj0 extends DialogFragment implements PinManager.PinPromptDialog {
         return cj0Var;
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     /* renamed from: b */
     public PinManager.PinPromptDialog mo2824b(FragmentActivity fragmentActivity) {
         super.show(fragmentActivity.getSupportFragmentManager(), "pin_dialog");
         return this;
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     /* renamed from: c */
     public void mo2825c(PinManager.PinPromptSimpleListener pinPromptSimpleListener) {
         this.f1959T = pinPromptSimpleListener;
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     /* renamed from: d */
     public void mo2826d(PinManager.PinPromptListener pinPromptListener) {
         this.f1955P = pinPromptListener;
     }
 
-    @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptDialog
+    @Override // cz.opentree.limessh.controllers.PinManager.PinPromptDialog
     public boolean isShowing() {
         return super.isVisible();
     }

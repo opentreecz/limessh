@@ -2,12 +2,12 @@ package cz.opentree;
 
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.connections.ConnectionManager;
-import cz.opentree.juicessh.connections.transports.ConnectionProvider;
-import cz.opentree.juicessh.connections.transports.TerminalSessionProvider;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.ConnectionCounter;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.connections.ConnectionManager;
+import cz.opentree.limessh.connections.transports.ConnectionProvider;
+import cz.opentree.limessh.connections.transports.TerminalSessionProvider;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.ConnectionCounter;
+import cz.opentree.limessh.models.Snippet;
 import java.util.ArrayList;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicBoolean;

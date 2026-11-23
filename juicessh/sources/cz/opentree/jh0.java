@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import java.util.ArrayList;
 
 /* compiled from: ConnectionTypeSpinnerAdapter.java */

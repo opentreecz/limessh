@@ -2,12 +2,12 @@ package cz.opentree;
 
 import androidx.fragment.app.FragmentActivity;
 import com.google.ase.Exec;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.connections.listeners.BasicTransportChainListener;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Identity;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.connections.listeners.BasicTransportChainListener;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Identity;
+import cz.opentree.limessh.models.Snippet;
 import cz.opentree.mi0;
 import jackpal.androidterm.emulatorview.TermSession;
 import java.io.IOException;
@@ -63,13 +63,13 @@ public class di0 extends ei0 {
             this.f2186b = fragmentActivity;
         }
 
-        @Override // cz.opentree.juicessh.connections.listeners.BasicTransportChainListener
+        @Override // cz.opentree.limessh.connections.listeners.BasicTransportChainListener
         /* renamed from: a */
         public void mo3218a() {
             gj0.m4141b("MoshTransport", "MOSH transport cancelled (SSH phase)");
         }
 
-        @Override // cz.opentree.juicessh.connections.listeners.BasicTransportChainListener
+        @Override // cz.opentree.limessh.connections.listeners.BasicTransportChainListener
         /* renamed from: b */
         public void mo3219b(int i, UUID uuid) {
             try {
@@ -210,19 +210,19 @@ public class di0 extends ei0 {
         m2094g.m2098l().m2506m(new C0878a(bi0Var, fragmentActivity));
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: c */
     public String mo2813c() {
         return "Mosh: " + this.f2182t.m5471w();
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: d */
     public String mo2814d() {
         return this.f2182t.address;
     }
 
-    @Override // cz.opentree.ei0, cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.ei0, cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: e */
     public TermSession mo3213e() {
         super.mo3213e();
@@ -233,7 +233,7 @@ public class di0 extends ei0 {
         return this.f2415l;
     }
 
-    @Override // cz.opentree.ei0, cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.ei0, cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: f */
     public String mo3214f() {
         return "xterm-256color";

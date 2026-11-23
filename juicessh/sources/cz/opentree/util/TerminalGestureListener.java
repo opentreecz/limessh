@@ -8,9 +8,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.inputmethod.InputMethodManager;
 import cz.opentree.cl0;
-import cz.opentree.juicessh.activities.TerminalEmulatorActivity;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.views.TerminalView;
+import cz.opentree.limessh.activities.TerminalEmulatorActivity;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.views.TerminalView;
 
 /* loaded from: classes.dex */
 public class TerminalGestureListener extends GestureDetector.SimpleOnGestureListener {
@@ -144,7 +144,7 @@ public class TerminalGestureListener extends GestureDetector.SimpleOnGestureList
         L49:
             r5 = r8
         L4a:
-            cz.opentree.juicessh.views.TerminalView r1 = r0.f7285P
+            cz.opentree.limessh.views.TerminalView r1 = r0.f7285P
             jackpal.androidterm.emulatorview.TermSession r1 = r1.getTermSession()
             boolean r1 = r1.isRunning()
             if (r1 == 0) goto L84
@@ -155,7 +155,7 @@ public class TerminalGestureListener extends GestureDetector.SimpleOnGestureList
             r16 = 0
             r9 = r1
             r9.<init>(r10, r12, r14, r15, r16, r17)
-            cz.opentree.juicessh.views.TerminalView r2 = r0.f7285P
+            cz.opentree.limessh.views.TerminalView r2 = r0.f7285P
             r2.dispatchKeyEvent(r1)
             if (r5 <= r8) goto L84
             android.view.KeyEvent r1 = new android.view.KeyEvent
@@ -166,7 +166,7 @@ public class TerminalGestureListener extends GestureDetector.SimpleOnGestureList
             r16 = r1
             r22 = r5
             r16.<init>(r17, r19, r21, r22, r23)
-            cz.opentree.juicessh.views.TerminalView r2 = r0.f7285P
+            cz.opentree.limessh.views.TerminalView r2 = r0.f7285P
             r2.dispatchKeyEvent(r1)
         L84:
             return

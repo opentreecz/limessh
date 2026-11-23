@@ -79,17 +79,17 @@ public class vi0 {
         if (builder != null) {
             return builder;
         }
-        NotificationCompat.Builder autoCancel = new NotificationCompat.Builder(this.f7465b).setSmallIcon(this.f7464a == 0 ? R.drawable.stat_sys_download : R.drawable.stat_sys_upload).setContentTitle(this.f7465b.getString(this.f7464a == 0 ? cz.opentree.juicessh.R.string.sftp_download : cz.opentree.juicessh.R.string.sftp_upload)).setContentText(this.f7468e).setAutoCancel(false);
+        NotificationCompat.Builder autoCancel = new NotificationCompat.Builder(this.f7465b).setSmallIcon(this.f7464a == 0 ? R.drawable.stat_sys_download : R.drawable.stat_sys_upload).setContentTitle(this.f7465b.getString(this.f7464a == 0 ? cz.opentree.limessh.R.string.sftp_download : cz.opentree.limessh.R.string.sftp_upload)).setContentText(this.f7468e).setAutoCancel(false);
         this.f7475l = autoCancel;
         autoCancel.setWhen(System.currentTimeMillis()).setUsesChronometer(true).setOngoing(true);
-        this.f7475l.addAction(cz.opentree.juicessh.R.drawable.ic_clear_normal, this.f7465b.getString(cz.opentree.juicessh.R.string.cancel), m9230d());
-        this.f7475l.addAction(R.drawable.ic_media_pause, this.f7465b.getString(cz.opentree.juicessh.R.string.pause), m9234h());
+        this.f7475l.addAction(cz.opentree.limessh.R.drawable.ic_clear_normal, this.f7465b.getString(cz.opentree.limessh.R.string.cancel), m9230d());
+        this.f7475l.addAction(R.drawable.ic_media_pause, this.f7465b.getString(cz.opentree.limessh.R.string.pause), m9234h());
         return this.f7475l;
     }
 
     /* renamed from: d */
     public final PendingIntent m9230d() {
-        return PendingIntent.getBroadcast(this.f7465b, (int) System.currentTimeMillis(), new Intent("cz.opentree.juicessh.action.SFTP_CANCEL", Uri.parse("sftpservice://" + this.f7466c)), 0);
+        return PendingIntent.getBroadcast(this.f7465b, (int) System.currentTimeMillis(), new Intent("cz.opentree.limessh.action.SFTP_CANCEL", Uri.parse("sftpservice://" + this.f7466c)), 0);
     }
 
     /* renamed from: e */
@@ -97,11 +97,11 @@ public class vi0 {
         NotificationCompat.Builder usesChronometer;
         NotificationCompat.Builder smallIcon = new NotificationCompat.Builder(this.f7465b).setSmallIcon(R.drawable.ic_menu_close_clear_cancel);
         StringBuilder sb = new StringBuilder();
-        sb.append(this.f7465b.getString(z ? cz.opentree.juicessh.R.string.cancelled : cz.opentree.juicessh.R.string.failed));
+        sb.append(this.f7465b.getString(z ? cz.opentree.limessh.R.string.cancelled : cz.opentree.limessh.R.string.failed));
         sb.append(": ");
-        sb.append(this.f7465b.getString(this.f7464a == 0 ? cz.opentree.juicessh.R.string.sftp_download : cz.opentree.juicessh.R.string.sftp_upload));
+        sb.append(this.f7465b.getString(this.f7464a == 0 ? cz.opentree.limessh.R.string.sftp_download : cz.opentree.limessh.R.string.sftp_upload));
         usesChronometer = smallIcon.setContentTitle(sb.toString()).setContentInfo(String.format("%" + m9237k() + "d/%d", Integer.valueOf(m9233g()), Integer.valueOf(this.f7469f))).setContentText(this.f7468e).setUsesChronometer(false);
-        usesChronometer.addAction(R.drawable.ic_menu_info_details, this.f7465b.getString(cz.opentree.juicessh.R.string.details), m9238l());
+        usesChronometer.addAction(R.drawable.ic_menu_info_details, this.f7465b.getString(cz.opentree.limessh.R.string.details), m9238l());
         return usesChronometer;
     }
 
@@ -117,7 +117,7 @@ public class vi0 {
 
     /* renamed from: h */
     public final PendingIntent m9234h() {
-        return PendingIntent.getBroadcast(this.f7465b, (int) System.currentTimeMillis(), new Intent("cz.opentree.juicessh.action.SFTP_PAUSE", Uri.parse("sftpservice://" + this.f7466c)), 0);
+        return PendingIntent.getBroadcast(this.f7465b, (int) System.currentTimeMillis(), new Intent("cz.opentree.limessh.action.SFTP_PAUSE", Uri.parse("sftpservice://" + this.f7466c)), 0);
     }
 
     /* renamed from: i */
@@ -125,20 +125,20 @@ public class vi0 {
         NotificationCompat.Builder contentText;
         NotificationCompat.Builder smallIcon = new NotificationCompat.Builder(this.f7465b).setSmallIcon(R.drawable.ic_media_pause);
         StringBuilder sb = new StringBuilder();
-        sb.append(this.f7465b.getString(cz.opentree.juicessh.R.string.paused));
+        sb.append(this.f7465b.getString(cz.opentree.limessh.R.string.paused));
         sb.append(": ");
-        sb.append(this.f7465b.getString(this.f7464a == 0 ? cz.opentree.juicessh.R.string.sftp_download : cz.opentree.juicessh.R.string.sftp_upload));
+        sb.append(this.f7465b.getString(this.f7464a == 0 ? cz.opentree.limessh.R.string.sftp_download : cz.opentree.limessh.R.string.sftp_upload));
         contentText = smallIcon.setContentTitle(sb.toString()).setContentInfo(String.format("%" + m9237k() + "d/%d", Integer.valueOf(m9233g()), Integer.valueOf(this.f7469f))).setContentText(this.f7468e);
         contentText.setDeleteIntent(m9230d());
-        contentText.addAction(cz.opentree.juicessh.R.drawable.ic_clear_normal, this.f7465b.getString(cz.opentree.juicessh.R.string.cancel), m9230d());
-        contentText.addAction(R.drawable.ic_menu_info_details, this.f7465b.getString(cz.opentree.juicessh.R.string.details), m9238l());
-        contentText.addAction(R.drawable.ic_media_play, this.f7465b.getString(cz.opentree.juicessh.R.string.resume), m9236j());
+        contentText.addAction(cz.opentree.limessh.R.drawable.ic_clear_normal, this.f7465b.getString(cz.opentree.limessh.R.string.cancel), m9230d());
+        contentText.addAction(R.drawable.ic_menu_info_details, this.f7465b.getString(cz.opentree.limessh.R.string.details), m9238l());
+        contentText.addAction(R.drawable.ic_media_play, this.f7465b.getString(cz.opentree.limessh.R.string.resume), m9236j());
         return contentText;
     }
 
     /* renamed from: j */
     public final PendingIntent m9236j() {
-        return PendingIntent.getBroadcast(this.f7465b, (int) System.currentTimeMillis(), new Intent("cz.opentree.juicessh.action.SFTP_RESUME", Uri.parse("sftpservice://" + this.f7466c)), 0);
+        return PendingIntent.getBroadcast(this.f7465b, (int) System.currentTimeMillis(), new Intent("cz.opentree.limessh.action.SFTP_RESUME", Uri.parse("sftpservice://" + this.f7466c)), 0);
     }
 
     /* renamed from: k */
@@ -172,7 +172,7 @@ public class vi0 {
             inboxStyle.addLine(spannableString);
         }
         if (m9232f() > 0) {
-            inboxStyle.setSummaryText(this.f7465b.getString(cz.opentree.juicessh.R.string.x_errors, Integer.valueOf(m9232f())));
+            inboxStyle.setSummaryText(this.f7465b.getString(cz.opentree.limessh.R.string.x_errors, Integer.valueOf(m9232f())));
         }
         this.f7467d.notify(this.f7474k, m9229c().setContentInfo(String.format("%d/%d", Integer.valueOf(m9233g()), Integer.valueOf(this.f7469f))).setStyle(inboxStyle).setOngoing(true).build());
     }

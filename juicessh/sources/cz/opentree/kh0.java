@@ -16,11 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import androidx.viewpager.widget.PagerAdapter;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.activities.TerminalEmulatorActivity;
-import cz.opentree.juicessh.adapters.FrequentlyUsedListAdapter;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.ConnectionCounter;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.activities.TerminalEmulatorActivity;
+import cz.opentree.limessh.adapters.FrequentlyUsedListAdapter;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.ConnectionCounter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -145,7 +145,7 @@ public class kh0 extends PagerAdapter implements FrequentlyUsedListAdapter.Frequ
         this.f4544f = Math.round(TypedValue.applyDimension(1, 55.0f, context.getResources().getDisplayMetrics()));
     }
 
-    @Override // cz.opentree.juicessh.adapters.FrequentlyUsedListAdapter.FrequentlyUsedCounterProvider
+    @Override // cz.opentree.limessh.adapters.FrequentlyUsedListAdapter.FrequentlyUsedCounterProvider
     /* renamed from: a */
     public List<ConnectionCounter> mo5347a(int i) {
         if (this.f4546h.isEmpty()) {

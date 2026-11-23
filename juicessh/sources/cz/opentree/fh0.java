@@ -8,7 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 
 /* compiled from: BackspaceModeSpinnerAdapter.java */
 /* loaded from: classes.dex */

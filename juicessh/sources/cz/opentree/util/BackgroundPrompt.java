@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.view.WindowManager;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 import cz.opentree.vk0;
 
 /* loaded from: classes.dex */

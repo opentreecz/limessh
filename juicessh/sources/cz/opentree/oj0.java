@@ -8,7 +8,7 @@ import com.j256.ormlite.field.FieldType;
 public final class oj0 extends nj0 {
 
     /* renamed from: b */
-    public static final Uri f5502b = Uri.parse("content://cz.opentree.juicessh.api.v1/ec2connections");
+    public static final Uri f5502b = Uri.parse("content://cz.opentree.limessh.api.v1/ec2connections");
 
     static {
         String.format("rowid AS %s", FieldType.FOREIGN_ID_FIELD_SUFFIX);

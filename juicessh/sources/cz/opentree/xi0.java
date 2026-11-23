@@ -5,12 +5,12 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import androidx.core.app.NotificationCompat;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.activities.MainActivity;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.models.TeamMembership;
-import cz.opentree.juicessh.models.User;
-import cz.opentree.juicessh.p002db.BaseModel;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.activities.MainActivity;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.models.TeamMembership;
+import cz.opentree.limessh.models.User;
+import cz.opentree.limessh.p002db.BaseModel;
 import cz.opentree.wi0;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,7 +107,7 @@ public class xi0 {
             }
         }
         this.f7960e.add(baseModel2);
-        if (!baseModel2.getClass().getName().equals("cz.opentree.juicessh.models.TeamMembership") || baseModel == null || baseModel2 == null) {
+        if (!baseModel2.getClass().getName().equals("cz.opentree.limessh.models.TeamMembership") || baseModel == null || baseModel2 == null) {
             return;
         }
         TeamMembership teamMembership = (TeamMembership) baseModel;
@@ -141,14 +141,14 @@ public class xi0 {
     /* JADX WARN: Can't wrap try/catch for region: R(10:11|(1:(2:14|(2:16|(2:18|19)(2:31|27))(2:32|33))(2:34|35))(2:36|37)|20|21|22|(1:24)(1:28)|25|26|27|9) */
     /* JADX WARN: Code restructure failed: missing block: B:30:0x012a, code lost:
     
-        r4.setSmallIcon(cz.opentree.juicessh.R.drawable.ic_notification);
+        r4.setSmallIcon(cz.opentree.limessh.R.drawable.ic_notification);
      */
     /* renamed from: c */
     /*
         Code decompiled incorrectly, please refer to instructions dump.
         To view partially-correct add '--show-bad-code' argument
     */
-    public void m9777c(java.util.HashMap<cz.opentree.juicessh.models.User, java.util.HashMap<cz.opentree.xi0.EnumC2291b, java.util.ArrayList<cz.opentree.juicessh.p002db.BaseModel<?>>>> r14) {
+    public void m9777c(java.util.HashMap<cz.opentree.limessh.models.User, java.util.HashMap<cz.opentree.xi0.EnumC2291b, java.util.ArrayList<cz.opentree.limessh.p002db.BaseModel<?>>>> r14) {
         /*
             Method dump skipped, instructions count: 342
             To view this dump add '--comments-level debug' option

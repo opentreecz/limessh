@@ -11,7 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
+import cz.opentree.limessh.R;
 
 /* compiled from: TerminalThemeListAdapter.java */
 /* loaded from: classes.dex */

@@ -4,9 +4,9 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.os.Vibrator;
 import androidx.core.app.NotificationCompat;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.connections.ConnectionManager;
-import cz.opentree.juicessh.models.Config;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.connections.ConnectionManager;
+import cz.opentree.limessh.models.Config;
 import jackpal.androidterm.emulatorview.TermSession;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -34,13 +34,13 @@ public class zi0 implements TermSession.OnBellListener {
         public C2428a() {
         }
 
-        @Override // cz.opentree.juicessh.connections.ConnectionManager.ChainRequest
+        @Override // cz.opentree.limessh.connections.ConnectionManager.ChainRequest
         /* renamed from: a */
         public UUID mo5334a() {
             return zi0.this.f8525c;
         }
 
-        @Override // cz.opentree.juicessh.connections.ConnectionManager.ChainRequest
+        @Override // cz.opentree.limessh.connections.ConnectionManager.ChainRequest
         /* renamed from: b */
         public void mo5335b(ai0 ai0Var) {
             NotificationCompat.Builder m2103q = ai0Var.m2103q();
@@ -62,19 +62,19 @@ public class zi0 implements TermSession.OnBellListener {
             notificationManager.notify(zi0.this.f8524b, m2103q.setTicker(null).build());
         }
 
-        @Override // cz.opentree.juicessh.connections.ConnectionManager.ChainRequest
+        @Override // cz.opentree.limessh.connections.ConnectionManager.ChainRequest
         /* renamed from: c */
         public void mo5336c() {
             gj0.m4142c("TerminalBellListener", "Couldn't show notification for terminal bell as no valid transport chain found");
         }
 
-        @Override // cz.opentree.juicessh.connections.ConnectionManager.ChainRequest
+        @Override // cz.opentree.limessh.connections.ConnectionManager.ChainRequest
         /* renamed from: d */
         public int mo5337d() {
             return zi0.this.f8524b;
         }
 
-        @Override // cz.opentree.juicessh.connections.ConnectionManager.ChainRequest
+        @Override // cz.opentree.limessh.connections.ConnectionManager.ChainRequest
         /* renamed from: e */
         public void mo5338e() {
             gj0.m4142c("TerminalBellListener", "Couldn't show notification for terminal bell as session key is incorrect");

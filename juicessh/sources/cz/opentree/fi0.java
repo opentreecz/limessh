@@ -3,9 +3,9 @@ package cz.opentree;
 import androidx.core.app.NotificationCompat;
 import androidx.fragment.app.FragmentActivity;
 import cz.opentree.fk0;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Identity;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Identity;
+import cz.opentree.limessh.models.Snippet;
 import cz.opentree.mi0;
 import java.util.UUID;
 

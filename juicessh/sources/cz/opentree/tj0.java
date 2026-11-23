@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.core.app.NotificationCompat;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.ec2link.Ec2Profile;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.ec2link.Ec2Profile;
 import java.util.UUID;
 
 /* compiled from: Ec2SyncProgressReceiver.java */
@@ -26,7 +26,7 @@ public class tj0 extends BroadcastReceiver {
 
     /* renamed from: a */
     public static void m8703a(Context context, UUID uuid, String str, boolean z) {
-        Intent intent = new Intent("cz.opentree.juicessh.ec2sync.progress");
+        Intent intent = new Intent("cz.opentree.limessh.ec2sync.progress");
         if (z) {
             intent.putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 8);
         } else {
@@ -39,7 +39,7 @@ public class tj0 extends BroadcastReceiver {
 
     /* renamed from: b */
     public static void m8704b(Context context, UUID uuid, int i) {
-        Intent intent = new Intent("cz.opentree.juicessh.ec2sync.progress");
+        Intent intent = new Intent("cz.opentree.limessh.ec2sync.progress");
         intent.putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 6);
         intent.putExtra("ec2profile_id", uuid);
         intent.putExtra("connection_count", i);
@@ -48,7 +48,7 @@ public class tj0 extends BroadcastReceiver {
 
     /* renamed from: c */
     public static void m8705c(Context context, UUID uuid, int i) {
-        Intent intent = new Intent("cz.opentree.juicessh.ec2sync.progress");
+        Intent intent = new Intent("cz.opentree.limessh.ec2sync.progress");
         intent.putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, 3);
         intent.putExtra("ec2profile_id", uuid);
         intent.putExtra("items_processed", i);
@@ -57,7 +57,7 @@ public class tj0 extends BroadcastReceiver {
 
     /* renamed from: d */
     public static void m8706d(Context context, UUID uuid, int i) {
-        Intent intent = new Intent("cz.opentree.juicessh.ec2sync.progress");
+        Intent intent = new Intent("cz.opentree.limessh.ec2sync.progress");
         intent.putExtra(NotificationCompat.MessagingStyle.Message.KEY_DATA_MIME_TYPE, i);
         intent.putExtra("ec2profile_id", uuid);
         context.sendBroadcast(intent);

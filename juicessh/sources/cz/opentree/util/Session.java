@@ -4,9 +4,9 @@ import android.app.Activity;
 import android.content.Context;
 import androidx.fragment.app.FragmentActivity;
 import cz.opentree.al0;
-import cz.opentree.juicessh.controllers.PinManager;
-import cz.opentree.juicessh.models.Config;
-import cz.opentree.juicessh.models.User;
+import cz.opentree.limessh.controllers.PinManager;
+import cz.opentree.limessh.models.Config;
+import cz.opentree.limessh.models.User;
 import cz.opentree.kj0;
 import cz.opentree.qg0;
 import cz.opentree.zk0;
@@ -83,7 +83,7 @@ public class Session {
                 this.f7264a = sessionExtensionListener;
             }
 
-            @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+            @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
             /* renamed from: a */
             public synchronized void mo5376a(PinManager.PinPromptDialog pinPromptDialog) {
                 Session.this.f7256a.add(pinPromptDialog);
@@ -93,7 +93,7 @@ public class Session {
                 }
             }
 
-            @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+            @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
             /* renamed from: d */
             public synchronized void mo5377d() {
                 this.f7264a.mo9051d();
@@ -104,7 +104,7 @@ public class Session {
                 C2118b.this.m9054b();
             }
 
-            @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+            @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
             /* renamed from: e */
             public synchronized void mo5378e() {
                 this.f7264a.mo9052e();

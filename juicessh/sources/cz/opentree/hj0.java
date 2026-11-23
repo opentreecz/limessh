@@ -29,7 +29,7 @@ public class hj0 {
             str = str.replace("mathces", "matches");
         }
         gj0.m4144e("SessionLogger", str);
-        Intent intent = new Intent("cz.opentree.juicessh.logs.ssh");
+        Intent intent = new Intent("cz.opentree.limessh.logs.ssh");
         intent.putExtra("tag", "SessionLogger");
         intent.putExtra("level", i);
         intent.putExtra("message", str);

@@ -52,15 +52,15 @@ public final class R$styleable {
     public static final int SignInButton_buttonSize = 0;
     public static final int SignInButton_colorScheme = 1;
     public static final int SignInButton_scopeUris = 2;
-    public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, cz.opentree.juicessh.R.attr.alpha};
-    public static final int[] CoordinatorLayout = {cz.opentree.juicessh.R.attr.keylines, cz.opentree.juicessh.R.attr.statusBarBackground};
-    public static final int[] CoordinatorLayout_Layout = {R.attr.layout_gravity, cz.opentree.juicessh.R.attr.layout_anchor, cz.opentree.juicessh.R.attr.layout_anchorGravity, cz.opentree.juicessh.R.attr.layout_behavior, cz.opentree.juicessh.R.attr.layout_dodgeInsetEdges, cz.opentree.juicessh.R.attr.layout_insetEdge, cz.opentree.juicessh.R.attr.layout_keyline};
-    public static final int[] FontFamily = {cz.opentree.juicessh.R.attr.fontProviderAuthority, cz.opentree.juicessh.R.attr.fontProviderCerts, cz.opentree.juicessh.R.attr.fontProviderFetchStrategy, cz.opentree.juicessh.R.attr.fontProviderFetchTimeout, cz.opentree.juicessh.R.attr.fontProviderPackage, cz.opentree.juicessh.R.attr.fontProviderQuery};
-    public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, cz.opentree.juicessh.R.attr.font, cz.opentree.juicessh.R.attr.fontStyle, cz.opentree.juicessh.R.attr.fontVariationSettings, cz.opentree.juicessh.R.attr.fontWeight, cz.opentree.juicessh.R.attr.ttcIndex};
+    public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, cz.opentree.limessh.R.attr.alpha};
+    public static final int[] CoordinatorLayout = {cz.opentree.limessh.R.attr.keylines, cz.opentree.limessh.R.attr.statusBarBackground};
+    public static final int[] CoordinatorLayout_Layout = {R.attr.layout_gravity, cz.opentree.limessh.R.attr.layout_anchor, cz.opentree.limessh.R.attr.layout_anchorGravity, cz.opentree.limessh.R.attr.layout_behavior, cz.opentree.limessh.R.attr.layout_dodgeInsetEdges, cz.opentree.limessh.R.attr.layout_insetEdge, cz.opentree.limessh.R.attr.layout_keyline};
+    public static final int[] FontFamily = {cz.opentree.limessh.R.attr.fontProviderAuthority, cz.opentree.limessh.R.attr.fontProviderCerts, cz.opentree.limessh.R.attr.fontProviderFetchStrategy, cz.opentree.limessh.R.attr.fontProviderFetchTimeout, cz.opentree.limessh.R.attr.fontProviderPackage, cz.opentree.limessh.R.attr.fontProviderQuery};
+    public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, cz.opentree.limessh.R.attr.font, cz.opentree.limessh.R.attr.fontStyle, cz.opentree.limessh.R.attr.fontVariationSettings, cz.opentree.limessh.R.attr.fontWeight, cz.opentree.limessh.R.attr.ttcIndex};
     public static final int[] GradientColor = {R.attr.startColor, R.attr.endColor, R.attr.type, R.attr.centerX, R.attr.centerY, R.attr.gradientRadius, R.attr.tileMode, R.attr.centerColor, R.attr.startX, R.attr.startY, R.attr.endX, R.attr.endY};
     public static final int[] GradientColorItem = {R.attr.color, R.attr.offset};
-    public static final int[] LoadingImageView = {cz.opentree.juicessh.R.attr.circleCrop, cz.opentree.juicessh.R.attr.imageAspectRatio, cz.opentree.juicessh.R.attr.imageAspectRatioAdjust};
-    public static final int[] SignInButton = {cz.opentree.juicessh.R.attr.buttonSize, cz.opentree.juicessh.R.attr.colorScheme, cz.opentree.juicessh.R.attr.scopeUris};
+    public static final int[] LoadingImageView = {cz.opentree.limessh.R.attr.circleCrop, cz.opentree.limessh.R.attr.imageAspectRatio, cz.opentree.limessh.R.attr.imageAspectRatioAdjust};
+    public static final int[] SignInButton = {cz.opentree.limessh.R.attr.buttonSize, cz.opentree.limessh.R.attr.colorScheme, cz.opentree.limessh.R.attr.scopeUris};
 
     private R$styleable() {
     }

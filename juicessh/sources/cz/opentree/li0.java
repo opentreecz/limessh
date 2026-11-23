@@ -1,8 +1,8 @@
 package cz.opentree;
 
 import androidx.fragment.app.FragmentActivity;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Snippet;
 import java.util.UUID;
 
 /* compiled from: TelnetTransport.java */
@@ -18,13 +18,13 @@ public class li0 extends ei0 {
         m3510s();
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: c */
     public String mo2813c() {
         return "Telnet: " + this.f4815q.m5471w();
     }
 
-    @Override // cz.opentree.juicessh.connections.transports.TerminalSessionProvider
+    @Override // cz.opentree.limessh.connections.transports.TerminalSessionProvider
     /* renamed from: d */
     public String mo2814d() {
         return this.f4815q.address;

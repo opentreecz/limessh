@@ -10,8 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.ListAdapter;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.Config;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.Config;
 
 /* compiled from: TerminalFontListAdapter.java */
 /* loaded from: classes.dex */

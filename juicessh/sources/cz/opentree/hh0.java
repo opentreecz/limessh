@@ -8,10 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.ConnectionGroup;
-import cz.opentree.juicessh.models.Identity;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.ConnectionGroup;
+import cz.opentree.limessh.models.Identity;
 import java.util.HashMap;
 
 /* compiled from: ConnectionListAdapter.java */
@@ -197,13 +197,13 @@ public class hh0 extends dh0<ConnectionGroup, Connection> {
             r8.setTextColor(r1)
         L64:
             java.lang.Object r5 = r4.getGroup(r5)
-            cz.opentree.juicessh.models.ConnectionGroup r5 = (cz.opentree.juicessh.models.ConnectionGroup) r5
-            java.util.HashMap<cz.opentree.juicessh.models.ConnectionGroup, java.lang.String> r8 = r4.f3151k
+            cz.opentree.limessh.models.ConnectionGroup r5 = (cz.opentree.limessh.models.ConnectionGroup) r5
+            java.util.HashMap<cz.opentree.limessh.models.ConnectionGroup, java.lang.String> r8 = r4.f3151k
             java.lang.Object r8 = r8.get(r5)
             java.lang.String r8 = (java.lang.String) r8
             if (r8 != 0) goto Lb5
             android.content.Context r8 = r4.f3150j
-            java.util.List r8 = cz.opentree.juicessh.models.Share.m5499r(r5, r8)
+            java.util.List r8 = cz.opentree.limessh.models.Share.m5499r(r5, r8)
             int r1 = r8.size()
             if (r1 == 0) goto La7
             r2 = 1
@@ -227,7 +227,7 @@ public class hh0 extends dh0<ConnectionGroup, Connection> {
             r0 = 2131821335(0x7f110317, float:1.927541E38)
             java.lang.String r8 = r8.getString(r0)
         Lb0:
-            java.util.HashMap<cz.opentree.juicessh.models.ConnectionGroup, java.lang.String> r0 = r4.f3151k
+            java.util.HashMap<cz.opentree.limessh.models.ConnectionGroup, java.lang.String> r0 = r4.f3151k
             r0.put(r5, r8)
         Lb5:
             android.widget.TextView r0 = r6.f3156a

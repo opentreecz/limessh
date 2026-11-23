@@ -10,13 +10,13 @@ import android.content.IntentFilter;
 import android.widget.TextView;
 import androidx.fragment.app.FragmentActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
-import cz.opentree.juicessh.connections.listeners.BasicTransportChainListener;
-import cz.opentree.juicessh.connections.transports.ConnectionProvider;
-import cz.opentree.juicessh.connections.transports.ForwardTransport;
-import cz.opentree.juicessh.models.Connection;
-import cz.opentree.juicessh.models.Identity;
-import cz.opentree.juicessh.models.PortForward;
-import cz.opentree.juicessh.models.Snippet;
+import cz.opentree.limessh.connections.listeners.BasicTransportChainListener;
+import cz.opentree.limessh.connections.transports.ConnectionProvider;
+import cz.opentree.limessh.connections.transports.ForwardTransport;
+import cz.opentree.limessh.models.Connection;
+import cz.opentree.limessh.models.Identity;
+import cz.opentree.limessh.models.PortForward;
+import cz.opentree.limessh.models.Snippet;
 import cz.opentree.mi0;
 import cz.opentree.util.RetryPrompt;
 import java.util.ArrayList;
@@ -114,16 +114,16 @@ public abstract class bi0 {
         @Override // java.lang.Runnable
         public void run() {
             bi0.this.f1714d = new Dialog(bi0.this.f1711a, R.style.Theme.Black.NoTitleBar);
-            bi0.this.f1714d.setContentView(cz.opentree.juicessh.R.layout.connecting);
+            bi0.this.f1714d.setContentView(cz.opentree.limessh.R.layout.connecting);
             bi0 bi0Var = bi0.this;
-            bi0Var.f1715e = (TextView) bi0Var.f1714d.findViewById(cz.opentree.juicessh.R.id.subtitle);
+            bi0Var.f1715e = (TextView) bi0Var.f1714d.findViewById(cz.opentree.limessh.R.id.subtitle);
             bi0 bi0Var2 = bi0.this;
-            bi0Var2.f1716f = (TextView) bi0Var2.f1714d.findViewById(cz.opentree.juicessh.R.id.log_text);
+            bi0Var2.f1716f = (TextView) bi0Var2.f1714d.findViewById(cz.opentree.limessh.R.id.log_text);
             bi0.this.f1717g = new a();
             bi0.this.f1714d.setCancelable(true);
             bi0.this.f1714d.setOnCancelListener(new b());
             bi0.this.f1714d.show();
-            LocalBroadcastManager.getInstance(bi0.this.f1711a).registerReceiver(bi0.this.f1717g, new IntentFilter("cz.opentree.juicessh.logs.ssh"));
+            LocalBroadcastManager.getInstance(bi0.this.f1711a).registerReceiver(bi0.this.f1717g, new IntentFilter("cz.opentree.limessh.logs.ssh"));
         }
     }
 
@@ -233,7 +233,7 @@ public abstract class bi0 {
             if (bi0.this.f1725o == null) {
                 bi0.this.f1725o = new RetryPrompt(bi0.this.f1711a, new a());
             }
-            bi0.this.f1725o.m9295h(this.f1735O + "\n\n" + bi0.this.f1711a.getString(cz.opentree.juicessh.R.string.do_you_want_to_retry));
+            bi0.this.f1725o.m9295h(this.f1735O + "\n\n" + bi0.this.f1711a.getString(cz.opentree.limessh.R.string.do_you_want_to_retry));
             bi0.this.f1725o.show();
         }
     }
@@ -331,7 +331,7 @@ public abstract class bi0 {
             return;
         }
         if (i == 3) {
-            m2515v(this.f1711a.getString(cz.opentree.juicessh.R.string.authentication_failure));
+            m2515v(this.f1711a.getString(cz.opentree.limessh.R.string.authentication_failure));
         } else if (i != 4) {
             m2515v(str);
         } else {

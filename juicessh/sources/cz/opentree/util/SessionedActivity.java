@@ -9,9 +9,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-import cz.opentree.juicessh.R;
-import cz.opentree.juicessh.controllers.PinManager;
-import cz.opentree.juicessh.models.Config;
+import cz.opentree.limessh.R;
+import cz.opentree.limessh.controllers.PinManager;
+import cz.opentree.limessh.models.Config;
 import cz.opentree.kj0;
 import java.util.ArrayList;
 
@@ -27,19 +27,19 @@ public abstract class SessionedActivity extends AppCompatActivity {
         public C2119a() {
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: a */
         public void mo5376a(PinManager.PinPromptDialog pinPromptDialog) {
             SessionedActivity.this.m9057i(pinPromptDialog);
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: d */
         public void mo5377d() {
             SessionedActivity.this.mo5214l();
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: e */
         public void mo5378e() {
         }
@@ -51,18 +51,18 @@ public abstract class SessionedActivity extends AppCompatActivity {
         public C2120b() {
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: a */
         public void mo5376a(PinManager.PinPromptDialog pinPromptDialog) {
             Session.m9046g().m9047d(SessionedActivity.this);
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: d */
         public void mo5377d() {
         }
 
-        @Override // cz.opentree.juicessh.controllers.PinManager.PinPromptSimpleListener
+        @Override // cz.opentree.limessh.controllers.PinManager.PinPromptSimpleListener
         /* renamed from: e */
         public void mo5378e() {
         }

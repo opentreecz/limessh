@@ -1,8 +1,8 @@
 package cz.opentree;
 
 import android.content.Context;
-import cz.opentree.juicessh.models.Host;
-import cz.opentree.juicessh.p002db.C1328DB;
+import cz.opentree.limessh.models.Host;
+import cz.opentree.limessh.p002db.C1328DB;
 import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
