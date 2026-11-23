@@ -42,6 +42,9 @@ public class oi0 {
 
     /* renamed from: d */
     public static boolean m7047d(Object obj) {
+        // [OfflineProFix merged] pro check always passes (was Xposed hook oi0.d(Object) => true)
+        return true;
+        /*
         if (!obj.getClass().getName().equals(User.class.getName())) {
             return false;
         }
@@ -66,5 +69,6 @@ public class oi0 {
             e.printStackTrace();
             return false;
         }
+        */
     }
 }

@@ -940,6 +940,26 @@ public class pi0 {
 
     /* renamed from: j */
     public static void m7331j(Context context, AbstractC1720p abstractC1720p) {
+        // [OfflineProFix merged] resolve the user locally, no network refresh
+        // (was Xposed hook pi0.j(Context, pi0$p) => local callback)
+        if (abstractC1720p == null) {
+            return;
+        }
+        User user = null;
+        try {
+            if (context != null) {
+                user = User.m5518A(context);
+            }
+        } catch (Throwable unused) {
+            user = null;
+        }
+        if (user == null) {
+            user = new User();
+        }
+        abstractC1720p.mo3229b(user);
+    }
+
+    public static void m7331j_original(Context context, AbstractC1720p abstractC1720p) {
         User user;
         User user2;
         String m5525s = User.m5525s(context);
@@ -1002,6 +1022,11 @@ public class pi0 {
 
     /* renamed from: m */
     public static boolean m7334m(Context context) {
+        // [OfflineProFix merged] API user gate always passes (was Xposed hook pi0.m(Context) => true)
+        return true;
+    }
+
+    public static boolean m7334m_original(Context context) {
         ArrayBlockingQueue arrayBlockingQueue = new ArrayBlockingQueue(1);
         User user = new User();
         m7331j(context, new C1714j(arrayBlockingQueue));

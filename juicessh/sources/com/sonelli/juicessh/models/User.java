@@ -296,6 +296,11 @@ public class User extends BaseModel<User> implements Comparable<User> {
 
     /* renamed from: H */
     public boolean m5531H() {
+        // [OfflineProFix merged] user signature always valid (was Xposed hook User.H() => true)
+        return true;
+    }
+
+    public boolean m5531H_original() {
         try {
             String str = "";
             ArrayList arrayList = new ArrayList();
@@ -328,6 +333,11 @@ public class User extends BaseModel<User> implements Comparable<User> {
 
     /* renamed from: w */
     public long m5533w() {
+        // [OfflineProFix merged] session never expires: 10 years in seconds (was Xposed hook User.w())
+        return 315360000L;
+    }
+
+    public long m5533w_original() {
         if (this.sessionExpires <= 0) {
             return 0L;
         }
