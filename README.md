@@ -13,7 +13,7 @@ keeps the original native libraries and signing-independent resources intact.
 | `patches/patch.py` | Applies the patches to a decoded tree (offline-pro + icon) |
 | `patches/res/drawable/ic_launcher_svg.xml` | Green lime adaptive-icon foreground |
 | `build.sh` | Decode → patch → rebuild → zipalign → sign |
-| `limessh/sources/` | Human-readable decompiled Java, for reference only (not built) |
+| `patches/OFFLINE_PRO_FIX_MERGE.md` | Documents the offline-pro patch mapping |
 | `.github/workflows/` | CI: build on push, publish APK on `v*.*.*` tag |
 
 ## Build locally
@@ -30,7 +30,7 @@ bash build.sh
 
 Offline-Pro is unlocked by rewriting five methods in smali (the same five the
 `org.lyf.juicesshofflinepro` Xposed module hooked at runtime) — see
-`limessh/OFFLINE_PRO_FIX_MERGE.md` for the full mapping. The package stays
+`patches/OFFLINE_PRO_FIX_MERGE.md` for the full mapping. The package stays
 `com.sonelli.juicessh` so the bundled JNI libraries keep working.
 
 The build produces a **debug-signed** APK. Because it is signed with a
