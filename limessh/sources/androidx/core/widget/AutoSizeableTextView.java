@@ -9,11 +9,7 @@ import androidx.annotation.RestrictTo;
 public interface AutoSizeableTextView {
 
     @RestrictTo({RestrictTo.Scope.LIBRARY_GROUP_PREFIX})
-    public static final boolean PLATFORM_SUPPORTS_AUTOSIZE;
-
-    static {
-        PLATFORM_SUPPORTS_AUTOSIZE = Build.VERSION.SDK_INT >= 27;
-    }
+    public static final boolean PLATFORM_SUPPORTS_AUTOSIZE = Build.VERSION.SDK_INT >= 27;
 
     int getAutoSizeMaxTextSize();
 

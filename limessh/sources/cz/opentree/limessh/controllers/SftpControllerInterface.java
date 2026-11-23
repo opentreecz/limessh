@@ -10,10 +10,6 @@ public interface SftpControllerInterface {
     public static class C1326a extends SparseArray<String> {
     }
 
-    static {
-        new C1326a();
-    }
-
     /* renamed from: a */
     String mo5379a();
 

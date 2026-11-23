@@ -4,7 +4,7 @@ import cz.opentree.aq0;
 import org.bouncycastle.asn1.p003bc.BCObjectIdentifiers;
 
 /* loaded from: classes.dex */
-public interface PQCObjectIdentifiers {
+public abstract class PQCObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8876a;

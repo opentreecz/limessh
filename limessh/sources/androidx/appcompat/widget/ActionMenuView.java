@@ -179,7 +179,7 @@ public class ActionMenuView extends LinearLayoutCompat implements MenuBuilder.It
         boolean z2;
         boolean z3;
         int i7;
-        ?? r14;
+        int r14;
         int mode = View.MeasureSpec.getMode(i2);
         int size = View.MeasureSpec.getSize(i);
         int size2 = View.MeasureSpec.getSize(i2);
@@ -219,10 +219,10 @@ public class ActionMenuView extends LinearLayoutCompat implements MenuBuilder.It
                     r14 = 0;
                 }
                 LayoutParams layoutParams = (LayoutParams) childAt.getLayoutParams();
-                layoutParams.expanded = r14;
+                layoutParams.expanded = r14 != 0;
                 layoutParams.extraPixels = r14;
                 layoutParams.cellsUsed = r14;
-                layoutParams.expandable = r14;
+                layoutParams.expandable = r14 != 0;
                 ((ViewGroup.MarginLayoutParams) layoutParams).leftMargin = r14;
                 ((ViewGroup.MarginLayoutParams) layoutParams).rightMargin = r14;
                 layoutParams.preventEdgeOffset = z5 && ((ActionMenuItemView) childAt).hasText();

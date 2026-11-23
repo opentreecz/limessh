@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.gm;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface GMObjectIdentifiers {
+public abstract class GMObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8727a;

@@ -4,7 +4,7 @@ import cz.opentree.aq0;
 import org.bouncycastle.asn1.p004x9.X9ObjectIdentifiers;
 
 /* loaded from: classes.dex */
-public interface SECObjectIdentifiers {
+public abstract class SECObjectIdentifiers {
 
     /* renamed from: A */
     public static final aq0 f8777A;

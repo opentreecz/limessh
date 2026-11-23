@@ -40,8 +40,8 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
 
     buildFeatures {
@@ -54,6 +54,8 @@ android {
         abortOnError = false
         checkReleaseBuilds = false
     }
+
+    useLibrary("org.apache.http.legacy")
 
     packaging {
         resources {
@@ -68,7 +70,23 @@ android {
     }
 }
 
-// All third-party libraries are already present as decompiled sources, so the
-// module declares no external dependencies.
+// Libraries that were provided/compile-only or supplied by Android and therefore
+// stripped from the APK, so not present among the decompiled sources. okio,
+// okhttp3, bouncycastle, dagger, gson, etc. ARE present as sources and must not
+// be added here.
 dependencies {
+    compileOnly("com.google.code.findbugs:jsr305:3.0.2")
+    compileOnly("org.checkerframework:checker-qual:3.42.0")
+    compileOnly("org.checkerframework:checker-compat-qual:2.5.5")
+    compileOnly("com.google.errorprone:error_prone_annotations:2.23.0")
+    implementation("commons-logging:commons-logging:1.2")
+    implementation("org.conscrypt:conscrypt-android:2.5.2")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.24")
+    implementation("com.squareup.okhttp:okhttp:2.7.5") {
+        exclude(group = "com.squareup.okio")
+    }
+}
+
+tasks.withType<JavaCompile>().configureEach {
+    options.compilerArgs.addAll(listOf("-Xmaxerrs", "100000", "-Xmaxwarns", "0"))
 }

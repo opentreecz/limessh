@@ -220,7 +220,7 @@ public abstract class AbstractC2303xn<MessageType extends AbstractC2303xn<Messag
     /* compiled from: com.google.android.gms:play-services-measurement-base@@17.4.1 */
     /* renamed from: cz.opentree.xn$e */
     /* loaded from: classes.dex */
-    public enum e {
+    public static final class e {
 
         /* renamed from: a */
         public static final int f8024a = 1;

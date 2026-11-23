@@ -993,7 +993,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
         int i2;
         int decoratedMeasurement2;
         boolean z;
-        ?? r9 = 0;
+        int r9 = 0;
         this.mRemainingSpans.set(0, this.mSpanCount, true);
         int i3 = this.mLayoutState.mInfinite ? layoutState.mLayoutDirection == 1 ? ActivityChooserView.ActivityChooserViewAdapter.MAX_ACTIVITY_COUNT_UNLIMITED : Integer.MIN_VALUE : layoutState.mLayoutDirection == 1 ? layoutState.mEndLine + layoutState.mAvailable : layoutState.mStartLine - layoutState.mAvailable;
         updateAllRemainingSpans(layoutState.mLayoutDirection, i3);
@@ -1004,7 +1004,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
             LayoutParams layoutParams = (LayoutParams) next.getLayoutParams();
             int viewLayoutPosition = layoutParams.getViewLayoutPosition();
             int span2 = this.mLazySpanLookup.getSpan(viewLayoutPosition);
-            boolean z3 = span2 == -1 ? true : r9;
+            boolean z3 = span2 == -1 ? true : r9 != 0;
             if (z3) {
                 span = layoutParams.mFullSpan ? this.mSpans[r9] : getNextSpan(layoutState);
                 this.mLazySpanLookup.setSpan(viewLayoutPosition, span);
@@ -1018,7 +1018,7 @@ public class StaggeredGridLayoutManager extends RecyclerView.LayoutManager imple
             } else {
                 addView(next, r9);
             }
-            measureChildWithDecorationsAndMargin(next, layoutParams, r9);
+            measureChildWithDecorationsAndMargin(next, layoutParams, r9 != 0);
             if (layoutState.mLayoutDirection == 1) {
                 int maxEnd = layoutParams.mFullSpan ? getMaxEnd(endAfterPadding) : span3.getEndLine(endAfterPadding);
                 int decoratedMeasurement3 = this.mPrimaryOrientation.getDecoratedMeasurement(next) + maxEnd;

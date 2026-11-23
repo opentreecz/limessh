@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.p003bc;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface BCObjectIdentifiers {
+public abstract class BCObjectIdentifiers {
 
     /* renamed from: A */
     public static final aq0 f8686A;

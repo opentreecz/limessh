@@ -118,8 +118,8 @@ public final class InputConnectionCompat {
     public static boolean handlePerformPrivateCommand(@Nullable String str, @NonNull Bundle bundle, @NonNull OnCommitContentListener onCommitContentListener) {
         boolean z;
         ResultReceiver resultReceiver;
-        ?? r0 = 0;
-        r0 = 0;
+        boolean r0 = false;
+        r0 = false;
         if (bundle == null) {
             return false;
         }
@@ -142,8 +142,8 @@ public final class InputConnectionCompat {
                 if (uri != null && clipDescription != null) {
                     r0 = onCommitContentListener.onCommitContent(new InputContentInfoCompat(uri, clipDescription, uri2), i, bundle2);
                 }
-                if (resultReceiver != 0) {
-                    resultReceiver.send(r0, null);
+                if (resultReceiver != null) {
+                    resultReceiver.send(r0 ? 1 : 0, null);
                 }
                 return r0;
             } catch (Throwable th) {

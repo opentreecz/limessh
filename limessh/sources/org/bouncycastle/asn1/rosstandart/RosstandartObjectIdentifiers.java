@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.rosstandart;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface RosstandartObjectIdentifiers {
+public abstract class RosstandartObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8768a;

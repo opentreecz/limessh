@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.teletrust;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface TeleTrusTObjectIdentifiers {
+public abstract class TeleTrusTObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8812a;

@@ -1350,7 +1350,7 @@ public class TerminalEmulator {
             transcriptScreen2 = this.mAltBuffer;
         }
         TranscriptScreen transcriptScreen3 = transcriptScreen2;
-        ?? r12 = 0;
+        int r12 = 0;
         int[] iArr = {this.mCursorCol, this.mCursorRow};
         boolean fastResize = transcriptScreen.fastResize(i, i2, iArr);
         if (fastResize) {
@@ -1409,7 +1409,7 @@ public class TerminalEmulator {
             this.mScreen = transcriptScreen3;
             this.mCursorRow = r12;
             this.mCursorCol = r12;
-            this.mAboutToAutoWrap = r12;
+            this.mAboutToAutoWrap = r12 != 0;
             int length = str3.length() - 1;
             int i6 = 0;
             int i7 = 0;

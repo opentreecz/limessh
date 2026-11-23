@@ -90,15 +90,15 @@ public final class q40 {
     /* renamed from: a */
     public final C1512lk m7622a(int i) {
         ArrayList arrayList;
-        ?? arrayList2;
-        ?? m6232T = C1512lk.m6232T();
+        java.util.List arrayList2;
+        var m6232T = C1512lk.m6232T();
         m6232T.m6245v(i);
         m6232T.m6248z(this.f5933b);
         C1937tk c1937tk = this.f5934c;
         if (c1937tk != null) {
             m6232T.m6247y(c1937tk);
         }
-        ?? m8715c0 = C1937tk.m8715c0();
+        var m8715c0 = C1937tk.m8715c0();
         m8715c0.m8739B(d40.m3122F(this.f5935d));
         m8715c0.m8744y(d40.m3122F(this.f5936e));
         if (this.f5937f == null) {

@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.oiw;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface OIWObjectIdentifiers {
+public abstract class OIWObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8746a;

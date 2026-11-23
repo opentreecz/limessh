@@ -15,11 +15,5 @@ public interface ECConstants {
     public static final BigInteger f8874c = BigInteger.valueOf(2);
 
     /* renamed from: d */
-    public static final BigInteger f8875d;
-
-    static {
-        BigInteger.valueOf(3L);
-        f8875d = BigInteger.valueOf(4L);
-        BigInteger.valueOf(8L);
-    }
+    public static final BigInteger f8875d = BigInteger.valueOf(4L);
 }

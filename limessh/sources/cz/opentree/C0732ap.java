@@ -801,7 +801,7 @@ public final class C0732ap<T> implements zzhi<T> {
                             Map<?, ?> mo1248e = this.f1500p.mo1248e(C0841cq.m2907F(t, m2217O & 1048575));
                             if (!mo1248e.isEmpty()) {
                                 if (this.f1500p.mo1250g(m2210G(i6)).f6814c.m6767f() == EnumC1780qq.MESSAGE) {
-                                    ?? r1 = 0;
+                                    zzhi r1 = null;
                                     Iterator<?> it = mo1248e.values().iterator();
                                     while (true) {
                                         if (!it.hasNext()) {
@@ -809,7 +809,7 @@ public final class C0732ap<T> implements zzhi<T> {
                                         }
                                         Object next = it.next();
                                         r1 = r1;
-                                        if (r1 == 0) {
+                                        if (r1 == null) {
                                             r1 = C1007fp.m3851a().m3852b(next.getClass());
                                         }
                                         if (!r1.mo1274c(next)) {
@@ -827,7 +827,7 @@ public final class C0732ap<T> implements zzhi<T> {
                 }
                 List list = (List) C0841cq.m2907F(t, m2217O & 1048575);
                 if (!list.isEmpty()) {
-                    ?? m2225r = m2225r(i6);
+                    var m2225r = m2225r(i6);
                     int i12 = 0;
                     while (true) {
                         if (i12 >= list.size()) {

@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.pkcs;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface PKCSObjectIdentifiers {
+public abstract class PKCSObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8747a;

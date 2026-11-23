@@ -42,7 +42,7 @@ public class C1435k5 extends C1199j7<GoogleSignInOptions> {
     /* compiled from: com.google.android.gms:play-services-auth@@18.0.0 */
     /* renamed from: cz.opentree.k5$b */
     /* loaded from: classes.dex */
-    public enum b {
+    public static final class b {
 
         /* renamed from: a */
         public static final int f4483a = 1;

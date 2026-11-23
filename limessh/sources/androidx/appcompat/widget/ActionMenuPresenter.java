@@ -331,7 +331,7 @@ public class ActionMenuPresenter extends BaseMenuPresenter implements ActionProv
         ActionMenuPresenter actionMenuPresenter = this;
         MenuBuilder menuBuilder = actionMenuPresenter.mMenu;
         View view = null;
-        ?? r3 = 0;
+        int r3 = 0;
         if (menuBuilder != null) {
             arrayList = menuBuilder.getVisibleItems();
             i = arrayList.size();
@@ -394,7 +394,7 @@ public class ActionMenuPresenter extends BaseMenuPresenter implements ActionProv
                     sparseBooleanArray.put(groupId, true);
                 }
                 menuItemImpl2.setIsActionButton(true);
-                z = r3;
+                z = r3 != 0;
                 i4 = i;
             } else if (menuItemImpl2.requestsActionButton()) {
                 int groupId2 = menuItemImpl2.getGroupId();
@@ -441,12 +441,12 @@ public class ActionMenuPresenter extends BaseMenuPresenter implements ActionProv
                 menuItemImpl2.setIsActionButton(z4);
                 z = false;
             } else {
-                z = r3;
+                z = r3 != 0;
                 i4 = i;
                 menuItemImpl2.setIsActionButton(z);
             }
             i12++;
-            r3 = z;
+            r3 = z ? 1 : 0;
             i = i4;
             view = null;
             actionMenuPresenter = this;

@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.nist;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface NISTObjectIdentifiers {
+public abstract class NISTObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8734a;

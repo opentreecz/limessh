@@ -3,7 +3,7 @@ package org.bouncycastle.asn1.cryptopro;
 import cz.opentree.aq0;
 
 /* loaded from: classes.dex */
-public interface CryptoProObjectIdentifiers {
+public abstract class CryptoProObjectIdentifiers {
 
     /* renamed from: a */
     public static final aq0 f8721a;

@@ -547,7 +547,7 @@ public class ActivityChooserView extends ViewGroup implements ActivityChooserMod
             throw new IllegalStateException("No data model. Did you call #setDataModel?");
         }
         getViewTreeObserver().addOnGlobalLayoutListener(this.mOnGlobalLayoutListener);
-        ?? r0 = this.mDefaultActivityButton.getVisibility() == 0 ? 1 : 0;
+        int r0 = this.mDefaultActivityButton.getVisibility() == 0 ? 1 : 0;
         int activityCount = this.mAdapter.getActivityCount();
         if (i == Integer.MAX_VALUE || activityCount <= i + r0) {
             this.mAdapter.setShowFooterView(false);
@@ -561,7 +561,7 @@ public class ActivityChooserView extends ViewGroup implements ActivityChooserMod
             return;
         }
         if (this.mIsSelectingDefaultActivity || r0 == 0) {
-            this.mAdapter.setShowDefaultActivity(true, r0);
+            this.mAdapter.setShowDefaultActivity(true, r0 != 0);
         } else {
             this.mAdapter.setShowDefaultActivity(false, false);
         }
