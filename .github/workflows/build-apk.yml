@@ -28,11 +28,14 @@ jobs:
           distribution: temurin
           java-version: '17'
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Install build-tools
-        run: sdkmanager "build-tools;34.0.0" "platform-tools"
+      - name: Ensure Android build-tools
+        run: |
+          : "${ANDROID_HOME:=$ANDROID_SDK_ROOT}"
+          sdkmanager="$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager"
+          if [ -x "$sdkmanager" ]; then
+            yes | "$sdkmanager" --licenses >/dev/null 2>&1 || true
+            "$sdkmanager" "build-tools;34.0.0" "platform-tools" >/dev/null 2>&1 || true
+          fi
 
       - name: Build and sign APK
         run: bash build.sh
