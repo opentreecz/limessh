@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Green lime, drawn as a citrus cross-section (adaptive-icon foreground). -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- rind (dark green) -->
+    <path
+        android:fillColor="#1B5E20"
+        android:pathData="M20,54 a34,34 0 1,0 68,0 a34,34 0 1,0 -68,0 Z" />
+    <!-- pith (pale) -->
+    <path
+        android:fillColor="#F1F8E9"
+        android:pathData="M23,54 a31,31 0 1,0 62,0 a31,31 0 1,0 -62,0 Z" />
+    <!-- flesh (lime green) -->
+    <path
+        android:fillColor="#7CB342"
+        android:pathData="M26,54 a28,28 0 1,0 56,0 a28,28 0 1,0 -56,0 Z" />
+
+    <!-- segment dividers -->
+    <path
+        android:strokeColor="#F1F8E9"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M26,54 L82,54" />
+    <path
+        android:strokeColor="#F1F8E9"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M54,26 L54,82" />
+    <path
+        android:strokeColor="#F1F8E9"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M34.2,34.2 L73.8,73.8" />
+    <path
+        android:strokeColor="#F1F8E9"
+        android:strokeWidth="1.6"
+        android:strokeLineCap="round"
+        android:pathData="M34.2,73.8 L73.8,34.2" />
+
+    <!-- center pulp -->
+    <path
+        android:fillColor="#F1F8E9"
+        android:pathData="M50.5,54 a3.5,3.5 0 1,0 7,0 a3.5,3.5 0 1,0 -7,0 Z" />
+</vector>
