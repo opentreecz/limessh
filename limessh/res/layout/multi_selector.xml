@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="10dp">
+    <TextView
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/text_form"
+        android:id="@+id/multi_selector_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"/>
+    <LinearLayout
+        android:orientation="vertical"
+        android:id="@+id/multi_selector_form"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="16dp"
+        android:layout_weight="1">
+        <Button
+            android:textSize="@dimen/text_button"
+            android:textColor="@android:color/white"
+            android:id="@+id/multi_selector_add"
+            android:background="@drawable/button"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:onClick="addItem"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:scrollbarAlwaysDrawVerticalTrack="true"
+        android:id="@+id/scroll_view"
+        android:background="@android:color/black"
+        android:padding="@dimen/activity_padding"
+        android:fitsSystemWindows="true"
+        android:clipToPadding="false"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:textColor="@color/log_viewer_foreground"
+            android:id="@+id/log_view"
+            android:background="@color/log_viewer_background"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="100000"/>
+    </ScrollView>
+</LinearLayout>

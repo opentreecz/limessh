@@ -8,7 +8,6 @@
 # Android / Gradle build outputs
 .gradle/
 build/
-app/build/
 local.properties
 *.iml
 .idea/
@@ -24,9 +23,5 @@ Thumbs.db
 *.jks
 *.keystore
 
-# Research APKs — large binaries, stored separately (git-lfs or releases)
-# Keep them locally for reverse-engineering work but don't push to repo
+# Research APKs — the original binaries are kept out of the repo
 *.apk
-
-# Exception: keep the nested OfflineProFix source (it's a git submodule/folder)
-# JuiceSSHOfflineProFix/ is tracked as source, not a binary

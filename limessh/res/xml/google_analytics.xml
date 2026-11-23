@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="https://schemas.android.com/tools" tools:ignore="TypographyDashes">
+    <string name="ga_trackingId">UA-27614108-3
+    </string>
+    <bool name="ga_autoActivityTracking">true
+    </bool>
+    <bool name="ga_reportUncaughtExceptions">false
+    </bool>
+    <screenName name="cz.opentree.limessh.activities.AddressBookActivity">Address Book
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.BookclubActivity">Book Club
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ChangelogActivity">Changelog
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ConfigureWidgetActivity">Configure Widget
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.Ec2ProfilesActivity">EC2 Profiles
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.LockoutActivity">Session Lockout
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.LogViewerActivity">Log Viewer
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.MainActivity">Main Menu
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageCloudSyncActivity">Manage CloudSync
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageConnectionActivity">Manage Connection
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageEc2ProfileActivity">Manage EC2 Profile
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageGroupActivity">Manage Group
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageIdentityActivity">Manage Identity
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManagePortForward">Manage Port Forward
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageShareActivity">Manage Share
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageSnippetsActivity">Manage Snippets
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ManageTeamActivity">Manage Team
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.PluginsActivity">Plugins
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.PurchaseActivity">Purchase
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ReauthenticateActivity">Reauthenticate
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.SettingsActivity">Settings
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.SetupWizardActivity">Setup Wizard
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.SoftwareLicensesActivity">Software Licenses
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.TeamShareActivity">TeamShare
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.TerminalEmulatorActivity">SSH Session
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ThankYouForPurchasingActivity">Thank You for Purchasing
+    </screenName>
+    <screenName name="cz.opentree.limessh.activities.ViewLicenseActivity">View Software License
+    </screenName>
+</resources>

@@ -1,0 +1,76 @@
+{
+    "components": [
+        {
+            "name": "libssh",
+            "author": "Multiple Authors",
+            "url": "https://www.libssh.org/",
+            "description": "LimeSSH is distributed with an unmodified libssh binary, in the form of a shared library.",
+            "licenseName": "LGPL",
+            "licenseFile": "license_libssh"
+        },
+        {
+            "name": "OpenSSL",
+            "author": "Multiple Authors",
+            "url": "https://www.openssl.org/",
+            "description": "This product includes software developed by the OpenSSL Project or use in the OpenSSL Toolkit (http://www.openssl.org/).",
+            "licenseName": "Mixed",
+            "licenseFile": "license_openssl"
+        },
+        {
+            "name": "emulatorview",
+            "author": "Jack Palevich",
+            "url": "https://github.com/jackpal/Android-Terminal-Emulator/tree/master/libraries/emulatorview",
+            "description": "Xterm emulation library for Android.",
+            "licenseName": "Apache v2.0",
+            "licenseFile": "license_emulatorview"
+        },
+        {
+            "name": "Mosh",
+            "author": "MIT",
+            "url": "http://mosh.mit.edu",
+            "description": "LimeSSH includes a pre-built mosh-client binary compiled for ARM and x86 processors. We would like to thank Dan Drown for his help in integrating Mosh with LimeSSH.",
+            "licenseName": "GPLv3+",
+            "licenseFile": "license_mosh"
+        },
+        {
+            "name": "Bash",
+            "author": "GNU Project",
+            "url": "http://www.gnu.org/software/bash",
+            "description": "LimeSSH includes pre-built bash binary compiled for ARM and x86 processors, as permitted by the GPLv3 license. Sources available at https://github.com/sonelli/android-bash.",
+            "licenseName": "GPLv3+",
+            "licenseFile": "license_bash"
+        },
+        {
+            "name": "Coreutils",
+            "author": "GNU Project",
+            "url": "http://www.gnu.org/software/coreutils",
+            "description": "LimeSSH includes a pre-built telnet binary compiled for ARM and x86 processors, as permitted by the GPLv3 license. Sources available at https://github.com/sonelli/android-telnet.",
+            "licenseName": "GPLv3+",
+            "licenseFile": "license_coreutils"
+        },
+        {
+            "name": "Ormlite",
+            "author": "Gray Watson",
+            "url": "http://ormlite.com",
+            "description": "SQLite database ORM for Android.",
+            "licenseName": "Open Source License (ISC)",
+            "licenseFile": "license_ormlite"
+        },
+        {
+            "name": "Solarized",
+            "author": "Ethan Schoonover",
+            "url": "http://ethanschoonover.com/solarized",
+            "description": "Solarized is a sixteen color palette (eight monotones, eight accent colors) designed for use with terminal and gui applications.",
+            "licenseName": "BSD",
+            "licenseFile": "license_solarized"
+        },
+        {
+            "name": "Terminal Fonts",
+            "author": "Various",
+            "url": "https://github.com/ryanoasis/nerd-fonts",
+            "description": "OSS licenses for terminal fonts used in LimeSSH",
+            "licenseName": "Various",
+            "licenseFile": "license_fonts"
+        }
+    ]
+}

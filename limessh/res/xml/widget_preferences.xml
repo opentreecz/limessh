@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <ListPreference
+        android:persistent="true"
+        android:background="@drawable/highlight"
+        android:title="@string/connections_capital_c"
+        android:key="widget:group"
+        android:defaultValue="-1"/>
+    <ListPreference
+        android:persistent="true"
+        android:entries="@array/widget_update_frequencies_names"
+        android:background="@drawable/highlight"
+        android:title="@string/update_frequency"
+        android:key="widget:update_frequency"
+        android:summary="@string/widget_will_update"
+        android:defaultValue="86400"
+        android:entryValues="@array/widget_update_frequencies_values"/>
+</PreferenceScreen>
