@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
 import com.google.android.gms.common.server.response.FastJsonResponse;
-import com.sonelli.C1099ha;
-import com.sonelli.C1696pb;
+import cz.opentree.C1099ha;
+import cz.opentree.C1696pb;
 import java.util.ArrayList;
 import java.util.Map;
 

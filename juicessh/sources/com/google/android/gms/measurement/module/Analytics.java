@@ -3,8 +3,8 @@ package com.google.android.gms.measurement.module;
 import android.content.Context;
 import androidx.annotation.Keep;
 import androidx.annotation.RequiresPermission;
-import com.sonelli.C0813ca;
-import com.sonelli.C2144uz;
+import cz.opentree.C0813ca;
+import cz.opentree.C2144uz;
 
 /* compiled from: com.google.android.gms:play-services-measurement-impl@@17.4.1 */
 /* loaded from: classes.dex */

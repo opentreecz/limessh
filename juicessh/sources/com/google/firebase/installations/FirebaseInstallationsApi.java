@@ -1,7 +1,7 @@
 package com.google.firebase.installations;
 
-import com.sonelli.j60;
-import com.sonelli.vf0;
+import cz.opentree.j60;
+import cz.opentree.vf0;
 
 /* compiled from: com.google.firebase:firebase-installations-interop@@16.0.0 */
 /* loaded from: classes.dex */

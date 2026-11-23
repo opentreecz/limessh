@@ -1,6 +1,6 @@
 package com.google.firebase.installations;
 
-import com.sonelli.bg0;
+import cz.opentree.bg0;
 
 /* compiled from: com.google.firebase:firebase-installations@@16.2.1 */
 /* loaded from: classes.dex */

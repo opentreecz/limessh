@@ -1,9 +1,9 @@
 package okhttp3.internal.publicsuffix;
 
-import com.sonelli.ep0;
-import com.sonelli.fn0;
-import com.sonelli.gp0;
-import com.sonelli.ro0;
+import cz.opentree.ep0;
+import cz.opentree.fn0;
+import cz.opentree.gp0;
+import cz.opentree.ro0;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InterruptedIOException;

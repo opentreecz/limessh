@@ -46,11 +46,11 @@ public final class R$styleable {
     public static final int GradientColor_android_startY = 9;
     public static final int GradientColor_android_tileMode = 6;
     public static final int GradientColor_android_type = 2;
-    public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, com.sonelli.juicessh.R.attr.alpha};
-    public static final int[] CoordinatorLayout = {com.sonelli.juicessh.R.attr.keylines, com.sonelli.juicessh.R.attr.statusBarBackground};
-    public static final int[] CoordinatorLayout_Layout = {R.attr.layout_gravity, com.sonelli.juicessh.R.attr.layout_anchor, com.sonelli.juicessh.R.attr.layout_anchorGravity, com.sonelli.juicessh.R.attr.layout_behavior, com.sonelli.juicessh.R.attr.layout_dodgeInsetEdges, com.sonelli.juicessh.R.attr.layout_insetEdge, com.sonelli.juicessh.R.attr.layout_keyline};
-    public static final int[] FontFamily = {com.sonelli.juicessh.R.attr.fontProviderAuthority, com.sonelli.juicessh.R.attr.fontProviderCerts, com.sonelli.juicessh.R.attr.fontProviderFetchStrategy, com.sonelli.juicessh.R.attr.fontProviderFetchTimeout, com.sonelli.juicessh.R.attr.fontProviderPackage, com.sonelli.juicessh.R.attr.fontProviderQuery};
-    public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, com.sonelli.juicessh.R.attr.font, com.sonelli.juicessh.R.attr.fontStyle, com.sonelli.juicessh.R.attr.fontVariationSettings, com.sonelli.juicessh.R.attr.fontWeight, com.sonelli.juicessh.R.attr.ttcIndex};
+    public static final int[] ColorStateListItem = {R.attr.color, R.attr.alpha, cz.opentree.juicessh.R.attr.alpha};
+    public static final int[] CoordinatorLayout = {cz.opentree.juicessh.R.attr.keylines, cz.opentree.juicessh.R.attr.statusBarBackground};
+    public static final int[] CoordinatorLayout_Layout = {R.attr.layout_gravity, cz.opentree.juicessh.R.attr.layout_anchor, cz.opentree.juicessh.R.attr.layout_anchorGravity, cz.opentree.juicessh.R.attr.layout_behavior, cz.opentree.juicessh.R.attr.layout_dodgeInsetEdges, cz.opentree.juicessh.R.attr.layout_insetEdge, cz.opentree.juicessh.R.attr.layout_keyline};
+    public static final int[] FontFamily = {cz.opentree.juicessh.R.attr.fontProviderAuthority, cz.opentree.juicessh.R.attr.fontProviderCerts, cz.opentree.juicessh.R.attr.fontProviderFetchStrategy, cz.opentree.juicessh.R.attr.fontProviderFetchTimeout, cz.opentree.juicessh.R.attr.fontProviderPackage, cz.opentree.juicessh.R.attr.fontProviderQuery};
+    public static final int[] FontFamilyFont = {R.attr.font, R.attr.fontWeight, R.attr.fontStyle, R.attr.ttcIndex, R.attr.fontVariationSettings, cz.opentree.juicessh.R.attr.font, cz.opentree.juicessh.R.attr.fontStyle, cz.opentree.juicessh.R.attr.fontVariationSettings, cz.opentree.juicessh.R.attr.fontWeight, cz.opentree.juicessh.R.attr.ttcIndex};
     public static final int[] GradientColor = {R.attr.startColor, R.attr.endColor, R.attr.type, R.attr.centerX, R.attr.centerY, R.attr.gradientRadius, R.attr.tileMode, R.attr.centerColor, R.attr.startX, R.attr.startY, R.attr.endX, R.attr.endY};
     public static final int[] GradientColorItem = {R.attr.color, R.attr.offset};
 

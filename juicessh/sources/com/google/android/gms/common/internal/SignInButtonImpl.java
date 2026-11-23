@@ -13,8 +13,8 @@ import androidx.core.graphics.drawable.DrawableCompat;
 import com.google.android.gms.base.R$color;
 import com.google.android.gms.base.R$drawable;
 import com.google.android.gms.base.R$string;
-import com.sonelli.C0813ca;
-import com.sonelli.C0981fc;
+import cz.opentree.C0813ca;
+import cz.opentree.C0981fc;
 
 /* compiled from: com.google.android.gms:play-services-base@@17.1.0 */
 /* loaded from: classes.dex */

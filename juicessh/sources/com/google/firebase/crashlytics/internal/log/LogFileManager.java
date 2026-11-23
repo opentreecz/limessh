@@ -2,9 +2,9 @@ package com.google.firebase.crashlytics.internal.log;
 
 import android.content.Context;
 import androidx.annotation.Nullable;
-import com.sonelli.m80;
-import com.sonelli.s90;
-import com.sonelli.w80;
+import cz.opentree.m80;
+import cz.opentree.s90;
+import cz.opentree.w80;
 import java.io.File;
 import java.util.Set;
 

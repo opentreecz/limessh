@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.measurement;
 
-import com.sonelli.AbstractC1116hn;
-import com.sonelli.AbstractC1939tm;
+import cz.opentree.AbstractC1116hn;
+import cz.opentree.AbstractC1939tm;
 import java.io.IOException;
 
 /* compiled from: com.google.android.gms:play-services-measurement-base@@17.4.1 */

@@ -1,7 +1,7 @@
 package com.google.firebase.crashlytics.internal.common;
 
 import com.google.firebase.crashlytics.internal.settings.SettingsDataProvider;
-import com.sonelli.m80;
+import cz.opentree.m80;
 import java.lang.Thread;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -44,7 +44,7 @@ public class CrashlyticsUncaughtExceptionHandler implements Thread.UncaughtExcep
     /* JADX WARN: Type inference failed for: r1v2, types: [java.lang.String] */
     /* JADX WARN: Type inference failed for: r1v3, types: [java.lang.Thread$UncaughtExceptionHandler] */
     /* JADX WARN: Type inference failed for: r1v4, types: [java.lang.Thread$UncaughtExceptionHandler] */
-    /* JADX WARN: Type inference failed for: r3v1, types: [com.sonelli.m80] */
+    /* JADX WARN: Type inference failed for: r3v1, types: [cz.opentree.m80] */
     /* JADX WARN: Type inference failed for: r6v0, types: [java.lang.Thread] */
     /* JADX WARN: Type inference failed for: r6v1, types: [java.lang.Thread] */
     /* JADX WARN: Type inference failed for: r6v3, types: [java.util.concurrent.atomic.AtomicBoolean] */

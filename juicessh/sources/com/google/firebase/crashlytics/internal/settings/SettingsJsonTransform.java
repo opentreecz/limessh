@@ -1,7 +1,7 @@
 package com.google.firebase.crashlytics.internal.settings;
 
 import com.google.firebase.crashlytics.internal.common.CurrentTimeProvider;
-import com.sonelli.mc0;
+import cz.opentree.mc0;
 import org.json.JSONException;
 import org.json.JSONObject;
 

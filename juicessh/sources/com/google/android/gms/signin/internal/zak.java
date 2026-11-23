@@ -6,8 +6,8 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.internal.ResolveAccountResponse;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.e50;
+import cz.opentree.C1099ha;
+import cz.opentree.e50;
 
 /* compiled from: com.google.android.gms:play-services-base@@17.1.0 */
 /* loaded from: classes.dex */

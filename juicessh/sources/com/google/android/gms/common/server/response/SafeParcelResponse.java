@@ -5,14 +5,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.SparseArray;
 import com.google.android.gms.common.server.response.FastJsonResponse;
-import com.sonelli.C0705ac;
-import com.sonelli.C0813ca;
-import com.sonelli.C1032ga;
-import com.sonelli.C1099ha;
-import com.sonelli.C1207jc;
-import com.sonelli.C1444kc;
-import com.sonelli.C1810rb;
-import com.sonelli.C2420zb;
+import cz.opentree.C0705ac;
+import cz.opentree.C0813ca;
+import cz.opentree.C1032ga;
+import cz.opentree.C1099ha;
+import cz.opentree.C1207jc;
+import cz.opentree.C1444kc;
+import cz.opentree.C1810rb;
+import cz.opentree.C2420zb;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -355,12 +355,12 @@ public class SafeParcelResponse extends FastSafeParcelableJsonResponse {
             goto L1a
         L8:
             android.os.Parcel r0 = r2.f896P
-            int r0 = com.sonelli.C1099ha.m4396a(r0)
+            int r0 = cz.opentree.C1099ha.m4396a(r0)
             r2.f901U = r0
         L10:
             android.os.Parcel r0 = r2.f896P
             int r1 = r2.f901U
-            com.sonelli.C1099ha.m4397b(r0, r1)
+            cz.opentree.C1099ha.m4397b(r0, r1)
             r0 = 2
             r2.f900T = r0
         L1a:

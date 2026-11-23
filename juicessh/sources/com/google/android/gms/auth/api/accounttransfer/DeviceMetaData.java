@@ -3,8 +3,8 @@ package com.google.android.gms.auth.api.accounttransfer;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.C2152v4;
+import cz.opentree.C1099ha;
+import cz.opentree.C2152v4;
 
 /* loaded from: classes.dex */
 public class DeviceMetaData extends AbstractSafeParcelable {

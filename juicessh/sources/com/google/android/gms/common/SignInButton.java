@@ -8,8 +8,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import com.google.android.gms.base.R$styleable;
 import com.google.android.gms.common.internal.SignInButtonImpl;
-import com.sonelli.AbstractC1600nd;
-import com.sonelli.C0865da;
+import cz.opentree.AbstractC1600nd;
+import cz.opentree.C0865da;
 
 /* compiled from: com.google.android.gms:play-services-base@@17.1.0 */
 /* loaded from: classes.dex */

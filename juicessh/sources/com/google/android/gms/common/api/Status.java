@@ -6,10 +6,10 @@ import android.os.Parcelable;
 import androidx.annotation.Nullable;
 import com.google.android.gms.common.internal.ReflectedParcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0758ba;
-import com.sonelli.C0864d9;
-import com.sonelli.C1099ha;
-import com.sonelli.C1147i7;
+import cz.opentree.C0758ba;
+import cz.opentree.C0864d9;
+import cz.opentree.C1099ha;
+import cz.opentree.C1147i7;
 
 /* compiled from: com.google.android.gms:play-services-basement@@17.1.1 */
 /* loaded from: classes.dex */

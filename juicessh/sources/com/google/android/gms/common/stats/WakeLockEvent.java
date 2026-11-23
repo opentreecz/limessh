@@ -3,8 +3,8 @@ package com.google.android.gms.common.stats;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
-import com.sonelli.C1099ha;
-import com.sonelli.C2271xb;
+import cz.opentree.C1099ha;
+import cz.opentree.C2271xb;
 import java.util.List;
 
 /* compiled from: com.google.android.gms:play-services-basement@@17.1.1 */

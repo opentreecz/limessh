@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.firebase.analytics.connector.AnalyticsConnector;
 import com.google.firebase.crashlytics.internal.analytics.AnalyticsReceiver;
-import com.sonelli.m80;
+import cz.opentree.m80;
 import org.json.JSONException;
 import org.json.JSONObject;
 

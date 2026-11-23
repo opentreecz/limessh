@@ -5,8 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.C2162va;
+import cz.opentree.C1099ha;
+import cz.opentree.C2162va;
 
 /* compiled from: com.google.android.gms:play-services-basement@@17.1.1 */
 /* loaded from: classes.dex */

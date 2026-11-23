@@ -5,10 +5,10 @@ import android.os.Parcelable;
 import android.text.TextUtils;
 import com.google.android.gms.common.internal.ReflectedParcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0758ba;
-import com.sonelli.C0813ca;
-import com.sonelli.C1099ha;
-import com.sonelli.C1995u6;
+import cz.opentree.C0758ba;
+import cz.opentree.C0813ca;
+import cz.opentree.C1099ha;
+import cz.opentree.C1995u6;
 import java.util.List;
 
 /* loaded from: classes.dex */

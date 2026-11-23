@@ -4,8 +4,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.auth.api.credentials.Credential;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.C1157ie;
+import cz.opentree.C1099ha;
+import cz.opentree.C1157ie;
 
 /* compiled from: com.google.android.gms:play-services-auth@@18.0.0 */
 /* loaded from: classes.dex */

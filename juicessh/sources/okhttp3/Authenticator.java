@@ -1,8 +1,8 @@
 package okhttp3;
 
-import com.sonelli.bn0;
-import com.sonelli.xm0;
-import com.sonelli.zm0;
+import cz.opentree.bn0;
+import cz.opentree.xm0;
+import cz.opentree.zm0;
 import java.io.IOException;
 import javax.annotation.Nullable;
 

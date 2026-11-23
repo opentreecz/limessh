@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.measurement;
 
-import com.sonelli.C0839co;
-import com.sonelli.C1466kn;
+import cz.opentree.C0839co;
+import cz.opentree.C1466kn;
 
 /* compiled from: com.google.android.gms:play-services-measurement-base@@17.4.1 */
 /* loaded from: classes.dex */

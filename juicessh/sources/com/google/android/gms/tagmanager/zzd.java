@@ -1,6 +1,6 @@
 package com.google.android.gms.tagmanager;
 
-import com.sonelli.C1688p3;
+import cz.opentree.C1688p3;
 
 /* loaded from: classes.dex */
 public interface zzd {

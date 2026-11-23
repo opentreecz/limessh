@@ -3,9 +3,9 @@ package com.google.android.gms.auth;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0813ca;
-import com.sonelli.C1099ha;
-import com.sonelli.C1901t6;
+import cz.opentree.C0813ca;
+import cz.opentree.C1099ha;
+import cz.opentree.C1901t6;
 import java.util.List;
 
 /* loaded from: classes.dex */

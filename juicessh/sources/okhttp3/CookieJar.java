@@ -1,7 +1,7 @@
 package okhttp3;
 
-import com.sonelli.nm0;
-import com.sonelli.rm0;
+import cz.opentree.nm0;
+import cz.opentree.rm0;
 import java.util.Collections;
 import java.util.List;
 

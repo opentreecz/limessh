@@ -8,11 +8,11 @@ import com.google.firebase.heartbeatinfo.HeartBeatInfo;
 import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
 import com.google.firebase.installations.FirebaseInstallationsApi;
 import com.google.firebase.platforminfo.UserAgentPublisher;
-import com.sonelli.b80;
-import com.sonelli.og0;
-import com.sonelli.v70;
-import com.sonelli.xd0;
-import com.sonelli.yd0;
+import cz.opentree.b80;
+import cz.opentree.og0;
+import cz.opentree.v70;
+import cz.opentree.xd0;
+import cz.opentree.yd0;
 import java.util.Arrays;
 import java.util.List;
 

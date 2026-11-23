@@ -62,7 +62,7 @@ public final class C0127R {
     /* renamed from: androidx.cardview.R$styleable */
     /* loaded from: classes.dex */
     public static final class styleable {
-        public static final int[] CardView = {android.R.attr.minWidth, android.R.attr.minHeight, com.sonelli.juicessh.R.attr.cardBackgroundColor, com.sonelli.juicessh.R.attr.cardCornerRadius, com.sonelli.juicessh.R.attr.cardElevation, com.sonelli.juicessh.R.attr.cardMaxElevation, com.sonelli.juicessh.R.attr.cardPreventCornerOverlap, com.sonelli.juicessh.R.attr.cardUseCompatPadding, com.sonelli.juicessh.R.attr.contentPadding, com.sonelli.juicessh.R.attr.contentPaddingBottom, com.sonelli.juicessh.R.attr.contentPaddingLeft, com.sonelli.juicessh.R.attr.contentPaddingRight, com.sonelli.juicessh.R.attr.contentPaddingTop};
+        public static final int[] CardView = {android.R.attr.minWidth, android.R.attr.minHeight, cz.opentree.juicessh.R.attr.cardBackgroundColor, cz.opentree.juicessh.R.attr.cardCornerRadius, cz.opentree.juicessh.R.attr.cardElevation, cz.opentree.juicessh.R.attr.cardMaxElevation, cz.opentree.juicessh.R.attr.cardPreventCornerOverlap, cz.opentree.juicessh.R.attr.cardUseCompatPadding, cz.opentree.juicessh.R.attr.contentPadding, cz.opentree.juicessh.R.attr.contentPaddingBottom, cz.opentree.juicessh.R.attr.contentPaddingLeft, cz.opentree.juicessh.R.attr.contentPaddingRight, cz.opentree.juicessh.R.attr.contentPaddingTop};
         public static final int CardView_android_minHeight = 1;
         public static final int CardView_android_minWidth = 0;
         public static final int CardView_cardBackgroundColor = 2;

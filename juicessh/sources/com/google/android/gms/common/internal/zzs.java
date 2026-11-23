@@ -3,8 +3,8 @@ package com.google.android.gms.common.internal;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.C1102hb;
+import cz.opentree.C1099ha;
+import cz.opentree.C1102hb;
 
 /* compiled from: com.google.android.gms:play-services-basement@@17.1.1 */
 @Deprecated

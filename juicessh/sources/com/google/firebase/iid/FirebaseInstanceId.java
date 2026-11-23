@@ -25,19 +25,19 @@ import com.google.firebase.heartbeatinfo.HeartBeatInfo;
 import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.installations.FirebaseInstallationsApi;
 import com.google.firebase.platforminfo.UserAgentPublisher;
-import com.sonelli.C0813ca;
-import com.sonelli.ThreadFactoryC1755qc;
-import com.sonelli.ae0;
-import com.sonelli.e70;
-import com.sonelli.ee0;
-import com.sonelli.fe0;
-import com.sonelli.ff0;
-import com.sonelli.he0;
-import com.sonelli.id0;
-import com.sonelli.j60;
-import com.sonelli.ue0;
-import com.sonelli.vd0;
-import com.sonelli.ze0;
+import cz.opentree.C0813ca;
+import cz.opentree.ThreadFactoryC1755qc;
+import cz.opentree.ae0;
+import cz.opentree.e70;
+import cz.opentree.ee0;
+import cz.opentree.fe0;
+import cz.opentree.ff0;
+import cz.opentree.he0;
+import cz.opentree.id0;
+import cz.opentree.j60;
+import cz.opentree.ue0;
+import cz.opentree.vd0;
+import cz.opentree.ze0;
 import java.io.IOException;
 import java.util.concurrent.CancellationException;
 import java.util.concurrent.CountDownLatch;
@@ -136,7 +136,7 @@ public class FirebaseInstanceId {
             Boolean m1898c = m1898c();
             this.f1276e = m1898c;
             if (m1898c == null && this.f1272a) {
-                EventHandler<e70> eventHandler = new EventHandler(this) { // from class: com.sonelli.cf0
+                EventHandler<e70> eventHandler = new EventHandler(this) { // from class: cz.opentree.cf0
 
                     /* renamed from: a */
                     public final FirebaseInstanceId.C0665a f1928a;
@@ -219,7 +219,7 @@ public class FirebaseInstanceId {
         this.f1271h = new C0665a(subscriber);
         this.f1268e = new ae0(executor);
         this.f1269f = firebaseInstallationsApi;
-        executor2.execute(new Runnable(this) { // from class: com.sonelli.xe0
+        executor2.execute(new Runnable(this) { // from class: cz.opentree.xe0
 
             /* renamed from: O */
             public final FirebaseInstanceId f7921O;
@@ -298,7 +298,7 @@ public class FirebaseInstanceId {
             j60<String> id = this.f1269f.getId();
             C0813ca.m2730l(id, "Task must not be null");
             final CountDownLatch countDownLatch = new CountDownLatch(1);
-            id.mo2690c(ze0.f8493a, new OnCompleteListener(countDownLatch) { // from class: com.sonelli.ye0
+            id.mo2690c(ze0.f8493a, new OnCompleteListener(countDownLatch) { // from class: cz.opentree.ye0
 
                 /* renamed from: a */
                 public final CountDownLatch f8199a;
@@ -353,7 +353,7 @@ public class FirebaseInstanceId {
     /* renamed from: d */
     public final j60<InstanceIdResult> m1880d(final String str, String str2) {
         final String m1868k = m1868k(str2);
-        return Tasks.m1562e(null).mo2695h(this.f1264a, new Continuation(this, str, m1868k) { // from class: com.sonelli.we0
+        return Tasks.m1562e(null).mo2695h(this.f1264a, new Continuation(this, str, m1868k) { // from class: cz.opentree.we0
 
             /* renamed from: a */
             public final FirebaseInstanceId f7667a;
@@ -382,7 +382,7 @@ public class FirebaseInstanceId {
     public final /* synthetic */ j60 m1881e(final String str, final String str2, j60 j60Var) throws Exception {
         final String m1876C = m1876C();
         ee0 m1890s = m1890s(str, str2);
-        return !m1888q(m1890s) ? Tasks.m1562e(new id0(m1876C, m1890s.f2372a)) : this.f1268e.m2047b(str, str2, new zzav(this, m1876C, str, str2) { // from class: com.sonelli.bf0
+        return !m1888q(m1890s) ? Tasks.m1562e(new id0(m1876C, m1890s.f2372a)) : this.f1268e.m2047b(str, str2, new zzav(this, m1876C, str, str2) { // from class: cz.opentree.bf0
 
             /* renamed from: a */
             public final FirebaseInstanceId f1666a;
@@ -413,7 +413,7 @@ public class FirebaseInstanceId {
 
     /* renamed from: f */
     public final /* synthetic */ j60 m1882f(final String str, final String str2, final String str3) {
-        return this.f1267d.m3744a(str, str2, str3).mo2703p(this.f1264a, new SuccessContinuation(this, str2, str3, str) { // from class: com.sonelli.af0
+        return this.f1267d.m3744a(str, str2, str3).mo2703p(this.f1264a, new SuccessContinuation(this, str2, str3, str) { // from class: cz.opentree.af0
 
             /* renamed from: a */
             public final FirebaseInstanceId f1373a;

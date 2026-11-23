@@ -3,12 +3,12 @@ package com.google.android.gms.common.internal;
 import com.google.android.gms.common.api.PendingResult;
 import com.google.android.gms.common.api.Result;
 import com.google.android.gms.common.api.Status;
-import com.sonelli.C1029g7;
-import com.sonelli.C1641oa;
-import com.sonelli.C1695pa;
-import com.sonelli.C1753qa;
-import com.sonelli.j60;
-import com.sonelli.k60;
+import cz.opentree.C1029g7;
+import cz.opentree.C1641oa;
+import cz.opentree.C1695pa;
+import cz.opentree.C1753qa;
+import cz.opentree.j60;
+import cz.opentree.k60;
 
 /* compiled from: com.google.android.gms:play-services-base@@17.1.0 */
 /* loaded from: classes.dex */

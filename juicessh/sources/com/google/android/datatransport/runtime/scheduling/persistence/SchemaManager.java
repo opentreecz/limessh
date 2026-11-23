@@ -4,10 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Build;
-import com.sonelli.C0693a3;
-import com.sonelli.C0750b3;
-import com.sonelli.C0806c3;
-import com.sonelli.C0858d3;
+import cz.opentree.C0693a3;
+import cz.opentree.C0750b3;
+import cz.opentree.C0806c3;
+import cz.opentree.C0858d3;
 import java.util.Arrays;
 import java.util.List;
 

@@ -10,8 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.annotation.KeepName;
-import com.sonelli.C1848s7;
-import com.sonelli.C2260x6;
+import cz.opentree.C1848s7;
+import cz.opentree.C2260x6;
 
 /* compiled from: com.google.android.gms:play-services-base@@17.1.0 */
 @KeepName

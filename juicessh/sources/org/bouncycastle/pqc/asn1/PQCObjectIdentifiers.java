@@ -1,6 +1,6 @@
 package org.bouncycastle.pqc.asn1;
 
-import com.sonelli.aq0;
+import cz.opentree.aq0;
 import org.bouncycastle.asn1.p003bc.BCObjectIdentifiers;
 
 /* loaded from: classes.dex */

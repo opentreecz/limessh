@@ -1,6 +1,6 @@
 package org.bouncycastle.asn1;
 
-import com.sonelli.eq0;
+import cz.opentree.eq0;
 import java.io.IOException;
 
 /* loaded from: classes.dex */

@@ -1,7 +1,7 @@
 package com.google.android.gms.analytics;
 
 import android.net.Uri;
-import com.sonelli.C1093h4;
+import cz.opentree.C1093h4;
 
 /* loaded from: classes.dex */
 public interface zzo {

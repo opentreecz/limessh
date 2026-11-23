@@ -1,7 +1,7 @@
 package com.google.android.datatransport.runtime;
 
 import com.google.android.datatransport.TransportScheduleCallback;
-import com.sonelli.AbstractC1088h0;
+import cz.opentree.AbstractC1088h0;
 
 /* compiled from: com.google.android.datatransport:transport-runtime@@2.2.1 */
 /* loaded from: classes.dex */

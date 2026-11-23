@@ -1,8 +1,8 @@
 package com.google.android.gms.internal.measurement;
 
 import com.google.android.gms.internal.measurement.zzfd;
-import com.sonelli.EnumC1616nq;
-import com.sonelli.EnumC1780qq;
+import cz.opentree.EnumC1616nq;
+import cz.opentree.EnumC1780qq;
 
 /* compiled from: com.google.android.gms:play-services-measurement-base@@17.4.1 */
 /* loaded from: classes.dex */

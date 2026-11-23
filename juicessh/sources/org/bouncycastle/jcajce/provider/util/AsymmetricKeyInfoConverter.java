@@ -1,6 +1,6 @@
 package org.bouncycastle.jcajce.provider.util;
 
-import com.sonelli.qs0;
+import cz.opentree.qs0;
 import java.io.IOException;
 import java.security.PrivateKey;
 

@@ -6,10 +6,10 @@ import androidx.annotation.Nullable;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.internal.ReflectedParcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0813ca;
-import com.sonelli.C1028g6;
-import com.sonelli.C1099ha;
-import com.sonelli.C1538m5;
+import cz.opentree.C0813ca;
+import cz.opentree.C1028g6;
+import cz.opentree.C1099ha;
+import cz.opentree.C1538m5;
 
 /* compiled from: com.google.android.gms:play-services-auth@@18.0.0 */
 /* loaded from: classes.dex */

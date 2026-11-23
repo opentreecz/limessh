@@ -1,6 +1,6 @@
 package org.bouncycastle.asn1.sec;
 
-import com.sonelli.aq0;
+import cz.opentree.aq0;
 import org.bouncycastle.asn1.p004x9.X9ObjectIdentifiers;
 
 /* loaded from: classes.dex */

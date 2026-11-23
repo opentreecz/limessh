@@ -10,7 +10,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.firebase.FirebaseApp;
-import com.sonelli.C0813ca;
+import cz.opentree.C0813ca;
 
 /* compiled from: com.google.firebase:firebase-common@@19.3.0 */
 /* loaded from: classes.dex */

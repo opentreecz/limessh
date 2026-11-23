@@ -1,7 +1,7 @@
 package okio;
 
-import com.sonelli.mp0;
-import com.sonelli.zo0;
+import cz.opentree.mp0;
+import cz.opentree.zo0;
 import java.io.Closeable;
 import java.io.IOException;
 

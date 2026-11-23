@@ -1,6 +1,6 @@
 package com.google.firebase.events;
 
-import com.sonelli.dd0;
+import cz.opentree.dd0;
 
 /* compiled from: com.google.firebase:firebase-components@@16.0.0 */
 /* loaded from: classes.dex */

@@ -1,6 +1,6 @@
 package com.ochafik.lang.jnaerator.runtime;
 
-import com.sonelli.pg0;
+import cz.opentree.pg0;
 import com.sun.jna.FunctionMapper;
 import com.sun.jna.Library;
 import com.sun.jna.NativeLibrary;

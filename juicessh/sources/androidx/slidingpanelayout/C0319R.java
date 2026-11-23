@@ -205,9 +205,9 @@ public final class C0319R {
         public static final int GradientColor_android_startY = 9;
         public static final int GradientColor_android_tileMode = 6;
         public static final int GradientColor_android_type = 2;
-        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, com.sonelli.juicessh.R.attr.alpha};
-        public static final int[] FontFamily = {com.sonelli.juicessh.R.attr.fontProviderAuthority, com.sonelli.juicessh.R.attr.fontProviderCerts, com.sonelli.juicessh.R.attr.fontProviderFetchStrategy, com.sonelli.juicessh.R.attr.fontProviderFetchTimeout, com.sonelli.juicessh.R.attr.fontProviderPackage, com.sonelli.juicessh.R.attr.fontProviderQuery};
-        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, com.sonelli.juicessh.R.attr.font, com.sonelli.juicessh.R.attr.fontStyle, com.sonelli.juicessh.R.attr.fontVariationSettings, com.sonelli.juicessh.R.attr.fontWeight, com.sonelli.juicessh.R.attr.ttcIndex};
+        public static final int[] ColorStateListItem = {android.R.attr.color, android.R.attr.alpha, cz.opentree.juicessh.R.attr.alpha};
+        public static final int[] FontFamily = {cz.opentree.juicessh.R.attr.fontProviderAuthority, cz.opentree.juicessh.R.attr.fontProviderCerts, cz.opentree.juicessh.R.attr.fontProviderFetchStrategy, cz.opentree.juicessh.R.attr.fontProviderFetchTimeout, cz.opentree.juicessh.R.attr.fontProviderPackage, cz.opentree.juicessh.R.attr.fontProviderQuery};
+        public static final int[] FontFamilyFont = {android.R.attr.font, android.R.attr.fontWeight, android.R.attr.fontStyle, android.R.attr.ttcIndex, android.R.attr.fontVariationSettings, cz.opentree.juicessh.R.attr.font, cz.opentree.juicessh.R.attr.fontStyle, cz.opentree.juicessh.R.attr.fontVariationSettings, cz.opentree.juicessh.R.attr.fontWeight, cz.opentree.juicessh.R.attr.ttcIndex};
         public static final int[] GradientColor = {android.R.attr.startColor, android.R.attr.endColor, android.R.attr.type, android.R.attr.centerX, android.R.attr.centerY, android.R.attr.gradientRadius, android.R.attr.tileMode, android.R.attr.centerColor, android.R.attr.startX, android.R.attr.startY, android.R.attr.endX, android.R.attr.endY};
         public static final int[] GradientColorItem = {android.R.attr.color, android.R.attr.offset};
 

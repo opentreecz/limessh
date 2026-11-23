@@ -1,6 +1,6 @@
 package com.google.android.gms.base;
 
-import com.sonelli.juicessh.R;
+import cz.opentree.juicessh.R;
 
 /* loaded from: classes.dex */
 public final class R$styleable {

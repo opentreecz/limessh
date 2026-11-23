@@ -1,6 +1,6 @@
 package org.bouncycastle.jce.interfaces;
 
-import com.sonelli.cv0;
+import cz.opentree.cv0;
 
 /* loaded from: classes.dex */
 public interface ECKey {

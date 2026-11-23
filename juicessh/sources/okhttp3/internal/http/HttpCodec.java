@@ -1,8 +1,8 @@
 package okhttp3.internal.http;
 
-import com.sonelli.an0;
-import com.sonelli.xm0;
-import com.sonelli.zm0;
+import cz.opentree.an0;
+import cz.opentree.xm0;
+import cz.opentree.zm0;
 import java.io.IOException;
 import okio.Sink;
 

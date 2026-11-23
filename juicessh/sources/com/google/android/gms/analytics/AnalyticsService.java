@@ -6,7 +6,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import androidx.annotation.RequiresPermission;
 import com.google.android.gms.internal.gtm.zzcu;
-import com.sonelli.C1860sh;
+import cz.opentree.C1860sh;
 
 /* loaded from: classes.dex */
 public final class AnalyticsService extends Service implements zzcu {

@@ -6,7 +6,7 @@ import android.app.job.JobService;
 import android.content.Intent;
 import androidx.annotation.MainThread;
 import com.google.android.gms.measurement.internal.zzjp;
-import com.sonelli.e30;
+import cz.opentree.e30;
 
 /* compiled from: com.google.android.gms:play-services-measurement@@17.4.1 */
 @TargetApi(24)

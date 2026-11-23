@@ -1,7 +1,7 @@
 package com.google.android.gms.tagmanager;
 
-import com.sonelli.k50;
-import com.sonelli.v50;
+import cz.opentree.k50;
+import cz.opentree.v50;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;

@@ -1,7 +1,7 @@
 package org.bouncycastle.crypto;
 
-import com.sonelli.gt0;
-import com.sonelli.jt0;
+import cz.opentree.gt0;
+import cz.opentree.jt0;
 
 /* loaded from: classes.dex */
 public interface Signer {

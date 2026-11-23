@@ -1,6 +1,6 @@
 package com.google.android.gms.common.providers;
 
-import com.sonelli.C1206jb;
+import cz.opentree.C1206jb;
 import java.util.concurrent.ScheduledExecutorService;
 
 /* compiled from: com.google.android.gms:play-services-basement@@17.1.1 */

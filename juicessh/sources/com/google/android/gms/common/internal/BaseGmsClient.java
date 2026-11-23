@@ -24,12 +24,12 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.Feature;
 import com.google.android.gms.common.api.Scope;
 import com.google.android.gms.common.internal.IGmsCallbacks;
-import com.sonelli.AbstractC2207w9;
-import com.sonelli.C0704ab;
-import com.sonelli.C0813ca;
-import com.sonelli.C2326y6;
-import com.sonelli.C2416z9;
-import com.sonelli.HandlerC0872df;
+import cz.opentree.AbstractC2207w9;
+import cz.opentree.C0704ab;
+import cz.opentree.C0813ca;
+import cz.opentree.C2326y6;
+import cz.opentree.C2416z9;
+import cz.opentree.HandlerC0872df;
 import jackpal.androidterm.emulatorview.compat.KeycodeConstants;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -545,12 +545,12 @@ public abstract class BaseGmsClient<T extends IInterface> {
     public BaseGmsClient(android.content.Context r10, android.os.Looper r11, int r12, com.google.android.gms.common.internal.BaseGmsClient.BaseConnectionCallbacks r13, com.google.android.gms.common.internal.BaseGmsClient.BaseOnConnectionFailedListener r14, java.lang.String r15) {
         /*
             r9 = this;
-            com.sonelli.w9 r3 = com.sonelli.AbstractC2207w9.m9450a(r10)
-            com.sonelli.y6 r4 = com.sonelli.C2326y6.m10090f()
-            com.sonelli.C0813ca.m2729k(r13)
+            cz.opentree.w9 r3 = cz.opentree.AbstractC2207w9.m9450a(r10)
+            cz.opentree.y6 r4 = cz.opentree.C2326y6.m10090f()
+            cz.opentree.C0813ca.m2729k(r13)
             r6 = r13
             com.google.android.gms.common.internal.BaseGmsClient$BaseConnectionCallbacks r6 = (com.google.android.gms.common.internal.BaseGmsClient.BaseConnectionCallbacks) r6
-            com.sonelli.C0813ca.m2729k(r14)
+            cz.opentree.C0813ca.m2729k(r14)
             r7 = r14
             com.google.android.gms.common.internal.BaseGmsClient$BaseOnConnectionFailedListener r7 = (com.google.android.gms.common.internal.BaseGmsClient.BaseOnConnectionFailedListener) r7
             r0 = r9

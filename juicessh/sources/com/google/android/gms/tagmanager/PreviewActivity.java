@@ -5,8 +5,8 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import com.sonelli.v50;
-import com.sonelli.w50;
+import cz.opentree.v50;
+import cz.opentree.w50;
 
 /* loaded from: classes.dex */
 public class PreviewActivity extends Activity {

@@ -1,9 +1,9 @@
 package okhttp3;
 
-import com.sonelli.pm0;
-import com.sonelli.vm0;
-import com.sonelli.xm0;
-import com.sonelli.zm0;
+import cz.opentree.pm0;
+import cz.opentree.vm0;
+import cz.opentree.xm0;
+import cz.opentree.zm0;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;

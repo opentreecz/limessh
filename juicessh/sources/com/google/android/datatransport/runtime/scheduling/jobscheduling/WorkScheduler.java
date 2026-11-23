@@ -1,6 +1,6 @@
 package com.google.android.datatransport.runtime.scheduling.jobscheduling;
 
-import com.sonelli.AbstractC1138i0;
+import cz.opentree.AbstractC1138i0;
 
 /* compiled from: com.google.android.datatransport:transport-runtime@@2.2.1 */
 /* loaded from: classes.dex */

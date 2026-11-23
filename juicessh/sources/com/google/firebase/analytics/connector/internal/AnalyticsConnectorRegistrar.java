@@ -7,10 +7,10 @@ import com.google.firebase.FirebaseApp;
 import com.google.firebase.analytics.connector.AnalyticsConnector;
 import com.google.firebase.components.ComponentRegistrar;
 import com.google.firebase.events.Subscriber;
-import com.sonelli.b80;
-import com.sonelli.j70;
-import com.sonelli.og0;
-import com.sonelli.v70;
+import cz.opentree.b80;
+import cz.opentree.j70;
+import cz.opentree.og0;
+import cz.opentree.v70;
 import java.util.Arrays;
 import java.util.List;
 

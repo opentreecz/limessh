@@ -9,16 +9,16 @@ import android.os.RemoteException;
 import android.util.Log;
 import com.google.android.gms.common.util.DynamiteApi;
 import com.google.android.gms.dynamic.IObjectWrapper;
-import com.sonelli.BinderC1548md;
-import com.sonelli.C0813ca;
-import com.sonelli.C0869dc;
-import com.sonelli.C1650od;
-import com.sonelli.C1699pd;
-import com.sonelli.C1756qd;
-import com.sonelli.C1812rd;
-import com.sonelli.C1856sd;
-import com.sonelli.C1928td;
-import com.sonelli.C2004ud;
+import cz.opentree.BinderC1548md;
+import cz.opentree.C0813ca;
+import cz.opentree.C0869dc;
+import cz.opentree.C1650od;
+import cz.opentree.C1699pd;
+import cz.opentree.C1756qd;
+import cz.opentree.C1812rd;
+import cz.opentree.C1856sd;
+import cz.opentree.C1928td;
+import cz.opentree.C2004ud;
 import dalvik.system.DelegateLastClassLoader;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
@@ -505,7 +505,7 @@ public final class DynamiteModule {
     /* JADX WARN: Multi-variable type inference failed */
     /* JADX WARN: Removed duplicated region for block: B:30:0x007f  */
     /* JADX WARN: Removed duplicated region for block: B:48:0x00b0  */
-    /* JADX WARN: Type inference failed for: r0v0, types: [com.sonelli.od] */
+    /* JADX WARN: Type inference failed for: r0v0, types: [cz.opentree.od] */
     /* JADX WARN: Type inference failed for: r0v1, types: [android.database.Cursor] */
     /* JADX WARN: Type inference failed for: r0v2 */
     /* JADX WARN: Type inference failed for: r0v3 */

@@ -2,7 +2,7 @@ package com.google.android.gms.internal.gtm;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.sonelli.C1816rg;
+import cz.opentree.C1816rg;
 
 /* loaded from: classes.dex */
 public final class zzbk implements Parcelable {

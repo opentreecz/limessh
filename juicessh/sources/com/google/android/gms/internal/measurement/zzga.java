@@ -1,6 +1,6 @@
 package com.google.android.gms.internal.measurement;
 
-import com.sonelli.AbstractC1939tm;
+import cz.opentree.AbstractC1939tm;
 import java.util.List;
 
 /* compiled from: com.google.android.gms:play-services-measurement-base@@17.4.1 */

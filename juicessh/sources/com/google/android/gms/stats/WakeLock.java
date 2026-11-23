@@ -9,9 +9,9 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.android.gms.common.providers.PooledExecutorsProvider;
-import com.sonelli.C0813ca;
-import com.sonelli.C1599nc;
-import com.sonelli.C1698pc;
+import cz.opentree.C0813ca;
+import cz.opentree.C1599nc;
+import cz.opentree.C1698pc;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -127,7 +127,7 @@ public class WakeLock {
      */
     /* JADX WARN: Code restructure failed: missing block: B:14:0x005e, code lost:
     
-        com.sonelli.C2211wb.m9459a().m9463c(r13.f1046g, com.sonelli.C2163vb.m9207a(r13.f1041b, r6), 7, r13.f1044e, r6, null, r13.f1043d, m1517f(), r14);
+        cz.opentree.C2211wb.m9459a().m9463c(r13.f1046g, cz.opentree.C2163vb.m9207a(r13.f1041b, r6), 7, r13.f1044e, r6, null, r13.f1043d, m1517f(), r14);
         r13.f1050k++;
      */
     /* JADX WARN: Code restructure failed: missing block: B:27:0x005c, code lost:
@@ -190,10 +190,10 @@ public class WakeLock {
             int r1 = r13.f1050k     // Catch: java.lang.Throwable -> L96
             if (r1 != 0) goto L7d
         L5e:
-            com.sonelli.wb r1 = com.sonelli.C2211wb.m9459a()     // Catch: java.lang.Throwable -> L96
+            cz.opentree.wb r1 = cz.opentree.C2211wb.m9459a()     // Catch: java.lang.Throwable -> L96
             android.content.Context r2 = r13.f1046g     // Catch: java.lang.Throwable -> L96
             android.os.PowerManager$WakeLock r3 = r13.f1041b     // Catch: java.lang.Throwable -> L96
-            java.lang.String r3 = com.sonelli.C2163vb.m9207a(r3, r6)     // Catch: java.lang.Throwable -> L96
+            java.lang.String r3 = cz.opentree.C2163vb.m9207a(r3, r6)     // Catch: java.lang.Throwable -> L96
             r4 = 7
             java.lang.String r5 = r13.f1044e     // Catch: java.lang.Throwable -> L96
             r7 = 0
@@ -212,7 +212,7 @@ public class WakeLock {
             int r0 = (r14 > r0 ? 1 : (r14 == r0 ? 0 : -1))
             if (r0 <= 0) goto L95
             java.util.concurrent.ScheduledExecutorService r0 = com.google.android.gms.stats.WakeLock.f1039m
-            com.sonelli.i50 r1 = new com.sonelli.i50
+            cz.opentree.i50 r1 = new cz.opentree.i50
             r1.<init>(r13)
             java.util.concurrent.TimeUnit r2 = java.util.concurrent.TimeUnit.MILLISECONDS
             r0.schedule(r1, r14, r2)
@@ -237,7 +237,7 @@ public class WakeLock {
      */
     /* JADX WARN: Code restructure failed: missing block: B:13:0x005a, code lost:
     
-        com.sonelli.C2211wb.m9459a().m9462b(r12.f1046g, com.sonelli.C2163vb.m9207a(r12.f1041b, r6), 8, r12.f1044e, r6, null, r12.f1043d, m1517f());
+        cz.opentree.C2211wb.m9459a().m9462b(r12.f1046g, cz.opentree.C2163vb.m9207a(r12.f1041b, r6), 8, r12.f1044e, r6, null, r12.f1043d, m1517f());
         r12.f1050k--;
      */
     /* JADX WARN: Code restructure failed: missing block: B:26:0x0058, code lost:
@@ -300,10 +300,10 @@ public class WakeLock {
             int r1 = r12.f1050k     // Catch: java.lang.Throwable -> L7e
             if (r1 != r10) goto L79
         L5a:
-            com.sonelli.wb r1 = com.sonelli.C2211wb.m9459a()     // Catch: java.lang.Throwable -> L7e
+            cz.opentree.wb r1 = cz.opentree.C2211wb.m9459a()     // Catch: java.lang.Throwable -> L7e
             android.content.Context r2 = r12.f1046g     // Catch: java.lang.Throwable -> L7e
             android.os.PowerManager$WakeLock r3 = r12.f1041b     // Catch: java.lang.Throwable -> L7e
-            java.lang.String r3 = com.sonelli.C2163vb.m9207a(r3, r6)     // Catch: java.lang.Throwable -> L7e
+            java.lang.String r3 = cz.opentree.C2163vb.m9207a(r3, r6)     // Catch: java.lang.Throwable -> L7e
             r4 = 8
             java.lang.String r5 = r12.f1044e     // Catch: java.lang.Throwable -> L7e
             r7 = 0

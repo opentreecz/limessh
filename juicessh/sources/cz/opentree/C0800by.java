@@ -1,0 +1,20 @@
+package cz.opentree;
+
+import com.google.android.gms.measurement.internal.zzek;
+
+/* compiled from: com.google.android.gms:play-services-measurement-impl@@17.4.1 */
+/* renamed from: cz.opentree.by */
+/* loaded from: classes.dex */
+public final /* synthetic */ class C0800by implements zzek {
+
+    /* renamed from: a */
+    public static final zzek f1834a = new C0800by();
+
+    @Override // com.google.android.gms.measurement.internal.zzek
+    /* renamed from: a */
+    public final Object mo1462a() {
+        Boolean valueOf;
+        valueOf = Boolean.valueOf(C0842cr.m2978c());
+        return valueOf;
+    }
+}

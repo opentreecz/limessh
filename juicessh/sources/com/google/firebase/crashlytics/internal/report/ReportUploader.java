@@ -4,11 +4,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import com.google.firebase.crashlytics.internal.report.model.Report;
 import com.google.firebase.crashlytics.internal.report.network.CreateReportSpiCall;
-import com.sonelli.d90;
-import com.sonelli.jc0;
-import com.sonelli.m80;
-import com.sonelli.s80;
-import com.sonelli.sb0;
+import cz.opentree.d90;
+import cz.opentree.jc0;
+import cz.opentree.m80;
+import cz.opentree.s80;
+import cz.opentree.sb0;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -86,7 +86,7 @@ public class ReportUploader {
             this.f1250Q = f;
         }
 
-        @Override // com.sonelli.s80
+        @Override // cz.opentree.s80
         /* renamed from: a */
         public void mo1834a() {
             try {
@@ -160,25 +160,25 @@ public class ReportUploader {
         /*
             r5 = this;
             r0 = 0
-            com.sonelli.tb0 r1 = new com.sonelli.tb0     // Catch: java.lang.Exception -> L67
+            cz.opentree.tb0 r1 = new cz.opentree.tb0     // Catch: java.lang.Exception -> L67
             java.lang.String r2 = r5.f1242b     // Catch: java.lang.Exception -> L67
             java.lang.String r3 = r5.f1243c     // Catch: java.lang.Exception -> L67
             r1.<init>(r2, r3, r6)     // Catch: java.lang.Exception -> L67
-            com.sonelli.d90 r2 = r5.f1244d     // Catch: java.lang.Exception -> L67
-            com.sonelli.d90 r3 = com.sonelli.d90.ALL     // Catch: java.lang.Exception -> L67
+            cz.opentree.d90 r2 = r5.f1244d     // Catch: java.lang.Exception -> L67
+            cz.opentree.d90 r3 = cz.opentree.d90.ALL     // Catch: java.lang.Exception -> L67
             r4 = 1
             if (r2 != r3) goto L1b
-            com.sonelli.m80 r7 = com.sonelli.m80.m6375f()     // Catch: java.lang.Exception -> L67
+            cz.opentree.m80 r7 = cz.opentree.m80.m6375f()     // Catch: java.lang.Exception -> L67
             java.lang.String r1 = "Send to Reports Endpoint disabled. Removing Reports Endpoint report."
             r7.m6377b(r1)     // Catch: java.lang.Exception -> L67
             goto L30
         L1b:
-            com.sonelli.d90 r3 = com.sonelli.d90.JAVA_ONLY     // Catch: java.lang.Exception -> L67
+            cz.opentree.d90 r3 = cz.opentree.d90.JAVA_ONLY     // Catch: java.lang.Exception -> L67
             if (r2 != r3) goto L32
             com.google.firebase.crashlytics.internal.report.model.Report$a r2 = r6.getType()     // Catch: java.lang.Exception -> L67
             com.google.firebase.crashlytics.internal.report.model.Report$a r3 = com.google.firebase.crashlytics.internal.report.model.Report.EnumC0663a.JAVA     // Catch: java.lang.Exception -> L67
             if (r2 != r3) goto L32
-            com.sonelli.m80 r7 = com.sonelli.m80.m6375f()     // Catch: java.lang.Exception -> L67
+            cz.opentree.m80 r7 = cz.opentree.m80.m6375f()     // Catch: java.lang.Exception -> L67
             java.lang.String r1 = "Send to Reports Endpoint for non-native reports disabled. Removing Reports Uploader report."
             r7.m6377b(r1)     // Catch: java.lang.Exception -> L67
         L30:
@@ -187,7 +187,7 @@ public class ReportUploader {
         L32:
             com.google.firebase.crashlytics.internal.report.network.CreateReportSpiCall r2 = r5.f1241a     // Catch: java.lang.Exception -> L67
             boolean r7 = r2.mo1841b(r1, r7)     // Catch: java.lang.Exception -> L67
-            com.sonelli.m80 r1 = com.sonelli.m80.m6375f()     // Catch: java.lang.Exception -> L67
+            cz.opentree.m80 r1 = cz.opentree.m80.m6375f()     // Catch: java.lang.Exception -> L67
             java.lang.StringBuilder r2 = new java.lang.StringBuilder     // Catch: java.lang.Exception -> L67
             r2.<init>()     // Catch: java.lang.Exception -> L67
             java.lang.String r3 = "Crashlytics Reports Endpoint upload "
@@ -205,13 +205,13 @@ public class ReportUploader {
             r1.m6381g(r2)     // Catch: java.lang.Exception -> L67
         L5e:
             if (r7 == 0) goto L80
-            com.sonelli.sb0 r7 = r5.f1245e     // Catch: java.lang.Exception -> L67
+            cz.opentree.sb0 r7 = r5.f1245e     // Catch: java.lang.Exception -> L67
             r7.m8421b(r6)     // Catch: java.lang.Exception -> L67
             r0 = r4
             goto L80
         L67:
             r7 = move-exception
-            com.sonelli.m80 r1 = com.sonelli.m80.m6375f()
+            cz.opentree.m80 r1 = cz.opentree.m80.m6375f()
             java.lang.StringBuilder r2 = new java.lang.StringBuilder
             r2.<init>()
             java.lang.String r3 = "Error occurred sending report "

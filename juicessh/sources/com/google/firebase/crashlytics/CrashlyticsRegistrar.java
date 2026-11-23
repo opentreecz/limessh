@@ -6,11 +6,11 @@ import com.google.firebase.components.ComponentContainer;
 import com.google.firebase.components.ComponentRegistrar;
 import com.google.firebase.crashlytics.internal.CrashlyticsNativeComponent;
 import com.google.firebase.iid.internal.FirebaseInstanceIdInternal;
-import com.sonelli.b80;
-import com.sonelli.k80;
-import com.sonelli.l80;
-import com.sonelli.og0;
-import com.sonelli.v70;
+import cz.opentree.b80;
+import cz.opentree.k80;
+import cz.opentree.l80;
+import cz.opentree.og0;
+import cz.opentree.v70;
 import java.util.Arrays;
 import java.util.List;
 

@@ -12,8 +12,8 @@ import com.google.android.gms.common.api.Api.ApiOptions;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.internal.BaseGmsClient;
 import com.google.android.gms.common.internal.IAccountAccessor;
-import com.sonelli.C0813ca;
-import com.sonelli.C1850s9;
+import cz.opentree.C0813ca;
+import cz.opentree.C1850s9;
 import java.util.Set;
 
 /* compiled from: com.google.android.gms:play-services-base@@17.1.0 */

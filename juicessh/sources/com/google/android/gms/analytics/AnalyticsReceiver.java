@@ -4,7 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import androidx.annotation.RequiresPermission;
-import com.sonelli.C1817rh;
+import cz.opentree.C1817rh;
 
 /* loaded from: classes.dex */
 public final class AnalyticsReceiver extends BroadcastReceiver {

@@ -5,8 +5,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.C1847s6;
+import cz.opentree.C1099ha;
+import cz.opentree.C1847s6;
 
 /* loaded from: classes.dex */
 public class AccountChangeEventsRequest extends AbstractSafeParcelable {

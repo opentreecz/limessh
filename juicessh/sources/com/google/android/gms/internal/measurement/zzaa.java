@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.C2289xi;
+import cz.opentree.C1099ha;
+import cz.opentree.C2289xi;
 
 /* compiled from: com.google.android.gms:play-services-measurement-base@@17.4.1 */
 /* loaded from: classes.dex */

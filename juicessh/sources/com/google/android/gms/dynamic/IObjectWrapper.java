@@ -2,8 +2,8 @@ package com.google.android.gms.dynamic;
 
 import android.os.IBinder;
 import android.os.IInterface;
-import com.sonelli.BinderC2274xe;
-import com.sonelli.C2341ye;
+import cz.opentree.BinderC2274xe;
+import cz.opentree.C2341ye;
 
 /* compiled from: com.google.android.gms:play-services-basement@@17.1.1 */
 /* loaded from: classes.dex */

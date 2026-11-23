@@ -6,8 +6,8 @@ import androidx.annotation.Nullable;
 import androidx.collection.ArrayMap;
 import com.google.android.gms.common.server.response.FastJsonResponse;
 import com.google.android.gms.internal.auth.zzaz;
-import com.sonelli.C1099ha;
-import com.sonelli.C1845s4;
+import cz.opentree.C1099ha;
+import cz.opentree.C1845s4;
 import java.util.List;
 import java.util.Map;
 

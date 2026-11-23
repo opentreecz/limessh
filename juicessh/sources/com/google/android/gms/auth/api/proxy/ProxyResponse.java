@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C1099ha;
-import com.sonelli.C1143i5;
+import cz.opentree.C1099ha;
+import cz.opentree.C1143i5;
 
 /* loaded from: classes.dex */
 public class ProxyResponse extends AbstractSafeParcelable {

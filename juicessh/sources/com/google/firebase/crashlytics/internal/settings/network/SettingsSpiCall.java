@@ -1,6 +1,6 @@
 package com.google.firebase.crashlytics.internal.settings.network;
 
-import com.sonelli.nc0;
+import cz.opentree.nc0;
 import org.json.JSONObject;
 
 /* compiled from: com.google.firebase:firebase-crashlytics@@17.0.0 */

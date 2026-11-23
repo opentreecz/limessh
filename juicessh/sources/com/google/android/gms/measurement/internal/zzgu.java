@@ -2,9 +2,9 @@ package com.google.android.gms.measurement.internal;
 
 import android.content.Context;
 import com.google.android.gms.common.util.Clock;
-import com.sonelli.C1839rz;
-import com.sonelli.C1889sy;
-import com.sonelli.t40;
+import cz.opentree.C1839rz;
+import cz.opentree.C1889sy;
+import cz.opentree.t40;
 
 /* compiled from: com.google.android.gms:play-services-measurement-impl@@17.4.1 */
 /* loaded from: classes.dex */

@@ -1,7 +1,7 @@
 package com.google.android.gms.tasks;
 
 import androidx.annotation.NonNull;
-import com.sonelli.j60;
+import cz.opentree.j60;
 
 /* loaded from: classes.dex */
 public interface Continuation<TResult, TContinuationResult> {

@@ -3,9 +3,9 @@ package com.google.android.gms.internal.auth;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0813ca;
-import com.sonelli.C1099ha;
-import com.sonelli.C1549me;
+import cz.opentree.C0813ca;
+import cz.opentree.C1099ha;
+import cz.opentree.C1549me;
 
 /* loaded from: classes.dex */
 public final class zzaf extends AbstractSafeParcelable {

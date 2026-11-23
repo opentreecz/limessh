@@ -1,6 +1,6 @@
 package com.google.android.datatransport;
 
-import com.sonelli.AbstractC0802c;
+import cz.opentree.AbstractC0802c;
 
 /* compiled from: com.google.android.datatransport:transport-api@@2.2.0 */
 /* loaded from: classes.dex */

@@ -1,6 +1,6 @@
 package org.bouncycastle.math.ec;
 
-import com.sonelli.iv0;
+import cz.opentree.iv0;
 import java.math.BigInteger;
 
 /* loaded from: classes.dex */

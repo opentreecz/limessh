@@ -1,8 +1,8 @@
 package okhttp3.internal.cache;
 
-import com.sonelli.in0;
-import com.sonelli.xm0;
-import com.sonelli.zm0;
+import cz.opentree.in0;
+import cz.opentree.xm0;
+import cz.opentree.zm0;
 import java.io.IOException;
 
 /* loaded from: classes.dex */

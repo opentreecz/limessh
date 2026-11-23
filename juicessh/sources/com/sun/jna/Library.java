@@ -1,6 +1,6 @@
 package com.sun.jna;
 
-import com.sonelli.cm0;
+import cz.opentree.cm0;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;

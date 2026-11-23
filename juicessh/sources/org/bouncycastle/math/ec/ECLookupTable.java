@@ -1,6 +1,6 @@
 package org.bouncycastle.math.ec;
 
-import com.sonelli.iv0;
+import cz.opentree.iv0;
 
 /* loaded from: classes.dex */
 public interface ECLookupTable {

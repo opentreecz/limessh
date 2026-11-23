@@ -3,10 +3,10 @@ package com.google.android.gms.measurement.internal;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0813ca;
-import com.sonelli.C1099ha;
-import com.sonelli.f40;
-import com.sonelli.h40;
+import cz.opentree.C0813ca;
+import cz.opentree.C1099ha;
+import cz.opentree.f40;
+import cz.opentree.h40;
 
 /* compiled from: com.google.android.gms:play-services-measurement-impl@@17.4.1 */
 /* loaded from: classes.dex */

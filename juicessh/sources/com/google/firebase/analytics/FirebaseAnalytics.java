@@ -11,11 +11,11 @@ import androidx.annotation.RequiresPermission;
 import androidx.annotation.Size;
 import com.google.android.gms.measurement.internal.zzhz;
 import com.google.firebase.iid.FirebaseInstanceId;
-import com.sonelli.C0813ca;
-import com.sonelli.C2144uz;
-import com.sonelli.C2224wi;
-import com.sonelli.r70;
-import com.sonelli.t40;
+import cz.opentree.C0813ca;
+import cz.opentree.C2144uz;
+import cz.opentree.C2224wi;
+import cz.opentree.r70;
+import cz.opentree.t40;
 
 /* compiled from: com.google.android.gms:play-services-measurement-api@@17.4.1 */
 /* loaded from: classes.dex */

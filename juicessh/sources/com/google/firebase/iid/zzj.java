@@ -8,8 +8,8 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.RemoteException;
 import android.util.Log;
-import com.sonelli.hf0;
-import com.sonelli.ve0;
+import cz.opentree.hf0;
+import cz.opentree.ve0;
 
 /* compiled from: com.google.firebase:firebase-iid@@20.1.5 */
 /* loaded from: classes.dex */

@@ -6,11 +6,11 @@ import com.google.firebase.components.ComponentContainer;
 import com.google.firebase.components.ComponentRegistrar;
 import com.google.firebase.heartbeatinfo.HeartBeatInfo;
 import com.google.firebase.platforminfo.UserAgentPublisher;
-import com.sonelli.b80;
-import com.sonelli.og0;
-import com.sonelli.qf0;
-import com.sonelli.sf0;
-import com.sonelli.v70;
+import cz.opentree.b80;
+import cz.opentree.og0;
+import cz.opentree.qf0;
+import cz.opentree.sf0;
+import cz.opentree.v70;
 import java.util.Arrays;
 import java.util.List;
 

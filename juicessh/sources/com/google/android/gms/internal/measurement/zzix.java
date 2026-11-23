@@ -1,7 +1,7 @@
 package com.google.android.gms.internal.measurement;
 
-import com.sonelli.AbstractC1939tm;
-import com.sonelli.C1943to;
+import cz.opentree.AbstractC1939tm;
+import cz.opentree.C1943to;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;

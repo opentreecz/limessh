@@ -5,7 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
 import androidx.annotation.Nullable;
-import com.sonelli.BinderC0971f6;
+import cz.opentree.BinderC0971f6;
 
 /* compiled from: com.google.android.gms:play-services-auth@@18.0.0 */
 /* loaded from: classes.dex */

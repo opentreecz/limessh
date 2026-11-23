@@ -15,9 +15,9 @@ import com.google.android.gms.auth.api.signin.SignInAccount;
 import com.google.android.gms.common.annotation.KeepName;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.Status;
-import com.sonelli.C0696a6;
-import com.sonelli.C0766be;
-import com.sonelli.C1800r5;
+import cz.opentree.C0696a6;
+import cz.opentree.C0766be;
+import cz.opentree.C1800r5;
 
 /* compiled from: com.google.android.gms:play-services-auth@@18.0.0 */
 @KeepName

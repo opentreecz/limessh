@@ -1,14 +1,14 @@
 package okhttp3.internal.http2;
 
 import androidx.appcompat.widget.ActivityChooserView;
-import com.sonelli.ap0;
-import com.sonelli.co0;
-import com.sonelli.do0;
-import com.sonelli.eo0;
-import com.sonelli.fn0;
-import com.sonelli.ko0;
-import com.sonelli.mp0;
-import com.sonelli.zo0;
+import cz.opentree.ap0;
+import cz.opentree.co0;
+import cz.opentree.do0;
+import cz.opentree.eo0;
+import cz.opentree.fn0;
+import cz.opentree.ko0;
+import cz.opentree.mp0;
+import cz.opentree.zo0;
 import java.io.Closeable;
 import java.io.IOException;
 import java.util.List;

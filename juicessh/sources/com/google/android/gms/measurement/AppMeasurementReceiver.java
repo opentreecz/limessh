@@ -5,7 +5,7 @@ import android.content.Intent;
 import androidx.annotation.MainThread;
 import androidx.legacy.content.WakefulBroadcastReceiver;
 import com.google.android.gms.measurement.internal.zzfs;
-import com.sonelli.C1683oz;
+import cz.opentree.C1683oz;
 
 /* compiled from: com.google.android.gms:play-services-measurement@@17.4.1 */
 /* loaded from: classes.dex */

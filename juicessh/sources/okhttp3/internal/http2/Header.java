@@ -1,8 +1,8 @@
 package okhttp3.internal.http2;
 
-import com.sonelli.ap0;
-import com.sonelli.fn0;
-import com.sonelli.qm0;
+import cz.opentree.ap0;
+import cz.opentree.fn0;
+import cz.opentree.qm0;
 
 /* loaded from: classes.dex */
 public final class Header {

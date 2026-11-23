@@ -1,6 +1,6 @@
 package com.google.android.gms.analytics;
 
-import com.sonelli.C1093h4;
+import cz.opentree.C1093h4;
 
 /* loaded from: classes.dex */
 public interface zzn {

@@ -1,6 +1,6 @@
 package com.google.firebase.crashlytics.internal.report.network;
 
-import com.sonelli.tb0;
+import cz.opentree.tb0;
 
 /* compiled from: com.google.firebase:firebase-crashlytics@@17.0.0 */
 /* loaded from: classes.dex */

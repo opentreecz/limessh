@@ -1,10 +1,10 @@
 package com.google.android.gms.common.config;
 
-import com.sonelli.C0916e9;
-import com.sonelli.C0974f9;
-import com.sonelli.C1031g9;
-import com.sonelli.C1098h9;
-import com.sonelli.C1150i9;
+import cz.opentree.C0916e9;
+import cz.opentree.C0974f9;
+import cz.opentree.C1031g9;
+import cz.opentree.C1098h9;
+import cz.opentree.C1150i9;
 
 /* compiled from: com.google.android.gms:play-services-basement@@17.1.1 */
 /* loaded from: classes.dex */

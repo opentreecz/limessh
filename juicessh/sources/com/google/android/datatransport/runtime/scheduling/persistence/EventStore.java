@@ -2,9 +2,9 @@ package com.google.android.datatransport.runtime.scheduling.persistence;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.WorkerThread;
-import com.sonelli.AbstractC0906e0;
-import com.sonelli.AbstractC1022g2;
-import com.sonelli.AbstractC1138i0;
+import cz.opentree.AbstractC0906e0;
+import cz.opentree.AbstractC1022g2;
+import cz.opentree.AbstractC1138i0;
 import java.io.Closeable;
 
 /* compiled from: com.google.android.datatransport:transport-runtime@@2.2.1 */

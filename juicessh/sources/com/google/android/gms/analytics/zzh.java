@@ -1,7 +1,7 @@
 package com.google.android.gms.analytics;
 
-import com.sonelli.C1093h4;
-import com.sonelli.C1195j4;
+import cz.opentree.C1093h4;
+import cz.opentree.C1195j4;
 
 /* loaded from: classes.dex */
 public interface zzh {

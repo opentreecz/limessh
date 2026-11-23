@@ -7,7 +7,7 @@ import android.app.Application;
 import android.content.ComponentCallbacks2;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import com.sonelli.C1501lc;
+import cz.opentree.C1501lc;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import javax.annotation.concurrent.GuardedBy;

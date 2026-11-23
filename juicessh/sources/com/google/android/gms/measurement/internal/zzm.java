@@ -4,9 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.text.TextUtils;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0813ca;
-import com.sonelli.C1099ha;
-import com.sonelli.m40;
+import cz.opentree.C0813ca;
+import cz.opentree.C1099ha;
+import cz.opentree.m40;
 import java.util.List;
 
 /* compiled from: com.google.android.gms:play-services-measurement-impl@@17.4.1 */

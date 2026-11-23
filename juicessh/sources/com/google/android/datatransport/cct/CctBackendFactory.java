@@ -3,8 +3,8 @@ package com.google.android.datatransport.cct;
 import androidx.annotation.Keep;
 import com.google.android.datatransport.runtime.backends.BackendFactory;
 import com.google.android.datatransport.runtime.backends.TransportBackend;
-import com.sonelli.AbstractC1841s0;
-import com.sonelli.C2252x;
+import cz.opentree.AbstractC1841s0;
+import cz.opentree.C2252x;
 
 /* compiled from: com.google.android.datatransport:transport-backend-cct@@2.2.1 */
 @Keep

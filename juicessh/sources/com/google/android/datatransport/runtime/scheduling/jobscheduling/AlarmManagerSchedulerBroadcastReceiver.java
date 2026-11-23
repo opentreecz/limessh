@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Base64;
 import androidx.core.app.NotificationCompat;
-import com.sonelli.AbstractC1138i0;
-import com.sonelli.C1483l0;
-import com.sonelli.C1486l3;
-import com.sonelli.RunnableC1139i1;
+import cz.opentree.AbstractC1138i0;
+import cz.opentree.C1483l0;
+import cz.opentree.C1486l3;
+import cz.opentree.RunnableC1139i1;
 
 /* compiled from: com.google.android.datatransport:transport-runtime@@2.2.1 */
 /* loaded from: classes.dex */

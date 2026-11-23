@@ -9,10 +9,10 @@ import androidx.annotation.NonNull;
 import androidx.legacy.content.WakefulBroadcastReceiver;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.firebase.iid.FirebaseInstanceIdReceiver;
-import com.sonelli.hd0;
-import com.sonelli.j60;
-import com.sonelli.jf0;
-import com.sonelli.ue0;
+import cz.opentree.hd0;
+import cz.opentree.j60;
+import cz.opentree.jf0;
+import cz.opentree.ue0;
 import java.util.concurrent.ExecutorService;
 
 /* compiled from: com.google.firebase:firebase-iid@@20.1.5 */
@@ -48,7 +48,7 @@ public final class FirebaseInstanceIdReceiver extends WakefulBroadcastReceiver {
         zzb jf0Var = "google.com/iid".equals(intent.getStringExtra("from")) ? new jf0(this.f1278a) : new hd0(context, this.f1278a);
         final boolean isOrderedBroadcast = isOrderedBroadcast();
         final BroadcastReceiver.PendingResult goAsync = goAsync();
-        jf0Var.mo1903a(intent).mo2690c(this.f1278a, new OnCompleteListener(isOrderedBroadcast, goAsync) { // from class: com.sonelli.df0
+        jf0Var.mo1903a(intent).mo2690c(this.f1278a, new OnCompleteListener(isOrderedBroadcast, goAsync) { // from class: cz.opentree.df0
 
             /* renamed from: a */
             public final boolean f2160a;

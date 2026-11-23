@@ -3,10 +3,10 @@ package com.google.android.gms.auth;
 import android.os.Parcel;
 import android.os.Parcelable;
 import com.google.android.gms.common.internal.safeparcel.AbstractSafeParcelable;
-import com.sonelli.C0758ba;
-import com.sonelli.C0813ca;
-import com.sonelli.C1099ha;
-import com.sonelli.C1801r6;
+import cz.opentree.C0758ba;
+import cz.opentree.C0813ca;
+import cz.opentree.C1099ha;
+import cz.opentree.C1801r6;
 
 /* loaded from: classes.dex */
 public class AccountChangeEvent extends AbstractSafeParcelable {
