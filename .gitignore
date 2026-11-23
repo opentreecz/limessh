@@ -25,3 +25,5 @@ Thumbs.db
 
 # Research APKs — the original binaries are kept out of the repo
 *.apk
+# except the base APK the build repackages
+!juicessh-base.apk

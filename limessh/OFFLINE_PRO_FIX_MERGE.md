@@ -1,23 +1,19 @@
-# OfflineProFix merged into LimeSSH
+# OfflineProFix — applied to the LimeSSH build
 
-The standalone `juicessh-offlineprofix` Xposed module
-(`org.lyf.juicesshofflinepro`) has been merged directly into these decompiled
-LimeSSH sources, so the offline-"Pro" behaviour is baked into the app itself
-and no longer requires the Xposed framework.
+The `org.lyf.juicesshofflinepro` Xposed module unlocked JuiceSSH's offline
+"Pro" by hooking five methods at runtime. The LimeSSH build bakes those same
+five changes into the APK by rewriting the methods in **smali** at build time
+(see `patches/patch.py`), so the Xposed framework is not required.
 
-The module replaced five LimeSSH methods at runtime. Each has been patched
-in place; search for `[OfflineProFix merged]` to find them. The original body
-of each method is preserved next to it with an `_original` suffix (or inside a
-block comment) for reference.
-
-| Xposed hook (runtime name) | Patched method (decompiled name) | New behaviour |
+| Xposed hook (runtime name) | Patched method (smali) | New behaviour |
 |---|---|---|
-| `oi0.d(Object)` | `cz/opentree/oi0.java` → `m7047d(Object)` | always returns `true` |
-| `User.H()` | `cz/opentree/limessh/models/User.java` → `m5531H()` | always returns `true` (signature valid) |
-| `User.w()` | `cz/opentree/limessh/models/User.java` → `m5533w()` | returns `315360000L` (10-year session, never expires) |
-| `pi0.m(Context)` | `cz/opentree/pi0.java` → `m7334m(Context)` | always returns `true` (API user gate) |
-| `pi0.j(Context, pi0$p)` | `cz/opentree/pi0.java` → `m7331j(Context, AbstractC1720p)` | resolves the user locally via `User.m5518A(context)` (or `new User()`) and invokes the callback, with no network refresh |
+| `oi0.d(Object)` | `Lcom/sonelli/oi0;->d(Ljava/lang/Object;)Z` | always returns `true` |
+| `User.H()` | `Lcom/sonelli/juicessh/models/User;->H()Z` | always returns `true` (signature valid) |
+| `User.w()` | `Lcom/sonelli/juicessh/models/User;->w()J` | returns `0x12cc0300` (315360000s ≈ 10 years; session never expires) |
+| `pi0.m(Context)` | `Lcom/sonelli/pi0;->m(Landroid/content/Context;)Z` | always returns `true` (API user gate) |
+| `pi0.j(Context, pi0$p)` | `Lcom/sonelli/pi0;->j(Landroid/content/Context;Lcom/sonelli/pi0$p;)V` | resolves the user locally via `User.A(context)` (or `new User()`) and invokes the callback, with no network refresh |
 
-The module's configurable options (`hook_pro_check`, `hook_user_signature`,
-`hook_session_expiry`, `hook_api_gate`, `session_years`, default 10) are baked
-in as all-enabled with a 10-year session.
+The `limessh/sources/` tree contains the equivalent changes in human-readable
+decompiled Java for reference; the actual build applies them in smali against
+the original `com.sonelli.juicessh` package so the bundled native libraries
+continue to resolve.

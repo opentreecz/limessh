@@ -1,7 +1,0 @@
- • Fix issue with Xiaomi devices where the terminal background color was overridden by MIUI 12.
-
- • Added option to change the terminal font.
-
- • Available fonts: Cascadia Code, Sauce Code Pro, Roboto Mono, JetBrains Mono, Fira Code, Open Dyslexic, Inconsolata and Droid Sans Mono.
-
- • Don't see your favourite font there? Drop us a mail at support@sonelli.com; fonts will be prioritized based on the number of requests.

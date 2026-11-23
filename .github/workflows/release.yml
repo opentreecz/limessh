@@ -16,7 +16,7 @@ jobs:
   release:
     name: Build and publish APK
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
@@ -29,24 +29,20 @@ jobs:
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
 
-      - name: Accept SDK licences and install packages
-        run: |
-          yes | sdkmanager --licenses >/dev/null 2>&1 || true
-          sdkmanager "platforms;android-34" "build-tools;34.0.0" "platform-tools"
+      - name: Install build-tools
+        run: sdkmanager "build-tools;34.0.0" "platform-tools"
 
-      - uses: gradle/actions/setup-gradle@v4
+      - name: Build and sign APK
+        run: bash build.sh
 
-      - name: Assemble debug APK
-        run: ./gradlew :limessh:assembleDebug --no-daemon --stacktrace
-
-      - name: Stage APK
+      - name: Stage release asset
         id: stage
         shell: bash
         run: |
           assets="$RUNNER_TEMP/limessh-assets"
           mkdir -p "$assets"
           name="${GITHUB_REF_NAME#v}"
-          cp limessh/build/outputs/apk/debug/*.apk "$assets/limessh-${name}-debug.apk"
+          cp build/limessh-debug.apk "$assets/limessh-${name}.apk"
           ( cd "$assets" && sha256sum -- *.apk > SHA256SUMS )
           echo "dir=$assets" >> "$GITHUB_OUTPUT"
 
@@ -60,5 +56,5 @@ jobs:
           gh release create "$GITHUB_REF_NAME" \
             "${{ steps.stage.outputs.dir }}/"*.apk \
             "${{ steps.stage.outputs.dir }}/SHA256SUMS" \
-            --title "limessh $GITHUB_REF_NAME" \
+            --title "LimeSSH $GITHUB_REF_NAME" \
             --generate-notes "${flags[@]}"
