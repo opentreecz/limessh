@@ -28,10 +28,14 @@ bash build.sh
 
 ## What the patches do
 
+The app identity (applicationId) is renamed to `cz.opentree.limessh` and the
+display name to **LimeSSH**, with a green lime launcher icon. The internal
+smali/code package stays `com.sonelli.juicessh` so the bundled native
+libraries (`Java_com_sonelli_juicessh_*` JNI symbols) keep resolving.
+
 Offline-Pro is unlocked by rewriting five methods in smali (the same five the
 `org.lyf.juicesshofflinepro` Xposed module hooked at runtime) — see
-`patches/OFFLINE_PRO_FIX_MERGE.md` for the full mapping. The package stays
-`com.sonelli.juicessh` so the bundled JNI libraries keep working.
+`patches/OFFLINE_PRO_FIX_MERGE.md` for the full mapping.
 
 The build produces a **debug-signed** APK. Because it is signed with a
 different certificate than the Play Store build, it cannot update an installed

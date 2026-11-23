@@ -138,12 +138,42 @@ def patch_icon(root):
     print("set launcher background to green")
 
 
+def patch_identity(root):
+    # Rename the app identity (applicationId) and display name to LimeSSH.
+    # The smali/code package stays com.sonelli.juicessh so the bundled native
+    # libraries (Java_com_sonelli_juicessh_* JNI symbols) keep resolving.
+    manifest = os.path.join(root, "AndroidManifest.xml")
+    with open(manifest, encoding="utf-8") as f:
+        text = f.read()
+    new = text.replace('package="com.sonelli.juicessh"', 'package="cz.opentree.limessh"')
+    if new == text:
+        raise SystemExit("error: manifest package attribute not found")
+    with open(manifest, "w", encoding="utf-8") as f:
+        f.write(new)
+    print("renamed applicationId -> cz.opentree.limessh")
+
+    strings = os.path.join(root, "res", "values", "strings.xml")
+    with open(strings, encoding="utf-8") as f:
+        text = f.read()
+    new = re.sub(
+        r"(<string name=\"app_name\">)[^<]*(</string>)",
+        r"\g<1>LimeSSH\g<2>",
+        text,
+    )
+    if new == text:
+        raise SystemExit("error: app_name string not found")
+    with open(strings, "w", encoding="utf-8") as f:
+        f.write(new)
+    print("renamed display name -> LimeSSH")
+
+
 def main():
     if len(sys.argv) != 2:
         raise SystemExit("usage: patch.py <decoded-dir>")
     root = sys.argv[1]
     patch_smali(root)
     patch_icon(root)
+    patch_identity(root)
     print("patches applied")
 
 
