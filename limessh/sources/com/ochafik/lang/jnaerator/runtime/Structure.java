@@ -1,10 +1,8 @@
 package com.ochafik.lang.jnaerator.runtime;
 
-import com.ochafik.lang.jnaerator.runtime.Structure;
 import com.sun.jna.Memory;
 import com.sun.jna.Native;
 import com.sun.jna.Pointer;
-import com.sun.jna.Structure;
 import java.lang.ref.WeakReference;
 import java.nio.Buffer;
 
@@ -13,12 +11,12 @@ public abstract class Structure<S extends Structure<S, V, R>, V extends S, R ext
     public transient WeakReference<StructureType> dependency;
 
     /* loaded from: classes.dex */
-    public interface ByReference extends Structure.ByReference, StructureTypeDependent {
+    public interface ByReference extends com.sun.jna.Structure.ByReference, StructureTypeDependent {
         /* synthetic */ void setDependency(StructureType structureType);
     }
 
     /* loaded from: classes.dex */
-    public interface ByValue extends Structure.ByValue, StructureTypeDependent {
+    public interface ByValue extends com.sun.jna.Structure.ByValue, StructureTypeDependent {
         /* synthetic */ void setDependency(StructureType structureType);
     }
 
